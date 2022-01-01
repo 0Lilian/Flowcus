@@ -5,7 +5,7 @@ const common_fixer = (function () {
         fix (body) {
 
             // Fix unescaped `
-            // TODO
+            body.innerHTML = body.innerHTML.replaceAll("`", "\\`")
 
             // Return the body.
             return body

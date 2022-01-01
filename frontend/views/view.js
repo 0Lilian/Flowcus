@@ -28,7 +28,7 @@ class View {
 
     displayView () {
         // Reset the body but keep the header
-        const body_childs = document.body.querySelectorAll("body > *:not(header)")
+        const body_childs = document.body.querySelectorAll("body > *:not(header#harmonic-header)")
         for (const child of body_childs) {
             document.body.removeChild(child)
         }

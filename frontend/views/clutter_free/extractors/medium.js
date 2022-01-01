@@ -10,7 +10,7 @@
 
     // Parse the body to extract the clutter-free content.
     const customExtractor = {
-      domain: 'towardsdatascience.com',
+      domain: 'medium.com',
 
       title: {
         selectors: ['h1', ['meta[name="og:title"]', 'value']],
@@ -91,6 +91,11 @@
         ],
       },
     };
+
+    // Add dynamic extractor's domain.
+    if (additional_medium_websites.includes(window.location.hostname)) {
+        customExtractor.domain = window.location.hostname;
+    }
 
     // Set and return the Mercury extractor.
     return Mercury.addExtractor(customExtractor);

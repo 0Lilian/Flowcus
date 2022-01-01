@@ -12,7 +12,8 @@ body.harmonic-header-displayed {
     padding-top: 70px;
 }
 
-header, nav {
+header#harmonic-header,
+header#harmonic-header nav {
     display: flex;
     justify-content: center;
     align-items: center;
