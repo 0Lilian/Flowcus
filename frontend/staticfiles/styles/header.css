@@ -1,0 +1,19 @@
+header#harmonic-header {
+    z-index: 99999999999999;
+    height: 70px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    background-color: antiquewhite;
+}
+
+body.harmonic-header-displayed {
+    padding-top: 70px;
+}
+
+header, nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
