@@ -13,27 +13,77 @@ const header = (function () {
             this.header_element = document.createElement("header")
             this.header_element.id = "harmonic-header"
 
+            // Add header's style classes.
+            Settings.get("sticky-header", function (value) {
+                if (value === "true") {
+                    this.header_element.classList.add("sticky-header")
+                }
+            }.bind(this))
+
+            Settings.get("header-layout", function (value) {
+                this.header_element.classList.add(`${value}-layout`)
+            }.bind(this))
+
+            Settings.get("condensed-layout-behavior", function (value) {
+                this.header_element.classList.add(`condensed-${value}-behavior`)
+            }.bind(this))
+
+            Settings.get("display-actions-hotkeys", function (value) {
+                if (value === "true") {
+                    this.header_element.classList.add("display-hotkeys")
+                }
+            }.bind(this))
+
+
+            // Create and insert the header's title.
             const header_title = document.createElement("h1")
             header_title.innerText = this.extension_title
             this.header_element.appendChild(header_title)
 
-            const header_nav = document.createElement("nav")
-            this.header_element.appendChild(header_nav)
 
-            const header_nav_title = document.createElement("h2")
-            header_nav_title.innerText = "Change view :"
-            header_nav.appendChild(header_nav_title)
+            // Create and insert the header's 'views' section.
+            const header_views = document.createElement("section")
+            header_views.id = "views"
+            this.header_element.appendChild(header_views)
 
+            // Create and insert the views title.
+            const header_views_title = document.createElement("h2")
+            header_views_title.innerText = "Views :"
+            header_views.appendChild(header_views_title)
+
+            // Create and insert the views nav
+            const header_views_nav = document.createElement("nav")
+            header_views.appendChild(header_views_nav)
+
+            // Create and insert the views buttons.
             for (const view of views) {
-                const header_nav_button = document.createElement("button")
-                header_nav_button.innerText = view.display_name
-                // header_nav_button.id = view.id + "-button"
-                header_nav.appendChild(header_nav_button)
+                const header_views_button = document.createElement("button")
+                header_views_button.innerText = view.display_name
+                header_views_nav.appendChild(header_views_button)
 
-                header_nav_button.addEventListener("click", function () {
+                header_views_button.addEventListener("click", function () {
                     view.displayView()
                 })
             }
+
+
+            // Create and insert the header's 'actions' section.
+            const header_actions = document.createElement("section")
+            header_actions.id = "actions"
+            this.header_element.appendChild(header_actions)
+
+            // Create and insert the actions title.
+            const header_actions_title = document.createElement("h2")
+            header_actions_title.innerText = "Actions :"
+            header_actions.appendChild(header_actions_title)
+
+            // Create and insert the actions nav
+            const header_actions_nav = document.createElement("nav")
+            header_actions.appendChild(header_actions_nav)
+
+            // Create and insert the actions buttons.
+            // TODO
+
         }
 
         displayHeader () {

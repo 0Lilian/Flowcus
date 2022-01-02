@@ -33,6 +33,8 @@
                 "/frontend/staticfiles/scripts/mercury.js",
                 "/frontend/staticfiles/scripts/turndown.js",
 
+                "/options/staticfiles/scripts/settings.js",
+
                 "/frontend/views/view.js",
 
                 "/frontend/views/clutter_full/clutter_full_view.js",

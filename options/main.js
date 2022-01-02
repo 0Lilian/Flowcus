@@ -1,30 +1,24 @@
 
 function init () {
 
+    // Retrieve all data fields.
     const labels = document.querySelectorAll("form label");
     const fields = [];
     for (const label of labels) {
         fields.push(label.nextElementSibling)
     }
-    const saved = document.querySelector("#saved")
 
     function saveOptions(e) {
 
         e.preventDefault();
 
-        // Retrieve fields datas.
-        let datas = {};
-        for (const field of fields) {
-            if (field.tagName === "INPUT" && field.type === "checkbox") {
-                datas[field.name] = field.checked
-            }
-            else {
-                datas[field.name] = field.value
-            }
-        }
-
         // Store datas in browser storage.
-        browser.storage.sync.set(datas);
+        if (this.tagName === "INPUT" && this.type === "checkbox") {
+            Settings.set(this.name, this.checked)
+        }
+        else {
+            Settings.set(this.name, this.value)
+        }
 
         // Add a saved message next to the field.
         const saved_message = document.createElement("span")
@@ -45,12 +39,12 @@ function init () {
 
         for (const field of fields) {
 
-            function setValue(result) {
+            function setValue(value) {
                 if (field.tagName === "INPUT" && field.type === "checkbox") {
-                    field.checked = result[field.name]
+                    field.checked = value
                 }
                 else {
-                    field.value = result[field.name]
+                    field.value = value
                 }
             }
 
@@ -58,7 +52,7 @@ function init () {
                 console.log(`Error: ${error}`);
             }
 
-            const getting = browser.storage.sync.get(field.name).then(setValue, onError)
+            Settings.get(field.name, setValue)
         }
     }
 

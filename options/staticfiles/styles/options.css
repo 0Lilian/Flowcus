@@ -17,10 +17,6 @@ form > div {
     margin-bottom: 15px;
 }
 
-/* body > *:not(header#harmonic-header) {
-    display: block;
-} */
-
 span#saved-message {
     color: green;
     display: inline;

@@ -1,3 +1,6 @@
+/* ########################### */
+/* ### COMMON HEADER STYLE ### */
+/* ########################### */
 header#harmonic-header {
     z-index: 99999999999999;
     height: 70px;
@@ -17,4 +20,44 @@ header#harmonic-header nav {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+
+/* ##################### */
+/* ### STICKY HEADER ### */
+/* ##################### */
+header#harmonic-header.sticky {
+    position: fixed;
+}
+
+
+/* ##################### */
+/* ### HEADER LAYOUT ### */
+/* ##################### */
+
+/* Big layout */
+header#harmonic-header.big-layout {
+
+}
+
+header#harmonic-header.big-layout.display-hotkeys {
+
+}
+
+/* Condensed layout */
+header#harmonic-header.condensed-layout {
+
+}
+
+header#harmonic-header.condensed-layout.condensed-button-click-behavior {
+
+}
+
+header#harmonic-header.condensed-layout.condensed-hover-behavior {
+
+}
+
+/* Hidden layout */
+header#harmonic-header.hidden-layout {
+
 }
