@@ -15,30 +15,37 @@ const header = (function () {
 
             // Add header's style classes.
             Settings.get("sticky-header", function (value) {
-                if (value === "true") {
-                    this.header_element.classList.add("sticky-header")
+                if (value === true) {
+                    this.header_element.classList.add("sticky")
                 }
             }.bind(this))
 
             Settings.get("header-layout", function (value) {
                 this.header_element.classList.add(`${value}-layout`)
+                document.body.classList.add(`harmonic-header-${value}-layout`)
             }.bind(this))
 
             Settings.get("condensed-layout-behavior", function (value) {
                 this.header_element.classList.add(`condensed-${value}-behavior`)
             }.bind(this))
 
+            Settings.get("display-views-hotkeys", function (value) {
+                if (value === true) {
+                    this.header_element.classList.add("display-views-hotkeys")
+                }
+            }.bind(this))
+
             Settings.get("display-actions-hotkeys", function (value) {
-                if (value === "true") {
-                    this.header_element.classList.add("display-hotkeys")
+                if (value === true) {
+                    this.header_element.classList.add("display-actions-hotkeys")
                 }
             }.bind(this))
 
 
             // Create and insert the header's title.
-            const header_title = document.createElement("h1")
-            header_title.innerText = this.extension_title
-            this.header_element.appendChild(header_title)
+            // const header_title = document.createElement("h1")
+            // header_title.innerText = this.extension_title
+            // this.header_element.appendChild(header_title)
 
 
             // Create and insert the header's 'views' section.

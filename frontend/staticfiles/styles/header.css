@@ -3,20 +3,21 @@
 /* ########################### */
 header#harmonic-header {
     z-index: 99999999999999;
-    height: 70px;
     position: absolute;
     left: 0;
     right: 0;
     top: 0;
     background-color: antiquewhite;
+    display: flex;
 }
 
-body.harmonic-header-displayed {
-    padding-top: 70px;
+header#harmonic-header section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-header#harmonic-header,
-header#harmonic-header nav {
+header#harmonic-header section nav {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -35,18 +36,35 @@ header#harmonic-header.sticky {
 /* ### HEADER LAYOUT ### */
 /* ##################### */
 
-/* Big layout */
+/* # BIG LAYOUT # */
 header#harmonic-header.big-layout {
-
+    flex-direction: column;
 }
 
 header#harmonic-header.big-layout.display-hotkeys {
 
 }
 
-/* Condensed layout */
-header#harmonic-header.condensed-layout {
+body.harmonic-header-displayed.harmonic-header-big-layout {
+    padding-top: 150px;
+}
 
+/* # CONDENSED LAYOUT # */
+header#harmonic-header.condensed-layout {
+    flex-direction: row;
+    flex-wrap: nowrap
+}
+
+header#harmonic-header.condensed-layout section#views {
+    /* width: 50% */
+}
+
+header#harmonic-header.condensed-layout section#actions {
+    /* width: 50% */
+}
+
+body.harmonic-header-displayed.harmonic-header-condensed-layout {
+    padding-top: 75px;
 }
 
 header#harmonic-header.condensed-layout.condensed-button-click-behavior {
@@ -57,7 +75,11 @@ header#harmonic-header.condensed-layout.condensed-hover-behavior {
 
 }
 
-/* Hidden layout */
+/* # HIDDEN LAYOUT # */
 header#harmonic-header.hidden-layout {
+    display: none;
+}
 
+body.harmonic-header-displayed.harmonic-header-hidden-layout {
+    padding-top: 0px;
 }

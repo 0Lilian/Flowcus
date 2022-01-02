@@ -4,7 +4,7 @@ const clutter_full_view = (function () {
     class ClutterFullView extends View {
 
         generateContent () {
-            
+
             // Remove body_scripts to prevent them to run twice
             const body_scripts = document.querySelectorAll("body script")
             for (const script of body_scripts) {
@@ -21,7 +21,8 @@ const clutter_full_view = (function () {
 
     // Instanciate the ClutterFullView class and return the instance
     return new ClutterFullView(id="clutter-full-view",
-                               display_name="Clutter-full view (original page)",
+                               display_name="Clutter-full",
+                               icon="",
                                dependencies = [],
                                require_css_reset = false)
 })();

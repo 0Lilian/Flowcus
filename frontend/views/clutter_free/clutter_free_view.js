@@ -23,7 +23,8 @@ const clutter_free_view = (function () {
 
     // Instanciate the ClutterFreeView class and return the instance
     return new ClutterFreeView(id="clutter-free-view",
-                               display_name="Clutter-free view (clear page)",
+                               display_name="Clutter-free",
+                               icon="",
                                dependencies = ["clutter_full_view", ],
                                require_css_reset = true)
 })();

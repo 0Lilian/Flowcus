@@ -35,7 +35,8 @@ const markdown_view = (function () {
 
     // Instanciate the MarkdownView class and return the instance
     return new MarkdownView(id="markdown-view",
-                            display_name="Markdown view",
+                            display_name="Markdown",
+                            icon="",
                             dependencies = ["clutter_free_view", ],
                             require_css_reset = true)
 })();

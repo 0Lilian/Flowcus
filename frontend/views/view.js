@@ -4,10 +4,12 @@ class View {
 
     constructor (id,
                  display_name,
+                 icon,
                  dependencies = [],
                  require_css_reset = true) {
         this.id = id;
         this.display_name = display_name;
+        this.icon = icon;
         this.dependencies = dependencies;
         this.require_css_reset = require_css_reset;
         this._body = null;

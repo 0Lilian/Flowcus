@@ -14,6 +14,10 @@ const generic_view = (function () {
     }
 
     // Instanciate the GenericView class and return the instance
-    return new GenericView()
+    return new GenericView(id="generic-view",
+                           display_name="Generic",
+                           icon="",
+                           dependencies = [],
+                           require_css_reset = false)
 })();
 views.push(generic_view)
