@@ -17,17 +17,18 @@
 
                     <div>
                         <label for="header-primary-color">Header primary color</label>
-                        <input type="color" name="header-primary-color"/>
+                        <input type="color" name="header-primary-color" default="#B6712E"/>
                     </div>
 
                     <div>
                         <label for="header-secondary-color">Header secondary color</label>
-                        <input type="color" name="header-secondary-color"/>
+                        <input type="color" name="header-secondary-color" default="#7b6cd9"/>
                     </div>
 
                     <div>
                         <label for="sticky-header">Sticky header</label>
                         <input type="checkbox" name="sticky-header"/>
+                        <p class="description">If the header is sticky it will be fixed on the top of your page content even if you scroll down.</p>
                     </div>
 
                     <div>
@@ -40,8 +41,26 @@
                     </div>
 
                     <div>
+                        <label for="">Condensed layer become Big on&nbsp;</label>
+                        <select class="browser-style" name="header-layout">
+                            <option value="big">Hover</option>
+                            <option value="condensed" selected>Button click</option>
+                        </select>
+                        <p class="description">If you have choosen the 'Condensed' header's layout, this setting defines in which condition the header will be transformed in 'Big' layout.</p>
+                    </div>
+
+                    <div>
                         <label for="display-actions-hotkeys">Display actions' hotkeys</label>
                         <input type="checkbox" name="display-actions-hotkeys"/>
+                        <p class="description">If this is checked, actions' hotkeys will be displayed under the actions's button in the header.</p>
+                    </div>
+
+                <h3>Extension's scripts</h3>
+
+                    <div>
+                        <label for="automatically-loaded">Automatically loaded extension</label>
+                        <input type="checkbox" name="automatically-loaded"/>
+                        <p class="description">By default the HarmonicToolbox's scripts are automatically added to each page you load, it allows the friction-less magic of this extension. But sometimes you might want to disable this behavior.</p>
                     </div>
 
             <h2>Views Settings</h2>
@@ -75,6 +94,7 @@
                             <option value="roam-research" disabled>Roam research (not available yet)</option>
                             <option value="foam" disabled>Foam (not available yet)</option>
                         </select>
+                        <p class="description">This setting asks you which Knowledge Management software you want to clip your content to ?</p>
                     </div>
 
                     <h4>Obsidian</h4>
@@ -82,11 +102,13 @@
                         <div>
                             <label for="obsidian-vault">Obsidian vault</label>
                             <input type="text" name="obsidian-vault"/>
+                            <p class="description">The name of your local Obsidian vault.</p>
                         </div>
 
                         <div>
                             <label for="obsidian-folder">Obsidian folder in vault</label>
                             <input type="text" name="obsidian-folder"/>
+                            <p class="description">The name of the exisiting folder inside your Obsidian vault in which you want to put the clipped contents to.</p>
                         </div>
 
                     <h4>Roam Research</h4>

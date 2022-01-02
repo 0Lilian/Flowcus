@@ -10,13 +10,14 @@
     },
 
     "permissions": [
-        "activeTab"
+        "activeTab",
+        "storage"
     ],
 
     "browser_action": {
         "default_icon": "/popup/staticfiles/images/icon.png",
         "default_title": "HarmonicToolbox",
-        "default_popup": "/popup/staticfiles/templates/popup.html"
+        "default_popup": "/options/staticfiles/templates/options.html"
     },
 
     "browser_specific_settings": {

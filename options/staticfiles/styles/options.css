@@ -21,6 +21,13 @@ form > div {
     display: block;
 } */
 
+span#saved-message {
+    color: green;
+    display: inline;
+    font-weight: bold;
+    opacity: 0;
+    transition-duration: 500ms;
+}
 
 h1 {
     padding-left: 0px !important;
