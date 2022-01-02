@@ -17,17 +17,17 @@
 
                     <div>
                         <label for="header-primary-color">Header primary color</label>
-                        <input type="color" name="header-primary-color" default="#B6712E"/>
+                        <input type="color" name="header-primary-color" value="#B6712E"/>
                     </div>
 
                     <div>
                         <label for="header-secondary-color">Header secondary color</label>
-                        <input type="color" name="header-secondary-color" default="#7b6cd9"/>
+                        <input type="color" name="header-secondary-color" value="#7b6cd9"/>
                     </div>
 
                     <div>
                         <label for="sticky-header">Sticky header</label>
-                        <input type="checkbox" name="sticky-header"/>
+                        <input type="checkbox" name="sticky-header" checked="false"/>
                         <p class="description">If the header is sticky it will be fixed on the top of your page content even if you scroll down.</p>
                     </div>
 
@@ -51,15 +51,15 @@
 
                     <div>
                         <label for="display-actions-hotkeys">Display actions' hotkeys</label>
-                        <input type="checkbox" name="display-actions-hotkeys"/>
+                        <input type="checkbox" name="display-actions-hotkeys" checked="true"/>
                         <p class="description">If this is checked, actions' hotkeys will be displayed under the actions's button in the header.</p>
                     </div>
 
                 <h3>Extension's scripts</h3>
 
                     <div>
-                        <label for="automatically-loaded">Automatically loaded extension</label>
-                        <input type="checkbox" name="automatically-loaded"/>
+                        <label for="automatically-loaded">Auto-loaded extension</label>
+                        <input type="checkbox" name="automatically-loaded" checked="true"/>
                         <p class="description">By default the HarmonicToolbox's scripts are automatically added to each page you load, it allows the friction-less magic of this extension. But sometimes you might want to disable this behavior.</p>
                     </div>
 
@@ -68,19 +68,25 @@
                 <h3>Clutter-full</h3>
                     <div>
                         <label for="enable-clutter-full-view">Enable</label>
-                        <input type="checkbox" name="enable-clutter-full-view"/>
+                        <input type="checkbox" name="enable-clutter-full-view" checked="true"/>
                     </div>
 
                 <h3>Clutter-free</h3>
                     <div>
                         <label for="enable-clutter-free-view">Enable</label>
-                        <input type="checkbox" name="enable-clutter-free-view"/>
+                        <input type="checkbox" name="enable-clutter-free-view" checked="true"/>
+                    </div>
+
+                    <div>
+                        <label for="auto-indent">Auto-indent</label>
+                        <input type="checkbox" name="auto-indent" checked="true"/>
+                        <p class="description">If checked the clutter-free content will be beautifully indented to improve the readability.</p>
                     </div>
 
                 <h3>Markdown</h3>
                     <div>
                         <label for="enable-markdown-view">Enable</label>
-                        <input type="checkbox" name="enable-markdown-view"/>
+                        <input type="checkbox" name="enable-markdown-view" checked="true"/>
                     </div>
 
             <h2>Actions Settings</h2>
@@ -101,13 +107,13 @@
 
                         <div>
                             <label for="obsidian-vault">Obsidian vault</label>
-                            <input type="text" name="obsidian-vault"/>
+                            <input type="text" name="obsidian-vault" placeholder="MySuperVault"/>
                             <p class="description">The name of your local Obsidian vault.</p>
                         </div>
 
                         <div>
                             <label for="obsidian-folder">Obsidian folder in vault</label>
-                            <input type="text" name="obsidian-folder"/>
+                            <input type="text" name="obsidian-folder" placeholder="My/Super/Folder/"/>
                             <p class="description">The name of the exisiting folder inside your Obsidian vault in which you want to put the clipped contents to.</p>
                         </div>
 
