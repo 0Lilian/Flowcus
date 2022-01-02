@@ -1,0 +1,42 @@
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+}
+
+form > div {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+/* body > *:not(header#harmonic-header) {
+    display: block;
+} */
+
+
+h1 {
+    padding-left: 0px !important;
+}
+h2 {
+    padding-left: 0px !important;
+}
+h3 {
+    padding-left: 20px !important;
+}
+h4 {
+    padding-left: 40px !important;
+}
+h5 {
+    padding-left: 60px !important;
+}
+h6 {
+    padding-left: 80px !important;
+}

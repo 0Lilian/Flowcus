@@ -14,9 +14,9 @@
     ],
 
     "browser_action": {
-      "default_icon": "/popup/staticfiles/images/icon.png",
-      "default_title": "HarmonicToolbox",
-      "default_popup": "/popup/staticfiles/templates/popup.html"
+        "default_icon": "/popup/staticfiles/images/icon.png",
+        "default_title": "HarmonicToolbox",
+        "default_popup": "/popup/staticfiles/templates/popup.html"
     },
 
     "browser_specific_settings": {
@@ -26,13 +26,13 @@
     },
 
     "content_scripts": [
-      {
-        "matches": ["<all_urls>"],
-        "js": [
-            "/frontend/staticfiles/scripts/mercury.js",
-            "/frontend/staticfiles/scripts/turndown.js",
+        {
+            "matches": ["<all_urls>"],
+            "js": [
+                "/frontend/staticfiles/scripts/mercury.js",
+                "/frontend/staticfiles/scripts/turndown.js",
 
-            "/frontend/views/view.js",
+                "/frontend/views/view.js",
 
                 "/frontend/views/clutter_full/clutter_full_view.js",
 
@@ -46,16 +46,22 @@
                 "/frontend/views/markdown/extractors/extractor.js",
                 "/frontend/views/markdown/markdown_view.js",
 
-            "/frontend/actions/action.js",
+                "/frontend/actions/action.js",
 
-            "/frontend/header.js",
+                "/frontend/header.js",
 
-            "/frontend/main.js"
-        ],
-        "css": [
-            "/frontend/staticfiles/styles/header.css",
-            "/frontend/staticfiles/styles/adjustments.css"
-        ]
-      }
-    ]
+                "/frontend/main.js"
+            ],
+            "css": [
+                "/frontend/staticfiles/styles/header.css",
+                "/frontend/staticfiles/styles/adjustments.css"
+            ],
+            "run_at": "document_start"
+        }
+    ],
+    "options_ui": {
+        "page": "/options/staticfiles/templates/options.html",
+        "browser_style": true,
+        "chrome_style": true
+    }
 }
