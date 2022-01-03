@@ -32,7 +32,7 @@ const header = (function () {
                                 this.header_element.classList.remove(`ultra-condensed-layout`)
                                 this.header_element.classList.add(`condensed-layout`)
                             }.bind(this))
-                            
+
                             this.header_element.addEventListener("mouseout", function () {
                                 this.header_element.classList.remove(`condensed-layout`)
                                 this.header_element.classList.add(`ultra-condensed-layout`)
@@ -41,8 +41,6 @@ const header = (function () {
                     }.bind(this))
                 }
             }.bind(this))
-
-
 
             Settings.get("display-views-hotkeys", function (value) {
                 if (value === true) {
@@ -98,6 +96,9 @@ const header = (function () {
                 header_view_button.innerHTML = `<span class="icon">${view.icon}</span><span class="name">${view.display_name}</span>`
                 header_view_button.id = view.id + "-button"
                 header_views_nav.appendChild(header_view_button)
+
+                // Add the button as a property of the view object.
+                view.header_button = header_view_button
 
                 // Push the button to the buttons array
                 buttons.push(header_view_button)

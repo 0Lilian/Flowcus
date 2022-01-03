@@ -53,6 +53,8 @@
 
                 "/frontend/actions/action.js",
 
+                "/frontend/staticfiles/scripts/hotkeys_receiver.js",
+
                 "/frontend/staticfiles/scripts/load_fonts.js",
 
                 "/frontend/staticfiles/scripts/header.js",
@@ -70,11 +72,43 @@
             "run_at": "document_start"
         }
     ],
+
     "web_accessible_resources": ["frontend/staticfiles/fonts/lilita-one.regular.ttf"],
 
     "options_ui": {
         "page": "/options/staticfiles/templates/options.html",
         "browser_style": true,
         "chrome_style": true
+    },
+
+    "commands": {
+        "display-clutter-full-view": {
+            "suggested_key": {
+                "default": "Ctrl+1",
+                "mac": "MacCtrl+1"
+            },
+            "description": "Display the Clipper-full view"
+        },
+        "display-clutter-free-view": {
+            "suggested_key": {
+                "default": "Ctrl+2",
+                "mac": "MacCtrl+2"
+            },
+            "description": "Display the Clipper-free view"
+        },
+        "display-markdown-view": {
+            "suggested_key": {
+                "default": "Ctrl+3",
+                "mac": "MacCtrl+3"
+            },
+            "description": "Display the Markdown view"
+        }
+    },
+    
+    "background": {
+        "scripts": [
+            "/background/staticfiles/scripts/hotkeys_handler.js",
+            "/background/main.js"
+        ]
     }
 }

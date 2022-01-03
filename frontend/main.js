@@ -25,11 +25,15 @@ function init () {
     // 3) Initialize the header.
     header.initHeader()
 
+    // 4) Initialize hotkeys
+    initHotkeysReceiver()
+
     // 4) Display the default view.
     Settings.get("default-view", function (value) {
         const view_button = header.header_element.querySelector(`button#${value}-button`)
         view_button.click()
     })
+
 }
 
 // Initialize the extension.

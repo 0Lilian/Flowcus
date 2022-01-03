@@ -17,6 +17,7 @@ const generic_view = (function () {
     return new GenericView(id="generic-view",
                            display_name="Generic",
                            icon="",
+                           hotkey="",
                            dependencies = [],
                            require_css_reset = false)
 })();

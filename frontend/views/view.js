@@ -5,6 +5,7 @@ class View {
     constructor (id,
                  display_name,
                  icon,
+                 hotkey,
                  dependencies = [],
                  require_css_reset = true) {
         this.id = id;

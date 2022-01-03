@@ -7,7 +7,6 @@ const clutter_free_button = document.querySelector("#clutter-free")
 
 /* Functions */
 function remove_clutter(tabs) {
-    console.log("remove cluuteeeer !")
     browser.tabs.sendMessage(tabs[0].id, {
         command: "remove_clutter"
     });
