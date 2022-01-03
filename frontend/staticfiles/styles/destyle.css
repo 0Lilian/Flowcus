@@ -1,11 +1,14 @@
 /*! destyle.css v3.0.2 | MIT License | https://github.com/nicolas-cusan/destyle.css */
 
+/* Modified for by 0Lilian (https://github.com/0Lilian) to allow to reset only the elements that have the 'requires-css-reset' class */
+
 /* Reset box-model and set borders */
 /* ============================================ */
 
-*,
-::before,
-::after {
+.requires-css-reset,
+.requires-css-reset *,
+.requires-css-reset *::before,
+.requires-css-reset *::after {
   box-sizing: border-box;
   border-style: solid;
   border-width: 0;
@@ -33,7 +36,8 @@ html {
  * Remove the margin in all browsers.
  */
 
-body {
+.requires-css-reset,
+.requires-css-reset body {
   margin: 0;
 }
 
@@ -41,34 +45,34 @@ body {
  * Render the `main` element consistently in IE.
  */
 
-main {
+.requires-css-reset main {
   display: block;
 }
 
 /* Vertical rhythm */
 /* ============================================ */
 
-p,
-table,
-blockquote,
-address,
-pre,
-iframe,
-form,
-figure,
-dl {
+.requires-css-reset p,
+.requires-css-reset table,
+.requires-css-reset blockquote,
+.requires-css-reset address,
+.requires-css-reset pre,
+.requires-css-reset iframe,
+.requires-css-reset form,
+.requires-css-reset figure,
+.requires-css-reset dl {
   margin: 0;
 }
 
 /* Headings */
 /* ============================================ */
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+.requires-css-reset h1,
+.requires-css-reset h2,
+.requires-css-reset h3,
+.requires-css-reset h4,
+.requires-css-reset h5,
+.requires-css-reset h6 {
   font-size: inherit;
   font-weight: inherit;
   margin: 0;
@@ -77,8 +81,8 @@ h6 {
 /* Lists (enumeration) */
 /* ============================================ */
 
-ul,
-ol {
+.requires-css-reset ul,
+.requires-css-reset ol {
   margin: 0;
   padding: 0;
   list-style: none;
@@ -87,11 +91,11 @@ ol {
 /* Lists (definition) */
 /* ============================================ */
 
-dt {
+.requires-css-reset dt {
   font-weight: bold;
 }
 
-dd {
+.requires-css-reset dd {
   margin-left: 0;
 }
 
@@ -103,7 +107,7 @@ dd {
  * 2. Show the overflow in Edge and IE.
  */
 
-hr {
+.requires-css-reset hr {
   box-sizing: content-box; /* 1 */
   height: 0; /* 1 */
   overflow: visible; /* 2 */
@@ -118,12 +122,12 @@ hr {
  * 2. Correct the odd `em` font sizing in all browsers.
  */
 
-pre {
+.requires-css-reset pre {
   font-family: monospace, monospace; /* 1 */
   font-size: inherit; /* 2 */
 }
 
-address {
+.requires-css-reset address {
   font-style: inherit;
 }
 
@@ -134,7 +138,7 @@ address {
  * Remove the gray background on active links in IE 10.
  */
 
-a {
+.requires-css-reset a {
   background-color: transparent;
   text-decoration: none;
   color: inherit;
@@ -145,7 +149,7 @@ a {
  * 2. Add the correct text decoration in Chrome, Edge, IE, Opera, and Safari.
  */
 
-abbr[title] {
+.requires-css-reset abbr[title] {
   text-decoration: underline dotted; /* 2 */
 }
 
@@ -153,8 +157,8 @@ abbr[title] {
  * Add the correct font weight in Chrome, Edge, and Safari.
  */
 
-b,
-strong {
+.requires-css-reset b,
+.requires-css-reset strong {
   font-weight: bolder;
 }
 
@@ -163,9 +167,9 @@ strong {
  * 2. Correct the odd `em` font sizing in all browsers.
  */
 
-code,
-kbd,
-samp {
+.requires-css-reset code,
+.requires-css-reset kbd,
+.requires-css-reset samp {
   font-family: monospace, monospace; /* 1 */
   font-size: inherit; /* 2 */
 }
@@ -174,7 +178,7 @@ samp {
  * Add the correct font size in all browsers.
  */
 
-small {
+.requires-css-reset small {
   font-size: 80%;
 }
 
@@ -183,19 +187,19 @@ small {
  * all browsers.
  */
 
-sub,
-sup {
+.requires-css-reset sub,
+.requires-css-reset sup {
   font-size: 75%;
   line-height: 0;
   position: relative;
   vertical-align: baseline;
 }
 
-sub {
+.requires-css-reset sub {
   bottom: -0.25em;
 }
 
-sup {
+.requires-css-reset sup {
   top: -0.5em;
 }
 
@@ -206,11 +210,11 @@ sup {
  * Prevent vertical alignment issues.
  */
 
-svg,
-img,
-embed,
-object,
-iframe {
+.requires-css-reset svg,
+.requires-css-reset img,
+.requires-css-reset embed,
+.requires-css-reset object,
+.requires-css-reset iframe {
   vertical-align: bottom;
 }
 
@@ -223,11 +227,11 @@ iframe {
  * 2. Inherit text-transform from parent.
  */
 
-button,
-input,
-optgroup,
-select,
-textarea {
+.requires-css-reset button,
+.requires-css-reset input,
+.requires-css-reset optgroup,
+.requires-css-reset select,
+.requires-css-reset textarea {
   -webkit-appearance: none; /* 1 */
   appearance: none;
   vertical-align: middle;
@@ -245,12 +249,12 @@ textarea {
  * Reset radio and checkbox appearance to preserve their look in iOS.
  */
 
-[type="checkbox"] {
+.requires-css-reset [type="checkbox"] {
   -webkit-appearance: checkbox;
   appearance: checkbox;
 }
 
-[type="radio"] {
+.requires-css-reset [type="radio"] {
   -webkit-appearance: radio;
   appearance: radio;
 }
@@ -259,14 +263,14 @@ textarea {
  * Correct cursors for clickable elements.
  */
 
-button,
+.requires-css-reset button,
 [type="button"],
 [type="reset"],
 [type="submit"] {
   cursor: pointer;
 }
 
-button:disabled,
+.requires-css-reset button:disabled,
 [type="button"]:disabled,
 [type="reset"]:disabled,
 [type="submit"]:disabled {
@@ -277,11 +281,11 @@ button:disabled,
  * Improve outlines for Firefox and unify style with input elements & buttons.
  */
 
-:-moz-focusring {
+.requires-css-reset :-moz-focusring {
   outline: auto;
 }
 
-select:disabled {
+.requires-css-reset select:disabled {
   opacity: inherit;
 }
 
@@ -289,7 +293,7 @@ select:disabled {
  * Remove padding
  */
 
-option {
+.requires-css-reset option {
   padding: 0;
 }
 
@@ -297,13 +301,13 @@ option {
  * Reset to invisible
  */
 
-fieldset {
+.requires-css-reset fieldset {
   margin: 0;
   padding: 0;
   min-width: 0;
 }
 
-legend {
+.requires-css-reset legend {
   padding: 0;
 }
 
@@ -311,7 +315,7 @@ legend {
  * Add the correct vertical alignment in Chrome, Firefox, and Opera.
  */
 
-progress {
+.requires-css-reset progress {
   vertical-align: baseline;
 }
 
@@ -319,7 +323,7 @@ progress {
  * Remove the default vertical scrollbar in IE 10+.
  */
 
-textarea {
+.requires-css-reset textarea {
   overflow: auto;
 }
 
@@ -327,8 +331,8 @@ textarea {
  * Correct the cursor style of increment and decrement buttons in Chrome.
  */
 
-[type="number"]::-webkit-inner-spin-button,
-[type="number"]::-webkit-outer-spin-button {
+.requires-css-reset [type="number"]::-webkit-inner-spin-button,
+.requires-css-reset [type="number"]::-webkit-outer-spin-button {
   height: auto;
 }
 
@@ -336,7 +340,7 @@ textarea {
  * 1. Correct the outline style in Safari.
  */
 
-[type="search"] {
+.requires-css-reset [type="search"] {
   outline-offset: -2px; /* 1 */
 }
 
@@ -344,7 +348,7 @@ textarea {
  * Remove the inner padding in Chrome and Safari on macOS.
  */
 
-[type="search"]::-webkit-search-decoration {
+.requires-css-reset [type="search"]::-webkit-search-decoration {
   -webkit-appearance: none;
 }
 
@@ -353,7 +357,7 @@ textarea {
  * 2. Fix font inheritance.
  */
 
-::-webkit-file-upload-button {
+.requires-css-reset ::-webkit-file-upload-button {
   -webkit-appearance: button; /* 1 */
   font: inherit; /* 2 */
 }
@@ -362,7 +366,7 @@ textarea {
  * Clickable labels
  */
 
-label[for] {
+.requires-css-reset label[for] {
   cursor: pointer;
 }
 
@@ -373,7 +377,7 @@ label[for] {
  * Add the correct display in Edge, IE 10+, and Firefox.
  */
 
-details {
+.requires-css-reset details {
   display: block;
 }
 
@@ -381,7 +385,7 @@ details {
  * Add the correct display in all browsers.
  */
 
-summary {
+.requires-css-reset summary {
   display: list-item;
 }
 
@@ -389,7 +393,7 @@ summary {
  * Remove outline for editable content.
  */
 
-[contenteditable]:focus {
+.requires-css-reset [contenteditable]:focus {
   outline: auto;
 }
 
@@ -400,22 +404,22 @@ summary {
 1. Correct table border color inheritance in all Chrome and Safari.
 */
 
-table {
+.requires-css-reset table {
   border-color: inherit; /* 1 */
   border-collapse: collapse;
 }
 
-caption {
+.requires-css-reset caption {
   text-align: left;
 }
 
-td,
-th {
+.requires-css-reset td,
+.requires-css-reset th {
   vertical-align: top;
   padding: 0;
 }
 
-th {
+.requires-css-reset th {
   text-align: left;
   font-weight: bold;
 }

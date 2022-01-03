@@ -49,10 +49,10 @@ class View {
 
         // Add the css-reset class to document.body if required
         if (this.require_css_reset === true) {
-            document.body.classList.add("css-reset")
+            document.body.classList.add("requires-css-reset")
         }
         else {
-            document.body.classList.remove("css-reset")
+            document.body.classList.remove("requires-css-reset")
         }
     }
 }
