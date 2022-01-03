@@ -172,10 +172,6 @@ header#flowcus-header.big-layout.display-hotkeys {
 
 }
 
-body.flowcus-header-displayed.flowcus-header-big-layout {
-    padding-top: 175px;
-}
-
 /* # CONDENSED LAYOUT # */
 header#flowcus-header.condensed-layout,
 header#flowcus-header.ultra-condensed-layout {
@@ -197,11 +193,6 @@ header#flowcus-header.ultra-condensed-layout section#views {
 header#flowcus-header.condensed-layout section#actions,
 header#flowcus-header.ultra-condensed-layout section#actions {
     /* width: 50% */
-}
-
-body.flowcus-header-displayed.flowcus-header-condensed-layout,
-body.flowcus-header-displayed.flowcus-header-ultra-condensed-layout {
-    padding-top: 75px;
 }
 
 header#flowcus-header.condensed-layout.condensed-button-click-behavior,
@@ -228,8 +219,4 @@ header#flowcus-header.ultra-condensed-layout section nav button span.icon {
 /* # HIDDEN LAYOUT # */
 header#flowcus-header.hidden-layout {
     display: none;
-}
-
-body.flowcus-header-displayed.flowcus-header-hidden-layout {
-    padding-top: 0px;
 }

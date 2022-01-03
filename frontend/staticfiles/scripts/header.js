@@ -154,7 +154,10 @@ const header = (function () {
             }
 
             // Add 'flowcus-header-displayed' class to the body.
-            document.body.classList.add("flowcus-header-displayed")
+            // document.body.classList.add("flowcus-header-displayed")
+
+            // Retrieve the header's height and set body padding-top with this value.
+            document.body.style.paddingTop = this.header_element.offsetHeight + "px"
 
             // Mark the header as displayed.
             this.displayed = true;
@@ -164,7 +167,10 @@ const header = (function () {
             document.body.removeChild(this.header_element)
 
             // Remove 'flowcus-header-displayed' class from the body.
-            document.body.classList.remove("flowcus-header-displayed")
+            // document.body.classList.remove("flowcus-header-displayed")
+
+            // Reset the body's padding-top
+            document.body.style.paddingTop = "inherit";
 
             // Mark the header as hidden.
             this.displayed = false;
