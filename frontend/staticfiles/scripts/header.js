@@ -22,12 +22,27 @@ const header = (function () {
 
             Settings.get("header-layout", function (value) {
                 this.header_element.classList.add(`${value}-layout`)
-                document.body.classList.add(`flowcus-header-${value}-layout`)
+
+                if (value === "ultra-condensed") {
+
+                    Settings.get("ultra-condensed-hover", function (another_value) {
+                        if (another_value === true) {
+
+                            this.header_element.addEventListener("mouseover", function () {
+                                this.header_element.classList.remove(`ultra-condensed-layout`)
+                                this.header_element.classList.add(`condensed-layout`)
+                            }.bind(this))
+                            
+                            this.header_element.addEventListener("mouseout", function () {
+                                this.header_element.classList.remove(`condensed-layout`)
+                                this.header_element.classList.add(`ultra-condensed-layout`)
+                            }.bind(this))
+                        }
+                    }.bind(this))
+                }
             }.bind(this))
 
-            Settings.get("condensed-layout-behavior", function (value) {
-                this.header_element.classList.add(`condensed-${value}-behavior`)
-            }.bind(this))
+
 
             Settings.get("display-views-hotkeys", function (value) {
                 if (value === true) {
