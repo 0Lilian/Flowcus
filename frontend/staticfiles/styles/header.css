@@ -1,8 +1,9 @@
-
-
 /* ########################### */
 /* ### COMMON HEADER STYLE ### */
 /* ########################### */
+
+/* # ALL # */
+
 header#flowcus-header {
     z-index: 99999999999999;
     position: absolute;
@@ -32,23 +33,34 @@ header#flowcus-header section nav {
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 10px;
-    border-width: 2px;
+    border-radius: 15px;
+    border-width: 3px;
     overflow: hidden;
+    padding: 5px;
+
 }
 
 header#flowcus-header section nav button {
-    padding-top: 10px;
-    padding-bottom: 10px;
-    padding-right: 15px;
-    padding-left: 15px;
-    /* border-radius: 10px; */
+    padding-top: 8px;
+    padding-bottom: 8px;
+    padding-right: 10px;
+    padding-left: 10px;
     font-weight: bold;
     font-family: Georgia;
     color: var(--color-white);
     white-space: nowrap;
-    transition-duration: 500ms;
+    transition-duration: 300ms;
+    border-radius: 10px;
 }
+
+header#flowcus-header section nav button:not(.displayed):hover,
+header#flowcus-header section nav button:not(.displayed):focus {
+    outline-style: solid;
+    outline-width: 1px;
+}
+
+
+/* # VIEWS # */
 
 header#flowcus-header section#views {
     background-color: var(--color-primary-very-light);
@@ -63,8 +75,9 @@ header#flowcus-header section#views nav {
     background-color: var(--color-primary-light);
 }
 
-header#flowcus-header section#views nav button:hover {
-    background-color: var(--color-primary-light);
+header#flowcus-header section#views nav button:not(.displayed):hover,
+header#flowcus-header section#views nav button:not(.displayed):focus {
+    outline-color: var(--color-primary-very-light);
 }
 
 header#flowcus-header section#views nav button.displayed {
@@ -72,6 +85,7 @@ header#flowcus-header section#views nav button.displayed {
 }
 
 
+/* # ACTIONS # */
 
 header#flowcus-header section#actions {
     background-color: var(--color-secondary-very-light);
@@ -79,6 +93,20 @@ header#flowcus-header section#actions {
 
 header#flowcus-header section#actions h2 {
     color: var(--color-secondary-light);
+}
+
+header#flowcus-header section#actions nav {
+    border-color: var(--color-secondary-very-light);
+    background-color: var(--color-secondary-light);
+}
+
+header#flowcus-header section#actions nav button:not(.displayed):hover,
+header#flowcus-header section#actions nav button:not(.displayed):focus {
+    outline-color: var(--color-secondary-very-light);
+}
+
+header#flowcus-header section#actions nav button.displayed {
+    background-color: var(--color-secondary);
 }
 
 
@@ -99,11 +127,19 @@ header#flowcus-header.sticky {
 /* # BIG LAYOUT # */
 header#flowcus-header.big-layout {
     flex-direction: column;
-    height: 175px;
+    height: 180px;
 }
 
 header#flowcus-header.big-layout section {
     flex-direction: column;
+}
+
+header#flowcus-header.big-layout section#views {
+    /* height: 100px; */
+}
+
+header#flowcus-header.big-layout section#actions {
+    /* height: 80px; */
 }
 
 

@@ -1,0 +1,3 @@
+*:focus {
+    outline-color: var(--color-secondary-light);
+}
