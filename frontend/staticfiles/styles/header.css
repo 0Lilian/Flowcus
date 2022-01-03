@@ -1,7 +1,7 @@
 /* ########################### */
 /* ### COMMON HEADER STYLE ### */
 /* ########################### */
-header#harmonic-header {
+header#flowing-focus-header {
     z-index: 99999999999999;
     position: absolute;
     left: 0;
@@ -11,13 +11,13 @@ header#harmonic-header {
     display: flex;
 }
 
-header#harmonic-header section {
+header#flowing-focus-header section {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-header#harmonic-header section nav {
+header#flowing-focus-header section nav {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -27,7 +27,7 @@ header#harmonic-header section nav {
 /* ##################### */
 /* ### STICKY HEADER ### */
 /* ##################### */
-header#harmonic-header.sticky {
+header#flowing-focus-header.sticky {
     position: fixed;
 }
 
@@ -37,49 +37,49 @@ header#harmonic-header.sticky {
 /* ##################### */
 
 /* # BIG LAYOUT # */
-header#harmonic-header.big-layout {
+header#flowing-focus-header.big-layout {
     flex-direction: column;
 }
 
-header#harmonic-header.big-layout.display-hotkeys {
+header#flowing-focus-header.big-layout.display-hotkeys {
 
 }
 
-body.harmonic-header-displayed.harmonic-header-big-layout {
+body.flowing-focus-header-displayed.flowing-focus-header-big-layout {
     padding-top: 150px;
 }
 
 /* # CONDENSED LAYOUT # */
-header#harmonic-header.condensed-layout {
+header#flowing-focus-header.condensed-layout {
     flex-direction: row;
     flex-wrap: nowrap
 }
 
-header#harmonic-header.condensed-layout section#views {
+header#flowing-focus-header.condensed-layout section#views {
     /* width: 50% */
 }
 
-header#harmonic-header.condensed-layout section#actions {
+header#flowing-focus-header.condensed-layout section#actions {
     /* width: 50% */
 }
 
-body.harmonic-header-displayed.harmonic-header-condensed-layout {
+body.flowing-focus-header-displayed.flowing-focus-header-condensed-layout {
     padding-top: 75px;
 }
 
-header#harmonic-header.condensed-layout.condensed-button-click-behavior {
+header#flowing-focus-header.condensed-layout.condensed-button-click-behavior {
 
 }
 
-header#harmonic-header.condensed-layout.condensed-hover-behavior {
+header#flowing-focus-header.condensed-layout.condensed-hover-behavior {
 
 }
 
 /* # HIDDEN LAYOUT # */
-header#harmonic-header.hidden-layout {
+header#flowing-focus-header.hidden-layout {
     display: none;
 }
 
-body.harmonic-header-displayed.harmonic-header-hidden-layout {
+body.flowing-focus-header-displayed.flowing-focus-header-hidden-layout {
     padding-top: 0px;
 }

@@ -1,9 +1,9 @@
 {
     "manifest_version": 2,
-    "name": "HarmonicToolbox",
+    "name": "FlowingFocus",
     "version": "1.0",
-    "description": "Clutter-free reader based on Mercury, web clipper and highlighter for Obsidian",
-    "homepage_url": "https://github.com/0Lilian/HarmonicToolbox",
+    "description": "A clutter-free reader based on Mercury for Firefox, Chrome and Safari as well as a web clipper and highlighter tool for KM software (such as Obsidian)",
+    "homepage_url": "https://github.com/0Lilian/FlowingFocus",
 
     "icons": {
         "48": "/icon-48.png"
@@ -16,7 +16,7 @@
 
     "browser_action": {
         "default_icon": "/popup/staticfiles/images/icon.png",
-        "default_title": "HarmonicToolbox",
+        "default_title": "FlowingFocus",
         "default_popup": "/options/staticfiles/templates/options.html"
     },
 
@@ -56,8 +56,8 @@
                 "/frontend/main.js"
             ],
             "css": [
-                "/frontend/staticfiles/styles/header.css",
                 "/frontend/staticfiles/styles/destyle.css",
+                "/frontend/staticfiles/styles/header.css",
                 "/frontend/staticfiles/styles/adjustments.css"
             ],
             "run_at": "document_start"

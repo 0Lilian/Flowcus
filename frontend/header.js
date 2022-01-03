@@ -11,7 +11,7 @@ const header = (function () {
         initHeader () {
 
             this.header_element = document.createElement("header")
-            this.header_element.id = "harmonic-header"
+            this.header_element.id = "flowing-focus-header"
 
             // Add header's style classes.
             Settings.get("sticky-header", function (value) {
@@ -22,7 +22,7 @@ const header = (function () {
 
             Settings.get("header-layout", function (value) {
                 this.header_element.classList.add(`${value}-layout`)
-                document.body.classList.add(`harmonic-header-${value}-layout`)
+                document.body.classList.add(`flowing-focus-header-${value}-layout`)
             }.bind(this))
 
             Settings.get("condensed-layout-behavior", function (value) {
@@ -40,6 +40,8 @@ const header = (function () {
                     this.header_element.classList.add("display-actions-hotkeys")
                 }
             }.bind(this))
+
+            this.header_element.classList.add("requires-css-reset")
 
 
             // Create and insert the header's title.
@@ -101,8 +103,8 @@ const header = (function () {
                 document.body.appendChild(this.header_element)
             }
 
-            // Add 'harmonic-header-displayed' class to the body.
-            document.body.classList.add("harmonic-header-displayed")
+            // Add 'flowing-focus-header-displayed' class to the body.
+            document.body.classList.add("flowing-focus-header-displayed")
 
             // Mark the header as displayed.
             this.displayed = true;
@@ -111,8 +113,8 @@ const header = (function () {
         hideHeader () {
             document.body.removeChild(this.header_element)
 
-            // Remove 'harmonic-header-displayed' class from the body.
-            document.body.classList.remove("harmonic-header-displayed")
+            // Remove 'flowing-focus-header-displayed' class from the body.
+            document.body.classList.remove("flowing-focus-header-displayed")
 
             // Mark the header as hidden.
             this.displayed = false;
@@ -129,5 +131,5 @@ const header = (function () {
     }
 
     // Instanciate the Header class and return the instance
-    return new Header(extension_title="HarmonicToolbox")
+    return new Header(extension_title="FlowingFocus")
 })();
