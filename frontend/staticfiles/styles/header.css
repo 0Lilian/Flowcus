@@ -1,7 +1,7 @@
 /* ########################### */
 /* ### COMMON HEADER STYLE ### */
 /* ########################### */
-header#flowing-focus-header {
+header#flowcus-header {
     z-index: 99999999999999;
     position: absolute;
     left: 0;
@@ -11,13 +11,13 @@ header#flowing-focus-header {
     display: flex;
 }
 
-header#flowing-focus-header section {
+header#flowcus-header section {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-header#flowing-focus-header section nav {
+header#flowcus-header section nav {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -27,7 +27,7 @@ header#flowing-focus-header section nav {
 /* ##################### */
 /* ### STICKY HEADER ### */
 /* ##################### */
-header#flowing-focus-header.sticky {
+header#flowcus-header.sticky {
     position: fixed;
 }
 
@@ -37,49 +37,49 @@ header#flowing-focus-header.sticky {
 /* ##################### */
 
 /* # BIG LAYOUT # */
-header#flowing-focus-header.big-layout {
+header#flowcus-header.big-layout {
     flex-direction: column;
 }
 
-header#flowing-focus-header.big-layout.display-hotkeys {
+header#flowcus-header.big-layout.display-hotkeys {
 
 }
 
-body.flowing-focus-header-displayed.flowing-focus-header-big-layout {
+body.flowcus-header-displayed.flowcus-header-big-layout {
     padding-top: 150px;
 }
 
 /* # CONDENSED LAYOUT # */
-header#flowing-focus-header.condensed-layout {
+header#flowcus-header.condensed-layout {
     flex-direction: row;
     flex-wrap: nowrap
 }
 
-header#flowing-focus-header.condensed-layout section#views {
+header#flowcus-header.condensed-layout section#views {
     /* width: 50% */
 }
 
-header#flowing-focus-header.condensed-layout section#actions {
+header#flowcus-header.condensed-layout section#actions {
     /* width: 50% */
 }
 
-body.flowing-focus-header-displayed.flowing-focus-header-condensed-layout {
+body.flowcus-header-displayed.flowcus-header-condensed-layout {
     padding-top: 75px;
 }
 
-header#flowing-focus-header.condensed-layout.condensed-button-click-behavior {
+header#flowcus-header.condensed-layout.condensed-button-click-behavior {
 
 }
 
-header#flowing-focus-header.condensed-layout.condensed-hover-behavior {
+header#flowcus-header.condensed-layout.condensed-hover-behavior {
 
 }
 
 /* # HIDDEN LAYOUT # */
-header#flowing-focus-header.hidden-layout {
+header#flowcus-header.hidden-layout {
     display: none;
 }
 
-body.flowing-focus-header-displayed.flowing-focus-header-hidden-layout {
+body.flowcus-header-displayed.flowcus-header-hidden-layout {
     padding-top: 0px;
 }

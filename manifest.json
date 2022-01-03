@@ -1,9 +1,9 @@
 {
     "manifest_version": 2,
-    "name": "FlowingFocus",
+    "name": "Flowcus",
     "version": "1.0",
     "description": "A clutter-free reader for Firefox, Chrome and Safari. It also contains a web clipper and an highlighter tool for KM softwares (such as Obsidian, Roam Research, Foam, etc.)",
-    "homepage_url": "https://github.com/0Lilian/FlowingFocus",
+    "homepage_url": "https://github.com/0Lilian/Flowcus",
 
     "icons": {
         "48": "/icon-48.png"
@@ -16,7 +16,7 @@
 
     "browser_action": {
         "default_icon": "/popup/staticfiles/images/icon.png",
-        "default_title": "FlowingFocus",
+        "default_title": "Flowcus",
         "default_popup": "/options/staticfiles/templates/options.html"
     },
 

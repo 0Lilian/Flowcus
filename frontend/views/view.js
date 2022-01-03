@@ -30,7 +30,7 @@ class View {
 
     displayView () {
         // Reset the body but keep the header
-        const body_childs = document.body.querySelectorAll("body > *:not(header#flowing-focus-header)")
+        const body_childs = document.body.querySelectorAll("body > *:not(header#flowcus-header)")
         for (const child of body_childs) {
             document.body.removeChild(child)
         }
