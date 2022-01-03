@@ -51,6 +51,27 @@ header#flowcus-header section nav button {
     white-space: nowrap;
     transition-duration: 300ms;
     border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap;
+}
+
+header#flowcus-header section nav button span {
+    display: flex;
+    white-space: nowrap;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+header#flowcus-header section nav button span.icon {
+    padding-right: 6px;
+}
+
+header#flowcus-header section nav button span.icon svg path:not(:first-of-type) {
+    fill: var(--color-white);
 }
 
 header#flowcus-header section nav button:not(.displayed):hover,
@@ -156,35 +177,53 @@ body.flowcus-header-displayed.flowcus-header-big-layout {
 }
 
 /* # CONDENSED LAYOUT # */
-header#flowcus-header.condensed-layout {
+header#flowcus-header.condensed-layout,
+header#flowcus-header.ultra-condensed-layout {
     flex-direction: row;
     flex-wrap: nowrap
 }
 
-header#flowcus-header.condensed-layout section {
+header#flowcus-header.condensed-layout section,
+header#flowcus-header.ultra-condensed-layout section {
     flex-direction: row;
 }
 
 
-header#flowcus-header.condensed-layout section#views {
+header#flowcus-header.condensed-layout section#views,
+header#flowcus-header.ultra-condensed-layout section#views {
     /* width: 50% */
 }
 
-header#flowcus-header.condensed-layout section#actions {
+header#flowcus-header.condensed-layout section#actions,
+header#flowcus-header.ultra-condensed-layout section#actions {
     /* width: 50% */
 }
 
-body.flowcus-header-displayed.flowcus-header-condensed-layout {
+body.flowcus-header-displayed.flowcus-header-condensed-layout,
+body.flowcus-header-displayed.flowcus-header-ultra-condensed-layout {
     padding-top: 75px;
 }
 
-header#flowcus-header.condensed-layout.condensed-button-click-behavior {
+header#flowcus-header.condensed-layout.condensed-button-click-behavior,
+header#flowcus-header.ultra-condensed-layout.condensed-button-click-behavior {
 
 }
 
-header#flowcus-header.condensed-layout.condensed-hover-behavior {
+header#flowcus-header.condensed-layout.condensed-hover-behavior,
+header#flowcus-header.ultra-condensed-layout.condensed-hover-behavior {
 
 }
+
+/* # ULTRA-CONDENSED LAYOUT # */
+
+header#flowcus-header.ultra-condensed-layout section nav button span.name {
+    display: none;
+}
+
+header#flowcus-header.ultra-condensed-layout section nav button span.icon {
+    padding-right: 0;
+}
+
 
 /* # HIDDEN LAYOUT # */
 header#flowcus-header.hidden-layout {

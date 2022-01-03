@@ -62,7 +62,6 @@ const header = (function () {
                 document.documentElement.style.setProperty('--color-secondary-very-dark', tinycolor(value).darken(30).toString());
             }.bind(this))
 
-
             // Create and insert the header's 'views' section.
             const header_views = document.createElement("section")
             header_views.id = "views"
@@ -81,7 +80,7 @@ const header = (function () {
             let buttons = []
             for (const view of views) {
                 const header_view_button = document.createElement("button")
-                header_view_button.innerText = view.display_name
+                header_view_button.innerHTML = `<span class="icon">${view.icon}</span><span class="name">${view.display_name}</span>`
                 header_view_button.id = view.id + "-button"
                 header_views_nav.appendChild(header_view_button)
 
@@ -94,7 +93,6 @@ const header = (function () {
                     if (view.displayView() === false) {
                         const view_interval = window.setInterval(function () {
                                if (view.displayView() === false) {
-                                   console.log("INTERVAL FAILED")
                                    return;
                                }
                                window.clearInterval(view_interval)
