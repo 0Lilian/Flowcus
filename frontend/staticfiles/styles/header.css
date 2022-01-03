@@ -1,3 +1,4 @@
+
 /* ########################### */
 /* ### COMMON HEADER STYLE ### */
 /* ########################### */
@@ -7,7 +8,6 @@ header#flowcus-header {
     left: 0;
     right: 0;
     top: 0;
-    background-color: antiquewhite;
     display: flex;
 }
 
@@ -15,13 +15,65 @@ header#flowcus-header section {
     display: flex;
     justify-content: center;
     align-items: center;
+    padding-top: 10px;
+    padding-bottom: 15px;
+    width: 100%;
+}
+
+header#flowcus-header section h2 {
+    font-size: 30px;
+    font-family: 'Lilita One', cursive;
+    text-transform: uppercase;
+    font-weight: 1000;
 }
 
 header#flowcus-header section nav {
     display: flex;
     justify-content: center;
     align-items: center;
+    border-radius: 10px;
+    border-width: 2px;
 }
+
+header#flowcus-header section nav button {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-right: 15px;
+    padding-left: 15px;
+    border-radius: 10px;
+    font-weight: bold;
+    font-family: Georgia;
+    color: var(--color-white);
+    white-space: nowrap;
+}
+
+header#flowcus-header section#views {
+    background-color: var(--color-primary-very-light);
+}
+
+header#flowcus-header section#views h2 {
+    color: var(--color-primary-light);
+}
+
+header#flowcus-header section#views nav {
+    border-color: var(--color-primary-very-light);
+    background-color: var(--color-primary-light);
+}
+
+header#flowcus-header section#views nav button:hover {
+    background-color: var(--color-primary-very-light);
+}
+
+
+header#flowcus-header section#actions {
+    background-color: var(--color-secondary-very-light);
+}
+
+header#flowcus-header section#actions h2 {
+    color: var(--color-secondary-light);
+}
+
+
 
 
 /* ##################### */
@@ -39,6 +91,16 @@ header#flowcus-header.sticky {
 /* # BIG LAYOUT # */
 header#flowcus-header.big-layout {
     flex-direction: column;
+    height: 175px;
+}
+
+header#flowcus-header.big-layout section {
+    flex-direction: column;
+}
+
+
+header#flowcus-header.big-layout section h2 {
+    margin-bottom: -7px;
 }
 
 header#flowcus-header.big-layout.display-hotkeys {
@@ -46,7 +108,7 @@ header#flowcus-header.big-layout.display-hotkeys {
 }
 
 body.flowcus-header-displayed.flowcus-header-big-layout {
-    padding-top: 150px;
+    padding-top: 175px;
 }
 
 /* # CONDENSED LAYOUT # */
@@ -54,6 +116,11 @@ header#flowcus-header.condensed-layout {
     flex-direction: row;
     flex-wrap: nowrap
 }
+
+header#flowcus-header.condensed-layout section {
+    flex-direction: row;
+}
+
 
 header#flowcus-header.condensed-layout section#views {
     /* width: 50% */

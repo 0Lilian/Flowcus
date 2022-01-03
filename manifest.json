@@ -32,6 +32,7 @@
             "js": [
                 "/frontend/staticfiles/scripts/mercury.js",
                 "/frontend/staticfiles/scripts/turndown.js",
+                "/frontend/staticfiles/scripts/tiny-color.js",
 
                 "/options/staticfiles/scripts/settings.js",
 
@@ -51,12 +52,14 @@
 
                 "/frontend/actions/action.js",
 
-                "/frontend/header.js",
+                "/frontend/staticfiles/scripts/header.js",
 
                 "/frontend/main.js"
             ],
             "css": [
                 "/frontend/staticfiles/styles/destyle.css",
+                "/frontend/staticfiles/styles/fonts.css",
+                "/frontend/staticfiles/styles/variables.css",
                 "/frontend/staticfiles/styles/header.css",
                 "/frontend/staticfiles/styles/adjustments.css"
             ],

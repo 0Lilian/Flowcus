@@ -1,5 +1,5 @@
 # _**"Flowcus"**_ add-on for Firefox, Chrome and Safari
-Flowcus is a highly customizable clutter-free reader that comes with many tools to interact with your favorite KM (Knowledge Management) software : a web clipper, an highlighter, a markdown converter, and much more !
+Flowcus (flowing focus) is an highly customizable clutter-free reader that comes with many tools to interact with your favorite KM (Knowledge Management) software : a web clipper, an highlighter, a markdown converter, and much more !
 
 Currently these KM softwares are supported :
 - Obsidian

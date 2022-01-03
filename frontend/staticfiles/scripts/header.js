@@ -43,11 +43,24 @@ const header = (function () {
 
             this.header_element.classList.add("requires-css-reset")
 
+            // Apply CSS variables option
+            Settings.get("header-primary-color", function (value) {
+                const color = tinycolor(value)
+                document.documentElement.style.setProperty('--color-primary-very-light', tinycolor(value).lighten(30).toString());
+                document.documentElement.style.setProperty('--color-primary-light', tinycolor(value).lighten(15).toString());
+                document.documentElement.style.setProperty('--color-primary', value);
+                document.documentElement.style.setProperty('--color-primary-dark', tinycolor(value).darken(15).toString());
+                document.documentElement.style.setProperty('--color-primary-very-dark', tinycolor(value).darken(30).toString());
+            }.bind(this))
 
-            // Create and insert the header's title.
-            // const header_title = document.createElement("h1")
-            // header_title.innerText = this.extension_title
-            // this.header_element.appendChild(header_title)
+            Settings.get("header-secondary-color", function (value) {
+                const color = tinycolor(value)
+                document.documentElement.style.setProperty('--color-secondary-very-light', tinycolor(value).lighten(30).toString());
+                document.documentElement.style.setProperty('--color-secondary-light', tinycolor(value).lighten(15).toString());
+                document.documentElement.style.setProperty('--color-secondary', value);
+                document.documentElement.style.setProperty('--color-secondary-dark', tinycolor(value).darken(15).toString());
+                document.documentElement.style.setProperty('--color-secondary-very-dark', tinycolor(value).darken(30).toString());
+            }.bind(this))
 
 
             // Create and insert the header's 'views' section.
@@ -57,7 +70,7 @@ const header = (function () {
 
             // Create and insert the views title.
             const header_views_title = document.createElement("h2")
-            header_views_title.innerText = "Views :"
+            header_views_title.innerText = "Views"
             header_views.appendChild(header_views_title)
 
             // Create and insert the views nav
@@ -83,7 +96,7 @@ const header = (function () {
 
             // Create and insert the actions title.
             const header_actions_title = document.createElement("h2")
-            header_actions_title.innerText = "Actions :"
+            header_actions_title.innerText = "Actions"
             header_actions.appendChild(header_actions_title)
 
             // Create and insert the actions nav
