@@ -101,28 +101,40 @@ function listen_for_clicks () {
     })
 }
 
-/* Content scripts */
+function onGot (tabInfo) {
+    console.log(tabInfo)
+    browser.tabs.sendMessage(tabInfo.id, {
+        command: "tabInfo",
+        infos: tabInfo
+    });
+    // if (tabInfo) {
+    //     if (tabInfo.status === "loading") {
+    //         console.log("LOADING")
+    //         const tab_interval = window.setInterval(function () {
+    //             console.log("INTERVAL")
+    //             if (tabInfo.status === "complete") {
+    //                 console.log("SUCCESS")
+    //                 browser.tabs.executeScript({file: "/frontend/main.js"})
+    //                 .then(listen_for_clicks)
+    //                 window.clearInterval(tab_interval)
+    //             }
+    //         }, 500)
+    //     }
+    //     else if (tabInfo.status === "complete") {
+    //         console.log("COMPLETE")
+            browser.tabs.executeScript({file: "/frontend/main.js"})
+            .then(listen_for_clicks)
+    //     }
+    // }
 
-// function registerCode(code) {
-//     console.log(code);
-//     browser.tabs.executeScript({code: code});
-//     // browser.userScripts.register({js: [{code: code, }]});
-// }
-// var req = new XMLHttpRequest();
-//
-// req.open('GET', 'https://unpkg.com/turndown/dist/turndown.js', false);
-// req.send(null);
-//
-// if(req.status == 200) {
-//     registerCode(req.responseText);
-// }
-
-// browser.tabs.executeScript({file: "/content_scripts/turndown.js"})
-// .then(browser.tabs.executeScript({file: "/content_scripts/mercury.min.js"})
-// .then(browser.tabs.executeScript({file: "/content_scripts/remove_clutter.js"})
-// .then(console.log("OK"))))
+}
 
 
-// browser.tabs.executeScript({file: "/frontend/main.js"})
-// .then(listen_for_clicks)
-listen_for_clicks()
+function onError(error) {
+  console.log(`Error: ${error}`);
+}
+
+var gettingCurrent = browser.tabs.getCurrent();
+gettingCurrent.then(onGot, onError);
+
+// listen_for_clicks()

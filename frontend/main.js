@@ -1,4 +1,4 @@
-function init () {
+function initFlowcus () {
 
     // 1) Load fonts (custom fonts are loaded with Javascript to prevent CSP errors on some websites)
     loadFonts()
@@ -33,28 +33,35 @@ function init () {
         const view_button = header.header_element.querySelector(`button#${value}-button`)
         view_button.click()
     })
-
 }
 
-// Initialize the extension.
-document.addEventListener("readystatechange", function () {
-    if (document.readyState == "complete") {
-        init();
+function main () {
+    if (document.readyState === "complete") {
+        initFlowcus();
         header.toggleHeader()
     }
-})
+    else {
+        window.addEventListener("load", function () {
+            initFlowcus();
+            header.toggleHeader();
+        })
+    }
+}
 
-/* Listen for background messages */
-// browser.runtime.onMessage.addListener((message) => {
-//     if (document.readyState === "complete") {
-//         header.toggleHeader()
-//     }
-//     else {
-//         document.addEventListener("readystatechange", function () {
-//             if (document.readyState == "complete") {
-//                 console.log("HEAAAADER")
-//                 header.toggleHeader();
-//             }
-//         })
-//     }
-// });
+Settings.get("auto-start", function (value) {
+    if (value === true) {
+        main()
+    }
+    else {
+
+        function handle_message (message) {
+            if (message.command === "hotkey-pressed") {
+                if (message.name === "init-flowcus") {
+                    main()
+                }
+            }
+            browser.runtime.onMessage.removeListener(handle_message);
+        }
+        browser.runtime.onMessage.addListener(handle_message);
+    }
+})

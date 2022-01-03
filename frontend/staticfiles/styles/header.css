@@ -148,7 +148,6 @@ header#flowcus-header.sticky {
 /* # BIG LAYOUT # */
 header#flowcus-header.big-layout {
     flex-direction: column;
-    height: 180px;
 }
 
 header#flowcus-header.big-layout section {
@@ -156,11 +155,9 @@ header#flowcus-header.big-layout section {
 }
 
 header#flowcus-header.big-layout section#views {
-    /* height: 100px; */
 }
 
 header#flowcus-header.big-layout section#actions {
-    /* height: 80px; */
 }
 
 
