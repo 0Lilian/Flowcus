@@ -1,6 +1,9 @@
 function init () {
 
-    // 1) Generate views' contents.
+    // 1) Load fonts (custom fonts are loaded with Javascript to prevent CSP errors on some websites)
+    loadFonts()
+
+    // 2) Generate views' contents.
     for (const view of views) {
 
         // Wait for dependencies if they are not ready yet.
@@ -19,10 +22,10 @@ function init () {
         }
     }
 
-    // 2) Initialize the header.
+    // 3) Initialize the header.
     header.initHeader()
 
-    // 3) Display the default view.
+    // 4) Display the default view.
     Settings.get("default-view", function (value) {
         const view_button = header.header_element.querySelector(`button#${value}-button`)
         view_button.click()

@@ -11,7 +11,8 @@
 
     "permissions": [
         "activeTab",
-        "storage"
+        "storage",
+        "webRequest"
     ],
 
     "browser_action": {
@@ -52,13 +53,14 @@
 
                 "/frontend/actions/action.js",
 
+                "/frontend/staticfiles/scripts/load_fonts.js",
+
                 "/frontend/staticfiles/scripts/header.js",
 
                 "/frontend/main.js"
             ],
             "css": [
                 "/frontend/staticfiles/styles/destyle.css",
-                "/frontend/staticfiles/styles/fonts.css",
                 "/frontend/staticfiles/styles/body.css",
                 "/frontend/staticfiles/styles/variables.css",
                 "/frontend/staticfiles/styles/header.css",
@@ -67,6 +69,8 @@
             "run_at": "document_start"
         }
     ],
+    "web_accessible_resources": ["frontend/staticfiles/fonts/lilita-one.regular.ttf"],
+
     "options_ui": {
         "page": "/options/staticfiles/templates/options.html",
         "browser_style": true,
