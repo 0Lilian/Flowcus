@@ -78,13 +78,36 @@ const header = (function () {
             header_views.appendChild(header_views_nav)
 
             // Create and insert the views buttons.
+            let buttons = []
             for (const view of views) {
-                const header_views_button = document.createElement("button")
-                header_views_button.innerText = view.display_name
-                header_views_nav.appendChild(header_views_button)
+                const header_view_button = document.createElement("button")
+                header_view_button.innerText = view.display_name
+                header_view_button.id = view.id + "-button"
+                header_views_nav.appendChild(header_view_button)
 
-                header_views_button.addEventListener("click", function () {
-                    view.displayView()
+                // Push the button to the buttons array
+                buttons.push(header_view_button)
+
+                header_view_button.addEventListener("click", function () {
+
+                    // If the view is not ready to be displayed yet, add an interval to display it later.
+                    if (view.displayView() === false) {
+                        const view_interval = window.setInterval(function () {
+                               if (view.displayView() === false) {
+                                   console.log("INTERVAL FAILED")
+                                   return;
+                               }
+                               window.clearInterval(view_interval)
+                           }, 500)
+                    }
+
+                    // Remove the displayed class from other buttons.
+                    for (const button of buttons) {
+                        button.classList.remove("displayed")
+                    }
+                    // Add the displayed class to this button
+                    header_view_button.classList.add("displayed")
+
                 })
             }
 

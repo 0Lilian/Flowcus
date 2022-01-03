@@ -5,12 +5,12 @@ function init () {
 
         // Wait for dependencies if they are not ready yet.
         if (view.areDependenciesReady() === false) {
-            let view_interval = window.setInterval(function () {
+            const view_interval = window.setInterval(function () {
                 if (view.areDependenciesReady() === true) {
                     view.generateContent()
                     window.clearInterval(view_interval)
                 }
-            }, 2000)
+            }, 500)
         }
 
         // Else generate the view's content.
@@ -21,12 +21,17 @@ function init () {
 
     // 2) Initialize the header.
     header.initHeader()
+
+    // 3) Display the default view.
+    Settings.get("default-view", function (value) {
+        const view_button = header.header_element.querySelector(`button#${value}-button`)
+        view_button.click()
+    })
 }
 
 // Initialize the extension.
 document.addEventListener("readystatechange", function () {
     if (document.readyState == "complete") {
-        console.log("INIIIT")
         init();
         header.toggleHeader()
     }

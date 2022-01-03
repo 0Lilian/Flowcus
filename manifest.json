@@ -59,6 +59,7 @@
             "css": [
                 "/frontend/staticfiles/styles/destyle.css",
                 "/frontend/staticfiles/styles/fonts.css",
+                "/frontend/staticfiles/styles/body.css",
                 "/frontend/staticfiles/styles/variables.css",
                 "/frontend/staticfiles/styles/header.css",
                 "/frontend/staticfiles/styles/adjustments.css"

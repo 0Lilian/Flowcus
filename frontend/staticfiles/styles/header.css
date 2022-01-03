@@ -33,6 +33,7 @@ header#flowcus-header section nav {
     align-items: center;
     border-radius: 10px;
     border-width: 2px;
+    overflow: hidden;
 }
 
 header#flowcus-header section nav button {
@@ -40,11 +41,12 @@ header#flowcus-header section nav button {
     padding-bottom: 10px;
     padding-right: 15px;
     padding-left: 15px;
-    border-radius: 10px;
+    /* border-radius: 10px; */
     font-weight: bold;
     font-family: Georgia;
     color: var(--color-white);
     white-space: nowrap;
+    transition-duration: 500ms;
 }
 
 header#flowcus-header section#views {
@@ -61,8 +63,13 @@ header#flowcus-header section#views nav {
 }
 
 header#flowcus-header section#views nav button:hover {
-    background-color: var(--color-primary-very-light);
+    background-color: var(--color-primary-light);
 }
+
+header#flowcus-header section#views nav button.displayed {
+    background-color: var(--color-primary);
+}
+
 
 
 header#flowcus-header section#actions {

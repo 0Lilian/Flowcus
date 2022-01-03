@@ -1,0 +1,4 @@
+/* Prevent contents from being wider that the page width */
+body {
+    overflow-x: hidden;
+}

@@ -29,6 +29,12 @@ class View {
     }
 
     displayView () {
+
+        // Return false if the view is not ready yet.
+        if (this._body === null) {
+            return false;
+        }
+
         // Reset the body but keep the header
         const body_childs = document.body.querySelectorAll("body > *:not(header#flowcus-header)")
         for (const child of body_childs) {
