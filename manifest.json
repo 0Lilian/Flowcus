@@ -2,7 +2,7 @@
     "manifest_version": 2,
     "name": "FlowingFocus",
     "version": "1.0",
-    "description": "A clutter-free reader based on Mercury for Firefox, Chrome and Safari as well as a web clipper and highlighter tool for KM software (such as Obsidian)",
+    "description": "A clutter-free reader for Firefox, Chrome and Safari. It also contains a web clipper and an highlighter tool for KM softwares (such as Obsidian, Roam Research, Foam, etc.)",
     "homepage_url": "https://github.com/0Lilian/FlowingFocus",
 
     "icons": {
