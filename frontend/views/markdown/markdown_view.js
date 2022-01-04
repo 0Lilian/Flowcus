@@ -5,33 +5,39 @@ const markdown_view = (function () {
 
         generateContent () {
 
-            // Clone the clutter_free body.
-            let cloned_clutter_free_body = clutter_free_view._body.cloneNode(true)
+            if (this.is_iframe_ready === true) {
 
-            // Apply fixers.
-            for (const fixer of markdown_fixers) {
-                cloned_clutter_free_body = fixer.fix(cloned_clutter_free_body)
+                // Clone the clutter_free body.
+                let cloned_clutter_free_body = clutter_free_view.body.cloneNode(true)
+
+                // Apply fixers.
+                for (const fixer of markdown_fixers) {
+                    cloned_clutter_free_body = fixer.fix(cloned_clutter_free_body)
+                }
+
+                // Convert the cloned body in markdown.
+                const turndownService = new TurndownService({
+                    headingStyle: 'atx',
+                    hr: '---',
+                    bulletListMarker: '-',
+                    codeBlockStyle: 'fenced',
+                    emDelimiter: '*',
+                    preformattedCode: true,
+                });
+
+                // Apply extractors.
+                for (const extractor of markdown_extractors) {
+                    turndownService = extractor.applyRuleTo(turndownService)
+                }
+
+                this.body.innerHTML = "<pre>" + turndownService.turndown(cloned_clutter_free_body.innerHTML)+ "</pre>";
+                this.is_body_ready = true;
             }
 
-            // Convert the cloned body in markdown.
-            const turndownService = new TurndownService({
-                headingStyle: 'atx',
-                hr: '---',
-                bulletListMarker: '-',
-                codeBlockStyle: 'fenced',
-                emDelimiter: '*',
-                preformattedCode: true,
-            });
-
-            // Apply extractors.
-            for (const extractor of markdown_extractors) {
-                turndownService = extractor.applyRuleTo(turndownService)
+            // Return false if the iframe is not ready yet.
+            else {
+                return false;
             }
-
-            this._body = document.createElement("body3")
-            document.documentElement.appendChild(this._body)
-            this._body.style.display = "none";
-            this._body.innerHTML = "<pre>" + turndownService.turndown(cloned_clutter_free_body.innerHTML)+ "</pre>";
         }
     }
 
@@ -41,6 +47,7 @@ const markdown_view = (function () {
                             icon=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18"><path fill="none" d="M0 0h24v24H0z"/><path d="M3 3h18a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1zm1 2v14h16V5H4zm3 10.5H5v-7h2l2 2 2-2h2v7h-2v-4l-2 2-2-2v4zm11-3h2l-3 3-3-3h2v-4h2v4z"/></svg>`,
                             hotkey="CTRL+3",
                             dependencies = ["clutter_free_view", ],
+                            use_iframe_isolation = true,
                             require_css_reset = true)
 })();
 views.push(markdown_view)

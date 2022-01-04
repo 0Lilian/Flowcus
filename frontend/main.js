@@ -3,32 +3,51 @@ function initFlowcus () {
     // 1) Load fonts (custom fonts are loaded with Javascript to prevent CSP errors on some websites)
     loadFonts()
 
-    // 2) Generate views' contents.
+    // 2) Generate views' iframes.
     for (const view of views) {
-
-        // Wait for dependencies if they are not ready yet.
-        if (view.areDependenciesReady() === false) {
+        if (view.generateIframe() === false) {
             const view_interval = window.setInterval(function () {
-                if (view.areDependenciesReady() === true) {
-                    view.generateContent()
-                    window.clearInterval(view_interval)
+                if (view.generateIframe() === false) {
+                    console.log("INTERVAL")
+                    console.log(view.id)
+                    return;
                 }
-            }, 500)
-        }
-
-        // Else generate the view's content.
-        else {
-            view.generateContent()
+                window.clearInterval(view_interval)
+            }, 250)
         }
     }
 
-    // 3) Initialize the header.
+    // 3) Generate views' contents.
+    for (const view of views) {
+        if (view.generateContent() === false) {
+            const view_interval = window.setInterval(function () {
+                if (view.generateContent() === false) {
+                    return;
+                }
+                window.clearInterval(view_interval)
+            }, 250)
+        }
+    }
+
+    // 4) Insert views' contents into views' iframes.
+    for (const view of views) {
+        if (view.insertContentInIframe() === false) {
+            const view_interval = window.setInterval(function () {
+                if (view.insertContentInIframe() === false) {
+                    return;
+                }
+                window.clearInterval(view_interval)
+            }, 250)
+        }
+    }
+
+    // 4) Initialize the header.
     header.initHeader()
 
-    // 4) Initialize hotkeys
+    // 5) Initialize hotkeys
     initHotkeysReceiver()
 
-    // 4) Display the default view.
+    // 6) Display the default view.
     Settings.get("default-view", function (value) {
         const view_button = header.header_element.querySelector(`button#${value}-button`)
         view_button.click()
@@ -50,9 +69,11 @@ function main () {
 
 Settings.get("auto-start", function (value) {
     if (value === true) {
+        console.log("AUTOSTART")
         main()
     }
     else {
+        console.log("NOT AUTOSTART")
 
         function handle_message (message) {
             if (message.command === "hotkey-pressed") {

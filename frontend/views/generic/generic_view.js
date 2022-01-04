@@ -8,8 +8,8 @@ const generic_view = (function () {
             // Do some generation stuff here
             // ...
 
-            // Fill the this._body variable.
-            this._body = document.body.cloneNode(true)
+            // Fill the this.body variable.
+            this.body = document.body.cloneNode(true)
         }
     }
 

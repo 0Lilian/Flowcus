@@ -76,7 +76,10 @@
         }
     ],
 
-    "web_accessible_resources": ["frontend/staticfiles/fonts/lilita-one.regular.ttf"],
+    "web_accessible_resources": [
+        "/frontend/staticfiles/fonts/lilita-one.regular.ttf",
+        "/frontend/staticfiles/templates/view.html"
+    ],
 
     "options_ui": {
         "page": "/options/staticfiles/templates/options.html",
