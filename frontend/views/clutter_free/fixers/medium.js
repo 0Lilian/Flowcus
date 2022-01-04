@@ -6,8 +6,6 @@ const medium_clutter_free_fixer = (function () {
 
             // Check if the current website is a Medium powered website.
             if (window.location.hostname.includes("medium.com") || medium_subwebsites.includes(window.location.hostname)) {
-                console.log("ITS A MEDIUM WEBSITE")
-
 
                 // If a Medium article is loaded and if the user scroll down the page before activation Flowcus, he will trigger lazyloaded
                 // footer and the Mercury render will be broken.

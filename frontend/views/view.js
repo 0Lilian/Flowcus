@@ -25,6 +25,45 @@ class View {
 
     }
 
+    static initViews () {
+        for (const view of views) {
+            if (view.generateIframe() === false) {
+                const view_interval = window.setInterval(function () {
+                    if (view.generateIframe() === false) {
+                        console.log("INTERVAL")
+                        console.log(view.id)
+                        return;
+                    }
+                    window.clearInterval(view_interval)
+                }, 250)
+            }
+        }
+
+        // 3) Generate views' contents.
+        for (const view of views) {
+            if (view.generateContent() === false) {
+                const view_interval = window.setInterval(function () {
+                    if (view.generateContent() === false) {
+                        return;
+                    }
+                    window.clearInterval(view_interval)
+                }, 250)
+            }
+        }
+
+        // 4) Insert views' contents into views' iframes.
+        for (const view of views) {
+            if (view.insertContentInIframe() === false) {
+                const view_interval = window.setInterval(function () {
+                    if (view.insertContentInIframe() === false) {
+                        return;
+                    }
+                    window.clearInterval(view_interval)
+                }, 250)
+            }
+        }
+    }
+
     areDependenciesReady () {
         for (const dependency of this.dependencies) {
             if (eval(dependency + ".is_body_ready") === false) {
@@ -127,26 +166,6 @@ class View {
             return false;
         }
 
-        // TEST
-
-        // Reset the body but keep the header
-        // const body_childs = document.body.querySelectorAll("body > *:not(header#flowcus-header)")
-        // for (const child of body_childs) {
-        //     document.body.removeChild(child)
-        // }
-        //
-        // // Append all the view's body childs to document.body
-        // const view_body_childs = this.body.querySelectorAll("body > *")
-        // for (const child of view_body_childs) {
-        //     document.body.appendChild(child.cloneNode(true))
-        // }
-        //
-        // // Remove other views classes and add this view's id class to document.body
-        // for (const view of views) {
-        //     document.body.classList.remove(view.id)
-        // }
-        // document.body.classList.add(this.id)
-        //
         // // Add the css-reset class to document.body if required
         // if (this.require_css_reset === true) {
         //     document.body.classList.add("requires-css-reset")

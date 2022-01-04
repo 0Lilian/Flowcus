@@ -4,42 +4,7 @@ function initFlowcus () {
     loadFonts()
 
     // 2) Generate views' iframes.
-    for (const view of views) {
-        if (view.generateIframe() === false) {
-            const view_interval = window.setInterval(function () {
-                if (view.generateIframe() === false) {
-                    console.log("INTERVAL")
-                    console.log(view.id)
-                    return;
-                }
-                window.clearInterval(view_interval)
-            }, 250)
-        }
-    }
-
-    // 3) Generate views' contents.
-    for (const view of views) {
-        if (view.generateContent() === false) {
-            const view_interval = window.setInterval(function () {
-                if (view.generateContent() === false) {
-                    return;
-                }
-                window.clearInterval(view_interval)
-            }, 250)
-        }
-    }
-
-    // 4) Insert views' contents into views' iframes.
-    for (const view of views) {
-        if (view.insertContentInIframe() === false) {
-            const view_interval = window.setInterval(function () {
-                if (view.insertContentInIframe() === false) {
-                    return;
-                }
-                window.clearInterval(view_interval)
-            }, 250)
-        }
-    }
+    View.initViews()
 
     // 4) Initialize the header.
     header.initHeader()
