@@ -2,12 +2,6 @@
 
 (function () {
 
-    // Some medium powered websites don't have a *.medium.com domain name (example : towardsdatascience.com), so this array will be used to
-    // list all these Medium websites to force Medium extractor on these websites.
-    additional_medium_websites = [
-        "towardsdatascience.com"
-    ]
-
     // Parse the body to extract the clutter-free content.
     const customExtractor = {
       domain: 'medium.com',
@@ -88,8 +82,8 @@
       },
     };
 
-    // Add dynamic extractor's domain.
-    if (additional_medium_websites.includes(window.location.hostname)) {
+    // Check if the current website is a Medium powered website.
+    if (window.location.hostname.includes("medium.com") || medium_subwebsites.includes(window.location.hostname)) {
         customExtractor.domain = window.location.hostname;
     }
 

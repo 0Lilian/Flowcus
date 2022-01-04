@@ -1,6 +1,6 @@
-const generic_extractor = (function () {
+const generic_markdown_extractor = (function () {
 
-    class GenericExtractor extends MarkdownExtractor {
+    class GenericMarkdownExtractor extends MarkdownExtractor {
 
         applyRuleTo (turndownService) {
 
@@ -11,6 +11,6 @@ const generic_extractor = (function () {
         }
     }
 
-    return new GenericExtractor()
+    return new GenericMarkdownExtractor()
 })();
-markdown_extractors.push(generic_fixer)
+markdown_extractors.push(generic_markdown_extractor)

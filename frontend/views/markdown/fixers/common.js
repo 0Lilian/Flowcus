@@ -1,6 +1,6 @@
-const common_fixer = (function () {
+const common_markdown_fixer = (function () {
 
-    class CommonFixer extends MarkdownFixer {
+    class CommonMarkdownFixer extends MarkdownFixer {
 
         fix (body) {
 
@@ -12,6 +12,6 @@ const common_fixer = (function () {
         }
     }
 
-    return new CommonFixer()
+    return new CommonMarkdownFixer()
 })();
-markdown_fixers.push(common_fixer)
+markdown_fixers.push(common_markdown_fixer)

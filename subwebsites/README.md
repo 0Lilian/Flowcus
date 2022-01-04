@@ -1,0 +1,2 @@
+This folder contains list of some platform's subwebsites. For example some Medium powered webites use *.medium.com domain name and others like "towardsdatascience.com" are also powered by Medium but doesn't use the medium.com domain name.
+So these subwebsites lists are used to apply the same rules to a platform and tp all its subwebsites. For example and towardsdatascience.com must be treated like a medium website.

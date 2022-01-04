@@ -1,6 +1,6 @@
-const generic_fixer = (function () {
+const generic_clutter_free_fixer = (function () {
 
-    class GenericFixer extends ClutterFreeFixer {
+    class GenericClutterFreeFixer extends ClutterFreeFixer {
 
         fix (body) {
 
@@ -12,6 +12,6 @@ const generic_fixer = (function () {
         }
     }
 
-    return new GenericFixer()
+    return new GenericClutterFreeFixer()
 })();
-clutter_free_fixers.push(generic_fixer)
+clutter_free_fixers.push(generic_clutter_free_fixer)

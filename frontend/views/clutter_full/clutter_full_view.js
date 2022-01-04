@@ -5,17 +5,18 @@ const clutter_full_view = (function () {
 
         generateContent () {
 
+            // Clone the document body
+            this._body = document.body
+
             // Remove body_scripts to prevent them to run twice
-            const body_scripts = document.querySelectorAll("body script")
+            const body_scripts = this._body.querySelectorAll("script")
             for (const script of body_scripts) {
                 script.parentNode.removeChild(script)
             }
-            const body_iframes = document.querySelectorAll("body iframe")
+            const body_iframes = this._body.querySelectorAll("iframe")
             for (const iframe of body_iframes) {
                 iframe.parentNode.removeChild(iframe)
             }
-
-            this._body = document.body.cloneNode(true)
         }
     }
 

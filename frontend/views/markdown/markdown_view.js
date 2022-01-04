@@ -28,7 +28,9 @@ const markdown_view = (function () {
                 turndownService = extractor.applyRuleTo(turndownService)
             }
 
-            this._body = document.createElement("body")
+            this._body = document.createElement("body3")
+            document.documentElement.appendChild(this._body)
+            this._body.style.display = "none";
             this._body.innerHTML = "<pre>" + turndownService.turndown(cloned_clutter_free_body.innerHTML)+ "</pre>";
         }
     }

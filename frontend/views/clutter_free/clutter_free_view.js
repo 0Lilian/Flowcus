@@ -4,20 +4,41 @@ const clutter_free_view = (function () {
     class ClutterFreeView extends View {
 
         generateContent () {
-            // Build a document object from the clutter_full_view._body
-            const cloned_document = document.cloneNode(true)
-            cloned_document.body.innerHTML = clutter_full_view._body.innerHTML
 
-            // Apply fixers.
-            for (const fixer of clutter_free_fixers) {
-                cloned_document.body = fixer.fix(cloned_document.body)
-            }
+
+        // Build a document object from the clutter_full_view._body
+        const cloned_document = document.cloneNode(true)
+        cloned_document.body.innerHTML = clutter_full_view._body.innerHTML
+
+        // Apply fixers.
+        for (const fixer of clutter_free_fixers) {
+            cloned_document.body = fixer.fix(cloned_document.body)
+        }
+
+        console.log("OOO")
+        console.log(cloned_document.documentElement.innerHTML)
 
             // Parse the document using Mercury Parser.
-            const parsed_body = Mercury.parse(null, {html: cloned_document.documentElement.innerHTML}).then(function (result) {
-                this._body = document.createElement("body")
+
+            function onError () {
+                // Add support for local files parsing with a fake url
+                // const parsed_body = Mercury.parse(null, {html: cloned_document.documentElement.innerHTML}).then(function (result) {
+                const parsed_body = Mercury.parse(`https://local.file/?path=${window.location.href}`, {html: cloned_document.documentElement.innerHTML}).then(onSuccess.bind(this));
+            }
+
+            function onSuccess (result) {
+                if (result.error === true) {
+                    onError.call(this)
+                }
+
+                this._body = document.createElement("body2")
+                document.documentElement.appendChild(this._body)
+                this._body.style.display = "none";
                 this._body.innerHTML = result.content;
-            }.bind(this));
+            }
+
+            // const parsed_body = Mercury.parse(null, {html: cloned_document.documentElement.innerHTML}).then(function (result) {
+            const parsed_body = Mercury.parse(window.location.href, {html: cloned_document.documentElement.innerHTML}).then(onSuccess.bind(this));
         }
     }
 

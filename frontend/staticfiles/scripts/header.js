@@ -157,8 +157,6 @@ const header = (function () {
             // document.body.classList.add("flowcus-header-displayed")
 
             // Retrieve the header's height and set body padding-top with this value.
-            console.log("AAAA")
-            console.log(this.header_element.offsetHeight)
             document.body.style.paddingTop = this.header_element.offsetHeight + "px"
 
             // Mark the header as displayed.

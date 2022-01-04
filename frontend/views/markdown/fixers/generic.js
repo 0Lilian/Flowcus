@@ -1,6 +1,6 @@
-const generic_fixer = (function () {
+const generic_markdown_fixer = (function () {
 
-    class GenericFixer extends MarkdownFixer {
+    class GenericMarkdownFixer extends MarkdownFixer {
 
         fix (body) {
 
@@ -12,6 +12,6 @@ const generic_fixer = (function () {
         }
     }
 
-    return new GenericFixer()
+    return new GenericMarkdownFixer()
 })();
-markdown_fixers.push(generic_fixer)
+markdown_fixers.push(generic_markdown_fixer)
