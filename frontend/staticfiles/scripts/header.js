@@ -97,42 +97,10 @@ const Header = (function () {
                     const header_views_nav = document.createElement("nav")
                     header_views.appendChild(header_views_nav)
 
-                    // Create and insert the views buttons.
-                    let buttons = []
+                    // Insert the views buttons.
                     for (const view of views) {
-                        const header_view_button = document.createElement("button")
-                        header_view_button.innerHTML = `<span class="icon">${view.icon}</span><span class="name">${view.display_name}</span>`
-                        header_view_button.id = view.id + "-button"
-                        header_views_nav.appendChild(header_view_button)
-
-                        // Add the button as a property of the view object.
-                        view.header_button = header_view_button
-
-                        // Push the button to the buttons array
-                        buttons.push(header_view_button)
-
-                        header_view_button.addEventListener("click", function () {
-
-                            // If the view is not ready to be displayed yet, add an interval to display it later.
-                            if (view.displayView() === false) {
-                                const view_interval = window.setInterval(function () {
-                                    if (view.displayView() === false) {
-                                        return;
-                                    }
-                                    window.clearInterval(view_interval)
-                                }, 500)
-                            }
-
-                            // Remove the displayed class from other buttons.
-                            for (const button of buttons) {
-                                button.classList.remove("displayed")
-                            }
-                            // Add the displayed class to this button
-                            header_view_button.classList.add("displayed")
-
-                        })
+                        header_views_nav.appendChild(view.button)
                     }
-
 
                     // Create and insert the header's 'actions' section.
                     const header_actions = document.createElement("section")
@@ -148,8 +116,10 @@ const Header = (function () {
                     const header_actions_nav = document.createElement("nav")
                     header_actions.appendChild(header_actions_nav)
 
-                    // Create and insert the actions buttons.
-                    // TODO
+                    // Insert the actions buttons.
+                    for (const action of actions) {
+                        header_actions_nav.appendChild(action.button)
+                    }
 
                     // Resolve the promise
                     resolve()

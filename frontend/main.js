@@ -21,12 +21,7 @@ function initFlowcus () {
         .then(() => HotkeysReceiver.init())
 
         // 6) Display the default view.
-        .then(() => {
-            Settings.get("default-view", function (value) {
-                const view_button = header.header_element.querySelector(`button#${value}-button`)
-                view_button.click()
-            })
-        })
+        .then(() => View.displayDefaultView())
 
         // 7.A) Resolve the promise.
         .then(() => resolve())

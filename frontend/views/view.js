@@ -16,12 +16,11 @@ class View {
         this.require_css_reset = require_css_reset;
         this.use_iframe_isolation = use_iframe_isolation;
         this.body = document.createElement("body")
-        this.is_body_ready = false;
         this.iframe;
         this.iframe_window;
         this.iframe_document;
-        this.is_iframe_ready = false;
-        this.is_content_inserted = false;
+        this.button;
+        this.is_ready = false;
 
     }
 
@@ -125,7 +124,22 @@ class View {
         return Promise.all([View._initViewsIframes(), View._initViewsContents(), View._insertViewsContentsInViewsIframes()])
     }
 
-    areDependenciesReady () {
+    static getViewById (id) {
+        for (const view of views) {
+            if (view.id === id) {
+                return view
+            }
+        }
+        return null
+    }
+
+    static displayDefaultView () {
+        Settings.get("default-view", function (value) {
+            View.getViewById(value).displayView()
+        })
+    }
+
+    waitForDependencies () {
         for (const dependency of this.dependencies) {
             if (eval(dependency + ".is_body_ready") === false) {
                 return false
@@ -167,8 +181,25 @@ class View {
                 this.iframe.appendChild(iframe_body)
             }
 
-            this.iframe.style.display = "none"; // TO REPLACE BY CSS
             document.body.appendChild(this.iframe)
+
+            // Create the view button and add the click event.
+            this.button = document.createElement("button")
+            this.button.innerHTML = `<span class="icon">${this.icon}</span><span class="name">${this.display_name}</span>`
+            this.button.id = this.id + "-button"
+
+            this.button.addEventListener("click", function () {
+
+                // If the view is not ready to be displayed yet, add an interval to display it later.
+                if (this.displayView() === false) {
+                    const view_interval = window.setInterval(function () {
+                        if (this.displayView() === false) {
+                            return;
+                        }
+                        window.clearInterval(view_interval)
+                    }, 250)
+                }
+            }.bind(this))
         }
 
         // Return false if the dependencies are not ready yet.
@@ -221,19 +252,18 @@ class View {
                 }
             }
             this.iframe.style.display = "inline-block";
+
+            // Remove the displayed class from other buttons.
+            for (const view of views) {
+                view.button.classList.remove("displayed")
+            }
+            // Add the displayed class to this button
+            this.button.classList.add("displayed")
         }
 
         // Return false if the content is not inserted into the iframe yet.
         else {
             return false;
         }
-
-        // // Add the css-reset class to document.body if required
-        // if (this.require_css_reset === true) {
-        //     document.body.classList.add("requires-css-reset")
-        // }
-        // else {
-        //     document.body.classList.remove("requires-css-reset")
-        // }
     }
 }
