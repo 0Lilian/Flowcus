@@ -43,7 +43,7 @@ function main () {
     else {
         window.addEventListener("load", function () {
             initFlowcus()
-            .then(header.toggleHeader)
+            .then(() => header.toggleHeader())
             .catch(error => error ? console.log(error) : null)
         })
     }
