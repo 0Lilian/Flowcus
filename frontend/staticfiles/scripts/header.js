@@ -99,7 +99,9 @@ const Header = (function () {
 
                     // Insert the views buttons.
                     for (const view of views) {
-                        header_views_nav.appendChild(view.button)
+                        if (view.displayed === true) {
+                            header_views_nav.appendChild(view.button)
+                        }
                     }
 
                     // Create and insert the header's 'actions' section.
@@ -118,7 +120,9 @@ const Header = (function () {
 
                     // Insert the actions buttons.
                     for (const action of actions) {
-                        header_actions_nav.appendChild(action.button)
+                        if (action.displayed === true) {
+                            header_actions_nav.appendChild(action.button)
+                        }
                     }
 
                     // Resolve the promise
@@ -147,8 +151,10 @@ const Header = (function () {
 
             // Size views' iframes' height.
             for (const view of views) {
-                if (view.use_iframe_isolation === true) {
-                    view.iframe.style.height = `calc(100vh - ${document.body.style.paddingTop})`
+                if (view.displayed === true) {
+                    if (view.use_iframe_isolation === true) {
+                        view.iframe.style.height = `calc(100vh - ${document.body.style.paddingTop})`
+                    }
                 }
             }
 
@@ -167,8 +173,10 @@ const Header = (function () {
 
             // Size views' iframes' height.
             for (const view of views) {
-                if (view.use_iframe_isolation === true) {
-                    view.iframe.style.height = "100vh";
+                if (view.displayed === true) {
+                    if (view.use_iframe_isolation === true) {
+                        view.iframe.style.height = "100vh";
+                    }
                 }
             }
 

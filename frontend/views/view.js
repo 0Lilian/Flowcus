@@ -24,14 +24,52 @@ class View {
         this.button;
         this.is_ready = false;
         this.ready_event = new CustomEvent(this.id + "-ready")
-
+        Settings.get(this.id + "-enabled", function (value) {
+            this.displayed = value // Used for header display
+            this.enabled = value // Used for dependencies mechanism
+        }.bind(this))
     }
 
     static init () {
         const promises = []
 
+        // Construct the promises list with the enabled views
+        let enabled_views = [];
         for (const view of views) {
-            promises.push(view.init())
+            if (view.enabled === true) {
+                promises.push(view.init())
+                enabled_views.push(view)
+            }
+            else {
+                // Set the view with displayed=false to prevent the button to be injected in the header.
+                view.displayed = false;
+            }
+        }
+
+        // Also append the enabled views' dependencies and every sub dependency to promises list
+        let continue_loop = true;
+        while (continue_loop === true) {
+            const length_before_loop = enabled_views.length
+
+            for (const view of enabled_views) {
+                for (const dependency of view.dependencies) {
+                    const dependency_view = View.getViewById(dependency)
+
+                    // Check if the view is not already in the enabled_views list.
+                    if (enabled_views.includes(dependency_view) === false) {
+
+                        enabled_views.push(dependency_view)
+
+                        // Push the view to the promises list
+                        promises.push(dependency_view.init())
+                    }
+                }
+            }
+
+            // Stop the loop if the length is unchanged (it means that no more dependencies can be discovered)
+            if (length_before_loop === enabled_views.length) {
+                continue_loop = false;
+            }
         }
 
         return Promise.all(promises)
@@ -49,11 +87,23 @@ class View {
 
     static displayDefaultView () {
         Settings.get("default-view", function (value) {
-            View.getViewById(value).displayView()
+            const default_view = View.getViewById(value)
+
+            if (default_view.displayed === true) {
+                default_view.displayView()
+            }
+            else {
+                for (const view of views.reverse()) {
+                    if (view.displayed === true) {
+                        view.displayView()
+                    }
+                }
+            }
         })
     }
 
     init () {
+
         return new Promise((resolve, reject) => {
             this.waitForDependencies()
             .then(() => this.generateIframe())
@@ -70,6 +120,12 @@ class View {
                 error ? console.log("An error occured while trying to initialize this view " + view.id + ". Error : " + error) : null
                 reject()
             })
+        })
+    }
+
+    isEnabled () {
+        return Settings.get(this.id + "-enabled", function (value) {
+            return value;
         })
     }
 
@@ -96,7 +152,11 @@ class View {
         const promises = []
 
         for (const dependency of this.dependencies) {
-            promises.push(eval(dependency).waitForViewReady())
+            const dependency_view = View.getViewById(dependency)
+
+            if (dependency_view) {
+                promises.push(dependency_view.waitForViewReady())
+            }
         }
 
         return Promise.all(promises)
@@ -220,7 +280,9 @@ class View {
 
         // Remove the displayed class from other buttons.
         for (const view of views) {
-            view.button.classList.remove("displayed")
+            if (view.displayed === true) {
+                view.button.classList.remove("displayed")
+            }
         }
         // Add the displayed class to this button
         this.button.classList.add("displayed")
@@ -241,7 +303,7 @@ class View {
                 }
             }
             catch (error) {
-                reject("An error occured while trying to display the view " + view.id + ". Error : " + error)
+                reject("An error occured while trying to display the view " + this.id + ". Error : " + error)
             }
         })
     }
