@@ -40,8 +40,8 @@ class View {
                 }
                 resolve()
             }
-            catch {
-                reject("Iframe cannot be initialized for view " + view.id)
+            catch (e) {
+                reject("Iframe cannot be initialized for view " + view.id + ". Error : " + e)
             }
         })
     }
@@ -72,8 +72,8 @@ class View {
                 }
                 resolve()
             }
-            catch {
-                reject("Content (body) cannot be initialized for view " + view.id)
+            catch (e) {
+                reject("Content (body) cannot be initialized for view " + view.id + ". Error : " + e)
             }
         })
     }
@@ -104,8 +104,8 @@ class View {
                 }
                 resolve()
             }
-            catch {
-                reject("Content cannot be inserted in Iframe for view " + view.id)
+            catch (e) {
+                reject("Content cannot be inserted in Iframe for view " + view.id + ". Error : " + e)
             }
         })
     }
@@ -121,12 +121,8 @@ class View {
         return Promise.all(promises)
     }
 
-    static initViews () {
-
+    static init () {
         return Promise.all([View._initViewsIframes(), View._initViewsContents(), View._insertViewsContentsInViewsIframes()])
-        // .then(values => console.log("Views successfully initialized"))
-        // .catch(error => console.log(error))
-
     }
 
     areDependenciesReady () {

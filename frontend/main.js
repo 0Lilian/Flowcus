@@ -11,18 +11,29 @@ function initFlowcus () {
         // 2) Load fonts (custom fonts are loaded with Javascript to prevent CSP errors on some websites)
         loadFonts()
 
-        View.initViews() // 3) Initialize views
-        .then(() => header.initHeader()) // 4) Initialize the header.
-        .then(() => initHotkeysReceiver()) // 5) Initialize hotkeys
-        .then(() => { // 6) Display the default view.
+        // 3) Initialize views.
+        View.init()
+
+        // 4) Initialize the header.
+        .then(() => Header.init())
+
+        // 5) Initialize hotkeys
+        .then(() => HotkeysReceiver.init())
+
+        // 6) Display the default view.
+        .then(() => {
             Settings.get("default-view", function (value) {
                 const view_button = header.header_element.querySelector(`button#${value}-button`)
                 view_button.click()
             })
         })
+
+        // 7.A) Resolve the promise.
         .then(() => resolve())
+
+        // 7.B) Or catch initialization's errors and reject the promise.
         .catch(error => {
-            console.log(error)
+            error ? console.log(error) : null
             reject()
         })
     })
@@ -32,13 +43,13 @@ function main () {
     if (document.readyState === "complete") {
         initFlowcus()
         .then(() => header.toggleHeader())
-        .catch(error => console.log(error))
+        .catch(error => error ? console.log(error) : null)
     }
     else {
         window.addEventListener("load", function () {
             initFlowcus()
             .then(header.toggleHeader)
-            .catch(error => console.log(error))
+            .catch(error => error ? console.log(error) : null)
         })
     }
 }
