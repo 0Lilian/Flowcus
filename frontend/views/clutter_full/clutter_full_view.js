@@ -7,7 +7,7 @@ const clutter_full_view = (function () {
 
             if (this.is_iframe_ready === true) {
                 // Clone the document body
-                this.body = document.body.cloneNode(true) 
+                this.body = idocument.body.cloneNode(true) 
 
                 // Remove body_scripts to prevent them to run twice
                 const body_scripts = this.body.querySelectorAll("script")

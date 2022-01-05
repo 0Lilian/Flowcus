@@ -8,7 +8,7 @@ const clutter_free_view = (function () {
             if (this.is_iframe_ready === true) {
 
                 // Build a document object from the clutter_full_view.body
-                const cloned_document = document.cloneNode(true)
+                const cloned_document = idocument.cloneNode(true)
                 cloned_document.body = clutter_full_view.iframe.querySelector("body").cloneNode(true)
 
                 // Apply fixers.

@@ -30,8 +30,6 @@ class View {
             if (view.generateIframe() === false) {
                 const view_interval = window.setInterval(function () {
                     if (view.generateIframe() === false) {
-                        console.log("INTERVAL")
-                        console.log(view.id)
                         return;
                     }
                     window.clearInterval(view_interval)

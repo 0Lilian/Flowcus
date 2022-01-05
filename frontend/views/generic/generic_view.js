@@ -9,7 +9,7 @@ const generic_view = (function () {
             // ...
 
             // Fill the this.body variable.
-            this.body = document.body.cloneNode(true)
+            this.body = idocument.body.cloneNode(true)
         }
     }
 

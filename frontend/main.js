@@ -1,9 +1,15 @@
+let idocument;
+
 function initFlowcus () {
 
-    // 1) Load fonts (custom fonts are loaded with Javascript to prevent CSP errors on some websites)
+    // 1) Store the initial document element.
+    idocument = document.cloneNode(true)
+    document.body.innerHTML = ""
+
+    // 2) Load fonts (custom fonts are loaded with Javascript to prevent CSP errors on some websites)
     loadFonts()
 
-    // 2) Generate views' iframes.
+    // 3) Generate views' iframes.
     View.initViews()
 
     // 4) Initialize the header.
