@@ -5,39 +5,42 @@ const markdown_view = (function () {
 
         generateContent () {
 
-            if (this.is_iframe_ready === true) {
+            return new Promise((resolve, reject) => {
 
-                // Clone the clutter_free body.
-                let cloned_clutter_free_body = clutter_free_view.body.cloneNode(true)
+                try {
 
-                // Apply fixers.
-                for (const fixer of markdown_fixers) {
-                    cloned_clutter_free_body = fixer.fix(cloned_clutter_free_body)
+                    // Clone the clutter_free body.
+                    let cloned_clutter_free_body = clutter_free_view.body.cloneNode(true)
+
+                    // Apply fixers.
+                    for (const fixer of markdown_fixers) {
+                        cloned_clutter_free_body = fixer.fix(cloned_clutter_free_body)
+                    }
+
+                    // Convert the cloned body in markdown.
+                    const turndownService = new TurndownService({
+                        headingStyle: 'atx',
+                        hr: '---',
+                        bulletListMarker: '-',
+                        codeBlockStyle: 'fenced',
+                        emDelimiter: '*',
+                        preformattedCode: true,
+                    });
+
+                    // Apply extractors.
+                    for (const extractor of markdown_extractors) {
+                        turndownService = extractor.applyRuleTo(turndownService)
+                    }
+
+                    this.body.innerHTML = "<pre>" + turndownService.turndown(cloned_clutter_free_body.innerHTML)+ "</pre>";
+
+                    // Resolve the promise.
+                    resolve()
                 }
-
-                // Convert the cloned body in markdown.
-                const turndownService = new TurndownService({
-                    headingStyle: 'atx',
-                    hr: '---',
-                    bulletListMarker: '-',
-                    codeBlockStyle: 'fenced',
-                    emDelimiter: '*',
-                    preformattedCode: true,
-                });
-
-                // Apply extractors.
-                for (const extractor of markdown_extractors) {
-                    turndownService = extractor.applyRuleTo(turndownService)
+                catch (error) {
+                    reject("An error occured while generating content of view " + view.id + ". Error : " + error)
                 }
-
-                this.body.innerHTML = "<pre>" + turndownService.turndown(cloned_clutter_free_body.innerHTML)+ "</pre>";
-                this.is_body_ready = true;
-            }
-
-            // Return false if the iframe is not ready yet.
-            else {
-                return false;
-            }
+            })
         }
     }
 

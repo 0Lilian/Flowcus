@@ -4,41 +4,43 @@ const clutter_free_view = (function () {
     class ClutterFreeView extends View {
 
         generateContent () {
+            return new Promise((resolve, reject) => {
 
-            if (this.is_iframe_ready === true) {
+                try {
+                    // Build a document object from the clutter_full_view.body
+                    const cloned_document = idocument.cloneNode(true)
+                    cloned_document.body = clutter_full_view.iframe.querySelector("body").cloneNode(true)
 
-                // Build a document object from the clutter_full_view.body
-                const cloned_document = idocument.cloneNode(true)
-                cloned_document.body = clutter_full_view.iframe.querySelector("body").cloneNode(true)
-
-                // Apply fixers.
-                for (const fixer of clutter_free_fixers) {
-                    cloned_document.body = fixer.fix(cloned_document.body)
-                }
-
-                // Parse the document using Mercury Parser.
-                function onError () {
-                    // Add support for local files parsing with a fake url
-                    // const parsed_body = Mercury.parse(null, {html: cloned_document.documentElement.innerHTML}).then(function (result) {
-                    const parsed_body = Mercury.parse(`https://local.file/?path=${window.location.href}`, {html: cloned_document.documentElement.innerHTML}).then(onSuccess.bind(this));
-                }
-
-                function onSuccess (result) {
-                    if (result.error === true) {
-                        onError.call(this)
+                    // Apply fixers.
+                    for (const fixer of clutter_free_fixers) {
+                        cloned_document.body = fixer.fix(cloned_document.body)
                     }
-                    this.body.innerHTML = result.content;
+
+                    // Parse the document using Mercury Parser.
+                    function onError () {
+                        // Add support for local files parsing with a fake url
+                        // const parsed_body = Mercury.parse(null, {html: cloned_document.documentElement.innerHTML}).then(function (result) {
+                        const parsed_body = Mercury.parse(`https://local.file/?path=${window.location.href}`, {html: cloned_document.documentElement.innerHTML}).then(onSuccess.bind(this));
+                    }
+
+                    function onSuccess (result) {
+                        if (result.error === true) {
+                            onError.call(this)
+                        }
+                        this.body.innerHTML = result.content;
+                    }
+
+                    // const parsed_body = Mercury.parse(null, {html: cloned_document.documentElement.innerHTML}).then(function (result) {
+                    const parsed_body = Mercury.parse(window.location.href, {html: cloned_document.documentElement.innerHTML}).then(onSuccess.bind(this));
+                    this.is_body_ready = true;
+
+                    // Resolve the promise.
+                    resolve()
                 }
-
-                // const parsed_body = Mercury.parse(null, {html: cloned_document.documentElement.innerHTML}).then(function (result) {
-                const parsed_body = Mercury.parse(window.location.href, {html: cloned_document.documentElement.innerHTML}).then(onSuccess.bind(this));
-                this.is_body_ready = true;
-            }
-
-            // Return false if the iframe is not ready yet.
-            else {
-                return false;
-            }
+                catch (error) {
+                    reject("An error occured while generating content of view " + view.id + ". Error : " + error)
+                }
+            })
         }
     }
 

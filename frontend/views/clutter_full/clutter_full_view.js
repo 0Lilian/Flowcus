@@ -5,26 +5,30 @@ const clutter_full_view = (function () {
 
         generateContent () {
 
-            if (this.is_iframe_ready === true) {
-                // Clone the document body
-                this.body = idocument.body.cloneNode(true) 
+            return new Promise((resolve, reject) => {
 
-                // Remove body_scripts to prevent them to run twice
-                const body_scripts = this.body.querySelectorAll("script")
-                for (const script of body_scripts) {
-                    script.parentNode.removeChild(script)
-                }
-                const body_iframes = this.body.querySelectorAll("iframe")
-                for (const iframe of body_iframes) {
-                    iframe.parentNode.removeChild(iframe)
-                }
-                this.is_body_ready = true;
-            }
+                try {
 
-            // Return false if the iframe is not ready yet.
-            else {
-                return false;
-            }
+                    // Clone the document body
+                    this.body = idocument.body.cloneNode(true)
+
+                    // Remove body_scripts to prevent them to run twice
+                    const body_scripts = this.body.querySelectorAll("script")
+                    for (const script of body_scripts) {
+                        script.parentNode.removeChild(script)
+                    }
+                    const body_iframes = this.body.querySelectorAll("iframe")
+                    for (const iframe of body_iframes) {
+                        iframe.parentNode.removeChild(iframe)
+                    }
+
+                    // Resolve the promise.
+                    resolve()
+                }
+                catch (error) {
+                    reject("An error occured while generating content of view " + view.id + ". Error : " + error)
+                }
+            })
         }
     }
 

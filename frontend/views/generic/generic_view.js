@@ -5,11 +5,23 @@ const generic_view = (function () {
 
         generateContent () {
 
-            // Do some generation stuff here
-            // ...
+            return new Promise((resolve, reject) => {
 
-            // Fill the this.body variable.
-            this.body = idocument.body.cloneNode(true)
+                try {
+
+                    // Do some generation stuff here
+                    // ...
+
+                    // Fill the this.body variable (it already contains a <body> element)
+                    this.body = idocument.body.cloneNode(true)
+                    
+                    // Resolve the promise.
+                    resolve()
+                }
+                catch (error) {
+                    reject("An error occured while generating content of view " + view.id + ". Error : " + error)
+                }
+            })
         }
     }
 
