@@ -12,6 +12,7 @@ class View {
         this.id = id;
         this.display_name = display_name;
         this.icon = icon;
+        this.hotkey = hotkey;
         this.dependencies = dependencies;
         this.require_css_reset = require_css_reset;
         this.use_iframe_isolation = use_iframe_isolation;
@@ -146,7 +147,14 @@ class View {
             try {
                 // Create the view button and add the click event.
                 this.button = document.createElement("button")
-                this.button.innerHTML = `<span class="icon">${this.icon}</span><span class="name">${this.display_name}</span>`
+                this.button.innerHTML = `<div class="infos"><span class="icon">${this.icon}</span><span class="name">${this.display_name}</span></div>`
+                Settings.get("display-views-hotkeys", function (value) {
+                    if (value === true) {
+                        this.button.innerHTML += `<div class="hotkey">${this.hotkey}</div>`
+                    }
+                }.bind(this))
+
+                // Add the button id.
                 this.button.id = this.id + "-button"
 
                 this.button.addEventListener("click", function () {

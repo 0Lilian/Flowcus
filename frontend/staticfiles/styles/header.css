@@ -35,7 +35,6 @@ header#flowcus-header section nav {
     align-items: center;
     border-radius: 15px;
     border-width: 3px;
-    overflow: hidden;
     padding: 5px;
 
 }
@@ -54,7 +53,39 @@ header#flowcus-header section nav button {
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-wrap: nowrap;
+    flex-direction: column;
+    position: relative;
+}
+
+header#flowcus-header section nav button > div.infos {
+    display: flex;
+}
+
+header#flowcus-header section nav button > div.hotkey {
+    border-width: 1px;
+    font-size: 14px;
+    letter-spacing: 2px;
+    border-radius: 7px;
+    font-family: 'Lilita One', cursive;
+    padding-right: 6px;
+    padding-left: 6px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    margin-top: 4px;
+    position: absolute;
+    top: 22px;
+    right: 0px;
+    font-weight: 100;
+    border-top-left-radius: 0;
+    opacity: 0;
+    transition-duration: 300ms;
+    transition-property: opacity transform;
+}
+
+header#flowcus-header section nav button:hover > div.hotkey {
+    transform-origin: top left;
+    transform: rotateZ(5deg);
+    opacity: 0.9;
 }
 
 header#flowcus-header section nav button span {
@@ -105,6 +136,11 @@ header#flowcus-header section#views nav button.displayed {
     background-color: var(--color-primary);
 }
 
+header#flowcus-header section#views nav button > div.hotkey {
+    border-color: var(--color-primary-light);
+    background-color: var(--color-primary-dark);
+}
+
 
 /* # ACTIONS # */
 
@@ -130,6 +166,11 @@ header#flowcus-header section#actions nav button.displayed {
     background-color: var(--color-secondary);
 }
 
+header#flowcus-header section#actions nav button > div.hotkey {
+    border-color: var(--color-secondary-light);
+    background-color: var(--color-secondary-dark);
+}
+
 
 
 
@@ -150,24 +191,20 @@ header#flowcus-header.big-layout {
     flex-direction: column;
 }
 
+header#flowcus-header.big-layout section nav button > div.infos {
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+
 header#flowcus-header.big-layout section {
     flex-direction: column;
 }
-
-header#flowcus-header.big-layout section#views {
-}
-
-header#flowcus-header.big-layout section#actions {
-}
-
 
 header#flowcus-header.big-layout section h2 {
     margin-bottom: -7px;
 }
 
-header#flowcus-header.big-layout.display-hotkeys {
 
-}
 
 /* # CONDENSED LAYOUT # */
 header#flowcus-header.condensed-layout,
@@ -182,25 +219,6 @@ header#flowcus-header.ultra-condensed-layout section {
 }
 
 
-header#flowcus-header.condensed-layout section#views,
-header#flowcus-header.ultra-condensed-layout section#views {
-    /* width: 50% */
-}
-
-header#flowcus-header.condensed-layout section#actions,
-header#flowcus-header.ultra-condensed-layout section#actions {
-    /* width: 50% */
-}
-
-header#flowcus-header.condensed-layout.condensed-button-click-behavior,
-header#flowcus-header.ultra-condensed-layout.condensed-button-click-behavior {
-
-}
-
-header#flowcus-header.condensed-layout.condensed-hover-behavior,
-header#flowcus-header.ultra-condensed-layout.condensed-hover-behavior {
-
-}
 
 /* # ULTRA-CONDENSED LAYOUT # */
 
@@ -211,6 +229,12 @@ header#flowcus-header.ultra-condensed-layout section nav button span.name {
 header#flowcus-header.ultra-condensed-layout section nav button span.icon {
     padding-right: 0;
 }
+
+header#flowcus-header.ultra-condensed-layout section nav button > div.hotkey {
+    right: unset;
+    left: 5px;
+}
+
 
 
 /* # HIDDEN LAYOUT # */

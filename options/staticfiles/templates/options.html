@@ -48,23 +48,24 @@
                     </div>
 
                     <div>
-                        <label for="display-actions-hotkeys">Display actions' hotkeys</label>
-                        <input type="checkbox" name="display-actions-hotkeys" checked="true"/>
-                        <p class="description">If this is checked, actions' hotkeys will be displayed under the actions's button in the header.</p>
+                        <label for="display-views-hotkeys">Display views' hotkeys on hover</label>
+                        <input type="checkbox" name="display-views-hotkeys" checked="true"/>
+                        <p class="description">If checked, views' hotkeys will be displayed each time your mouse hover a view button.</p>
                     </div>
 
                     <div>
-                        <label for="display-views-hotkeys">Display views' hotkeys</label>
-                        <input type="checkbox" name="display-views-hotkeys" checked="true"/>
-                        <p class="description">If checked, views' hotkeys will be displayed under the views's button in the header.</p>
+                        <label for="display-actions-hotkeys">Display actions' hotkeys on hover</label>
+                        <input type="checkbox" name="display-actions-hotkeys" checked="true"/>
+                        <p class="description">If checked, actions' hotkeys will be displayed each time your mouse hover a action button.</p>
                     </div>
+
 
                 <h3>Extension's scripts</h3>
 
                     <div>
                         <label for="auto-start">Auto-start</label>
                         <input type="checkbox" name="auto-start" checked="false"/>
-                        <p class="description">If checked Flowcus will be automatically started on each page you load. It could not works on websites that use lazy loading or XHR.</p>
+                        <p class="description">If checked Flowcus will be automatically started on each page you load. It might not works on websites that use lazy loading or XHR.</p>
                     </div>
 
             <h2>Views Settings</h2>
@@ -78,18 +79,27 @@
                     </select>
                 </div>
 
-                <h3>Clutter-full</h3>
+                <h3>Enabled views</h3>
+
                     <div>
-                        <label for="enable-clutter-full-view">Enable</label>
+                        <label for="enable-clutter-full-view">Clutter-full view</label>
                         <input type="checkbox" name="enable-clutter-full-view" checked="true"/>
                     </div>
 
-                <h3>Clutter-free</h3>
-                    <!-- Functionnalities : Dark mode, change font size, typographie-->
                     <div>
-                        <label for="enable-clutter-free-view">Enable</label>
+                        <label for="enable-clutter-free-view">Clutter-free view</label>
                         <input type="checkbox" name="enable-clutter-free-view" checked="true"/>
                     </div>
+
+                    <div>
+                        <label for="enable-markdown-view">Markdown view</label>
+                        <input type="checkbox" name="enable-markdown-view" checked="true"/>
+                    </div>
+
+                <h3>Clutter-full</h3>
+
+                <h3>Clutter-free</h3>
+                    <!-- Functionnalities : Dark mode, change font size, typographie-->
 
                     <div>
                         <label for="auto-indent">Auto-indent</label>
@@ -98,12 +108,11 @@
                     </div>
 
                 <h3>Markdown</h3>
-                    <div>
-                        <label for="enable-markdown-view">Enable</label>
-                        <input type="checkbox" name="enable-markdown-view" checked="true"/>
-                    </div>
+
 
             <h2>Actions Settings</h2>
+
+                <h3>Enabled actions</h3>
 
                 <h3>Clip to KM software</h3>
 
