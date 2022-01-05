@@ -25,41 +25,108 @@ class View {
 
     }
 
+    static _initViewIframe (view) {
+        return new Promise((resolve, reject) => {
+            try {
+                if (view.generateIframe() === false) {
+                    const view_interval = window.setInterval(function () {
+                        if (view.generateIframe() === false) {
+                            return;
+                        }
+                        window.clearInterval(view_interval)
+                        resolve()
+                    }, 250)
+                    return;
+                }
+                resolve()
+            }
+            catch {
+                reject("Iframe cannot be initialized for view " + view.id)
+            }
+        })
+    }
+
+    static _initViewsIframes () {
+
+        const promises = []
+
+        for (const view of views) {
+            promises.push(View._initViewIframe(view))
+        }
+
+        return Promise.all(promises)
+    }
+
+    static _initViewContent (view) {
+        return new Promise((resolve, reject) => {
+            try {
+                if (view.generateContent() === false) {
+                    const view_interval = window.setInterval(function () {
+                        if (view.generateContent() === false) {
+                            return;
+                        }
+                        window.clearInterval(view_interval)
+                        resolve()
+                    }, 250)
+                    return;
+                }
+                resolve()
+            }
+            catch {
+                reject("Content (body) cannot be initialized for view " + view.id)
+            }
+        })
+    }
+
+    static _initViewsContents () {
+
+        const promises = []
+
+        for (const view of views) {
+            promises.push(View._initViewContent(view))
+        }
+
+        return Promise.all(promises)
+    }
+
+    static _insertViewContentInViewIframe (view) {
+        return new Promise((resolve, reject) => {
+            try {
+                if (view.insertContentInIframe() === false) {
+                    const view_interval = window.setInterval(function () {
+                        if (view.insertContentInIframe() === false) {
+                            return;
+                        }
+                        window.clearInterval(view_interval)
+                        resolve()
+                    }, 250)
+                    return;
+                }
+                resolve()
+            }
+            catch {
+                reject("Content cannot be inserted in Iframe for view " + view.id)
+            }
+        })
+    }
+
+    static _insertViewsContentsInViewsIframes () {
+
+        const promises = []
+
+        for (const view of views) {
+            promises.push(View._insertViewContentInViewIframe(view))
+        }
+
+        return Promise.all(promises)
+    }
+
     static initViews () {
-        for (const view of views) {
-            if (view.generateIframe() === false) {
-                const view_interval = window.setInterval(function () {
-                    if (view.generateIframe() === false) {
-                        return;
-                    }
-                    window.clearInterval(view_interval)
-                }, 250)
-            }
-        }
 
-        // 3) Generate views' contents.
-        for (const view of views) {
-            if (view.generateContent() === false) {
-                const view_interval = window.setInterval(function () {
-                    if (view.generateContent() === false) {
-                        return;
-                    }
-                    window.clearInterval(view_interval)
-                }, 250)
-            }
-        }
+        return Promise.all([View._initViewsIframes(), View._initViewsContents(), View._insertViewsContentsInViewsIframes()])
+        // .then(values => console.log("Views successfully initialized"))
+        // .catch(error => console.log(error))
 
-        // 4) Insert views' contents into views' iframes.
-        for (const view of views) {
-            if (view.insertContentInIframe() === false) {
-                const view_interval = window.setInterval(function () {
-                    if (view.insertContentInIframe() === false) {
-                        return;
-                    }
-                    window.clearInterval(view_interval)
-                }, 250)
-            }
-        }
     }
 
     areDependenciesReady () {
@@ -77,6 +144,7 @@ class View {
 
             if (this.use_iframe_isolation === true) {
                 this.iframe = document.createElement("iframe")
+                this.iframe.classList.add("requires-css-reset")
             }
             else {
                 this.iframe = document.createElement("section")
