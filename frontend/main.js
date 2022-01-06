@@ -56,7 +56,7 @@ function initFlowcus () {
         // 10.B) Or catch initialization's errors and reject the promise.
         .catch(error => {
             error ? console.log(error) : null
-            reject()
+            reject(error)
         })
 
     })

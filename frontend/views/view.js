@@ -58,9 +58,8 @@ class View extends Component {
             .then(() => resolve())
             .then(() => this.insertContentInIframe())
             .catch(error => {
-                throw error
                 error ? console.log("An error occured while trying to initialize this view " + this.id + ". Error : " + error) : null
-                reject()
+                reject(error)
             })
         })
     }

@@ -123,7 +123,7 @@ class Component {
             .then(() => resolve())
             .catch(error => {
                 error ? console.log("An error occured while trying to initialize this component " + this.id + ". Error : " + error) : null
-                reject()
+                reject(error)
             })
         })
     }
