@@ -3,7 +3,7 @@
     // Create the Action instance
     const md_to_clipboard_action =  new Action(display_name="Markdown -> Clipboard",
                                                slug="md-to-clipboard",
-                                               icon="O",
+                                               icon="C",
                                                hotkey="CTRL+Alt+C",
                                                dependencies = ["View.markdown", ])
 

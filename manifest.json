@@ -58,6 +58,7 @@
                 "/frontend/actions/action.js",
 
                 "/frontend/actions/md_to_clipboard/md_to_clipboard_action.js",
+                "/frontend/actions/md_to_obsidian/md_to_obsidian_action.js",
 
                 "/frontend/staticfiles/scripts/load_fonts.js",
 
