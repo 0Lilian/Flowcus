@@ -26,7 +26,7 @@
                     resolve()
                 }
                 catch (error) {
-                    reject("An error occured while generating content of view " + view.id + ". Error : " + error)
+                    reject("An error occured while generating content of view " + this.id + ". Error : " + error)
                 }
             })
         }

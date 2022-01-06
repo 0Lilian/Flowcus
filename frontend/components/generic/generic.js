@@ -1,5 +1,3 @@
-// let views = []
-
 class Generic extends Component {
 
     constructor (display_name,
@@ -43,6 +41,6 @@ class Generic extends Component {
 
         // Do some stuff here when the component is triggered.
         // ...
-        
+
     }
 }

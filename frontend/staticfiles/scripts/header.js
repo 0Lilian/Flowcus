@@ -107,7 +107,7 @@ const Header = (function () {
                     header_actions.appendChild(header_actions_nav)
 
                     // Insert the actions buttons.
-                    for (const action of actions) {
+                    for (const action of Action.getAll()) {
                         if (action.displayed === true) {
                             header_actions_nav.appendChild(action.button)
                         }

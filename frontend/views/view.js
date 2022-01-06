@@ -1,5 +1,3 @@
-// let views = []
-
 class View extends Component {
 
     constructor (display_name,
@@ -146,12 +144,14 @@ class View extends Component {
     }
 
     _trigger () {
+        // On trigger --> display the View
+
+        // Hide all views iframes
         for (const view of View.getAll()) {
             if (view.iframe) {
                 view.iframe.style.display = "none";
             }
         }
-        this.iframe.style.display = "inline-block";
 
         // Remove the displayed class from other buttons.
         for (const view of View.getAll()) {
@@ -159,6 +159,9 @@ class View extends Component {
                 view.button.classList.remove("displayed")
             }
         }
+
+        // Display this view iframe
+        this.iframe.style.display = "inline-block";
 
         // Add the displayed class to this button
         this.button.classList.add("displayed")
