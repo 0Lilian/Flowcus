@@ -97,21 +97,21 @@
             },
             "description": "Init Flowcus in your current tab"
         },
-        "display-clutter-full-view": {
+        "display-View.clutter-full": {
             "suggested_key": {
                 "default": "Ctrl+1",
                 "mac": "MacCtrl+1"
             },
             "description": "Display the Clipper-full view"
         },
-        "display-clutter-free-view": {
+        "display-View.clutter-free": {
             "suggested_key": {
                 "default": "Ctrl+2",
                 "mac": "MacCtrl+2"
             },
             "description": "Display the Clipper-free view"
         },
-        "display-markdown-view": {
+        "display-View.markdown": {
             "suggested_key": {
                 "default": "Ctrl+3",
                 "mac": "MacCtrl+3"
