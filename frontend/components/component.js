@@ -25,23 +25,23 @@ class Component {
         }.bind(this))
 
         // At this component to the components list of its class.
-        this.constructor.components.push(this)
+        this.constructor.components[this.id] = this
     }
 
-    static components = []
+    static components = {}
 
     static getAll () {
         // If this is the Component class, return all the components
         if (this.name === "Component") {
-            return this.components
+            return Object.values(this.components)
         }
 
         // Else return only the components that have the right class name
         else {
             const components = []
-            for (const component of this.components) {
-                if (component.id.startsWith(this.name + ".")) {
-                    components.push(component)
+            for (const component_id of Object.keys(this.components)) {
+                if (component_id.startsWith(this.name + ".")) {
+                    components.push(this.components[component_id])
                 }
             }
             return components;
@@ -49,12 +49,7 @@ class Component {
     }
 
     static getById (id) {
-        for (const component of this.getAll()) {
-            if (component.id === id) {
-                return component
-            }
-        }
-        return null
+        return this.components[id]
     }
 
     static handleHotkeysMessages (message) {
@@ -122,8 +117,8 @@ class Component {
             .then(() => this.generateButton())
             // Dispatch the ready event.
             .then(() => {
-                window.dispatchEvent(this.ready_event)
                 this.is_ready = true
+                window.dispatchEvent(this.ready_event)
             })
             .then(() => resolve())
             .catch(error => {
@@ -205,10 +200,12 @@ class Component {
 
                 if (this.is_ready === true) {
                     this._trigger()
+                    resolve()
                 }
                 else {
                     this.waitForComponentReady()
                     .then(() => this._trigger())
+                    .then(() => resolve())
                 }
             }
             catch (error) {

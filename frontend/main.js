@@ -4,6 +4,8 @@ function initFlowcus () {
 
     return new Promise((resolve, reject) => {
 
+
+
         // 1) Store the initial document element.
         idocument = document.cloneNode(true)
 
@@ -25,20 +27,25 @@ function initFlowcus () {
         // 4) Load fonts (custom fonts are loaded with Javascript to prevent CSP errors on some websites)
         loadFonts()
 
-        // 5) Initialize views.
+        // 5) Initialize all the components (views and actions).
+        const start = Date.now();
         Component.init()
-
-        // 6) Initialize the actions.
-        // .then(() => Action.init())
+        .then(() => console.log(`initFlowcus() -> Component.init() time = ${Date.now() - start}ms`))
 
         // 7) Initialize the header.
-        .then(() => Header.init())
+        .then(() => Date.now())
+        .then((start) => {Header.init(); return start})
+        .then((start) => console.log(`initFlowcus() -> Header.init() time = ${Date.now() - start}ms`))
 
         // 8) Listen for components hotkeys.
-        .then(() => Component.listenForHotkeys())
+        .then(() => Date.now())
+        .then((start) => {Component.listenForHotkeys(); return start})
+        .then((start) => console.log(`initFlowcus() -> Component.listenForHotkeys() time = ${Date.now() - start}ms`))
 
         // 8) Display the default view.
-        .then(() => View.displayDefaultView())
+        .then(() => Date.now())
+        .then((start) => {View.displayDefaultView(); return start})
+        .then((start) => console.log(`initFlowcus() -> View.displayDefaultView() time = ${Date.now() - start}ms`))
 
         // 9) Hide the loader and remove it from the DOM
         // TODO
@@ -51,6 +58,7 @@ function initFlowcus () {
             error ? console.log(error) : null
             reject()
         })
+
     })
 }
 
