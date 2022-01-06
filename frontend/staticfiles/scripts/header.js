@@ -50,18 +50,6 @@ const Header = (function () {
                         }
                     }.bind(header))
 
-                    Settings.get("display-views-hotkeys", function (value) {
-                        if (value === true) {
-                            header.header_element.classList.add("display-views-hotkeys")
-                        }
-                    }.bind(header))
-
-                    Settings.get("display-actions-hotkeys", function (value) {
-                        if (value === true) {
-                            header.header_element.classList.add("display-actions-hotkeys")
-                        }
-                    }.bind(header))
-
                     header.header_element.classList.add("requires-css-reset")
 
                     // Apply CSS variables option
@@ -98,7 +86,7 @@ const Header = (function () {
                     header_views.appendChild(header_views_nav)
 
                     // Insert the views buttons.
-                    for (const view of views) {
+                    for (const view of View.getAll()) {
                         if (view.displayed === true) {
                             header_views_nav.appendChild(view.button)
                         }
@@ -150,7 +138,7 @@ const Header = (function () {
             document.body.style.paddingTop = this.header_element.offsetHeight + "px"
 
             // Size views' iframes' height.
-            for (const view of views) {
+            for (const view of View.getAll()) {
                 if (view.displayed === true) {
                     if (view.use_iframe_isolation === true) {
                         view.iframe.style.height = `calc(100vh - ${document.body.style.paddingTop})`
@@ -172,7 +160,7 @@ const Header = (function () {
             document.body.style.paddingTop = "inherit";
 
             // Size views' iframes' height.
-            for (const view of views) {
+            for (const view of View.getAll()) {
                 if (view.displayed === true) {
                     if (view.use_iframe_isolation === true) {
                         view.iframe.style.height = "100vh";

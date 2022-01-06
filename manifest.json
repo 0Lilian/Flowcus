@@ -39,6 +39,8 @@
 
                 "/options/staticfiles/scripts/settings.js",
 
+                "/frontend/components/component.js",
+
                 "/frontend/views/view.js",
 
                 "/frontend/views/clutter_full/clutter_full_view.js",

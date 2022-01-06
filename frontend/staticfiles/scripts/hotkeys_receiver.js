@@ -5,9 +5,9 @@ const HotkeysReceiver = (function () {
         static handleMessage (message) {
 
             if (message.command === "hotkey-pressed") {
-                for (const view of views) {
+                for (const view of View.getAll()) {
                     if (message.name === `display-${view.id}`) {
-                        view.displayView()
+                        view.trigger()
                     }
                 }
             }

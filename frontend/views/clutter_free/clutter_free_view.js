@@ -1,56 +1,58 @@
-const clutter_free_view = (function () {
+(function () {
 
-    // Create the ClutterFreeView class
-    class ClutterFreeView extends View {
+    // Create the View instance
+    const clutter_free_view = new View (display_name="Clutter-free",
+                                        slug="clutter-free",
+                                        icon=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18"><path fill="none" d="M0 0h24v24H0z"/><path d="M21 3a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h18zM4 10v9h16v-9H4zm0-2h16V5H4v3z"/></svg>`,
+                                        hotkey="CTRL+2",
+                                        dependencies = ["View.clutter-full", ],
+                                        use_iframe_isolation = true,
+                                        require_css_reset = true)
 
-        generateContent () {
-            return new Promise((resolve, reject) => {
+    // Create the custom generateContent() method
+    function generateContent () {
 
-                try {
-                    // Build a document object from the clutter_full_view.body
-                    const cloned_document = idocument.cloneNode(true)
-                    cloned_document.body = View.getViewById("clutter-full-view").iframe.querySelector("body").cloneNode(true)
+        return new Promise((resolve, reject) => {
 
-                    // Apply fixers.
-                    for (const fixer of clutter_free_fixers) {
-                        cloned_document.body = fixer.fix(cloned_document.body)
-                    }
+            try {
+                // Build a document object from the clutter_full_view.body
+                const cloned_document = idocument.cloneNode(true)
+                cloned_document.body = View.getById("View.clutter-full").iframe.querySelector("body").cloneNode(true)
 
-                    // Parse the document using Mercury Parser.
-                    function onError () {
-                        // Add support for local files parsing with a fake url
-                        // const parsed_body = Mercury.parse(null, {html: cloned_document.documentElement.innerHTML}).then(function (result) {
-                        const parsed_body = Mercury.parse(`https://local.file/?path=${window.location.href}`, {html: cloned_document.documentElement.innerHTML}).then(onSuccess.bind(this));
-                    }
+                // Apply fixers.
+                for (const fixer of clutter_free_fixers) {
+                    cloned_document.body = fixer.fix(cloned_document.body)
+                }
 
-                    function onSuccess (result) {
-                        if (result.error === true) {
-                            onError.call(this)
-                        }
-                        this.body.innerHTML = result.content;
-                    }
-
+                // Parse the document using Mercury Parser.
+                function onError () {
+                    // Add support for local files parsing with a fake url
                     // const parsed_body = Mercury.parse(null, {html: cloned_document.documentElement.innerHTML}).then(function (result) {
-                    const parsed_body = Mercury.parse(window.location.href, {html: cloned_document.documentElement.innerHTML}).then(onSuccess.bind(this));
-                    this.is_body_ready = true;
+                    const parsed_body = Mercury.parse(`https://local.file/?path=${window.location.href}`, {html: cloned_document.documentElement.innerHTML}).then(onSuccess.bind(this));
+                }
 
-                    // Resolve the promise.
-                    resolve()
+                function onSuccess (result) {
+                    if (result.error === true) {
+                        onError.call(this)
+                    }
+                    this.body.innerHTML = result.content;
                 }
-                catch (error) {
-                    reject("An error occured while generating content of view " + view.id + ". Error : " + error)
-                }
-            })
-        }
+
+                // const parsed_body = Mercury.parse(null, {html: cloned_document.documentElement.innerHTML}).then(function (result) {
+                const parsed_body = Mercury.parse(window.location.href, {html: cloned_document.documentElement.innerHTML}).then(onSuccess.bind(this));
+                this.is_body_ready = true;
+
+                // Resolve the promise.
+                resolve()
+            }
+            catch (error) {
+                reject("An error occured while generating content of view " + this.id + ". Error : " + error)
+            }
+        })
     }
 
-    // Instanciate the ClutterFreeView class and return the instance
-    return new ClutterFreeView(id="clutter-free-view",
-                               display_name="Clutter-free",
-                               icon=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18"><path fill="none" d="M0 0h24v24H0z"/><path d="M21 3a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h18zM4 10v9h16v-9H4zm0-2h16V5H4v3z"/></svg>`,
-                               hotkey="CTRL+2",
-                               dependencies = ["clutter-full-view", ],
-                               use_iframe_isolation = true,
-                               require_css_reset = true)
+    // Override the default generateContent() method with the custom one
+    clutter_free_view.generateContent = generateContent
+
+
 })();
-views.push(clutter_free_view)

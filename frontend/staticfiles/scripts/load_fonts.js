@@ -5,7 +5,7 @@ const loadFonts = (function () {
     }
 
     function onError (error) {
-        console.log("Error during loading font")
+        console.log("An error occured while trying to load fonts")
         console.log(error)
     }
 
