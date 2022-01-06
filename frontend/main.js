@@ -14,6 +14,9 @@ function initFlowcus () {
         // 3) Initialize views.
         View.init()
 
+        // 4) Initialize the actions.
+        .then(() => Action.init())
+
         // 4) Initialize the header.
         .then(() => Header.init())
 

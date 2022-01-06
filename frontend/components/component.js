@@ -80,7 +80,7 @@ class Component {
 
             for (const component of enabled_components) {
                 for (const dependency of component.dependencies) {
-                    const dependency_component = this.getById(dependency)
+                    const dependency_component = Component.getById(dependency)
 
                     // Check if the component is not already in the enabled_components list.
                     if (enabled_components.includes(dependency_component) === false) {

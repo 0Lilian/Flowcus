@@ -5,9 +5,10 @@ const HotkeysReceiver = (function () {
         static handleMessage (message) {
 
             if (message.command === "hotkey-pressed") {
-                for (const view of View.getAll()) {
-                    if (message.name === `display-${view.id}`) {
-                        view.trigger()
+                console.log(Component.getAll())
+                for (const component of Component.getAll()) {
+                    if (message.name === `trigger-${component.id}`) {
+                        component.trigger()
                     }
                 }
             }

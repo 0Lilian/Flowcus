@@ -57,6 +57,8 @@
 
                 "/frontend/actions/action.js",
 
+                "/frontend/actions/md_to_clipboard/md_to_clipboard_action.js",
+
                 "/frontend/staticfiles/scripts/hotkeys_receiver.js",
 
                 "/frontend/staticfiles/scripts/load_fonts.js",
@@ -97,26 +99,33 @@
             },
             "description": "Init Flowcus in your current tab"
         },
-        "display-View.clutter-full": {
+        "trigger-View.clutter-full": {
             "suggested_key": {
                 "default": "Ctrl+1",
                 "mac": "MacCtrl+1"
             },
             "description": "Display the Clipper-full view"
         },
-        "display-View.clutter-free": {
+        "trigger-View.clutter-free": {
             "suggested_key": {
                 "default": "Ctrl+2",
                 "mac": "MacCtrl+2"
             },
             "description": "Display the Clipper-free view"
         },
-        "display-View.markdown": {
+        "trigger-View.markdown": {
             "suggested_key": {
                 "default": "Ctrl+3",
                 "mac": "MacCtrl+3"
             },
             "description": "Display the Markdown view"
+        },
+        "trigger-Action.md-to-clipboard": {
+            "suggested_key": {
+                "default": "Ctrl+Alt+C",
+                "mac": "MacCtrl+Alt+C"
+            },
+            "description": "Triger the md to clipboard action"
         }
     },
 

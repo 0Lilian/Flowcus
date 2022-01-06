@@ -1,23 +1,24 @@
 class Action extends Component {
 
-    // constructor (display_name,
-    //              slug,
-    //              icon,
-    //              hotkey,
-    //              dependencies = []) {
-    //
-    //     super(display_name,
-    //           slug,
-    //           icon,
-    //           hotkey,
-    //           dependencies);
-    // }
+    constructor (display_name,
+                 slug,
+                 icon,
+                 hotkey,
+                 dependencies = []) {
+
+        super(display_name,
+              slug,
+              icon,
+              hotkey,
+              dependencies);
+    }
 
     init () {
 
         return new Promise((resolve, reject) => {
             this.waitForDependencies()
             .then(() => this.generateButton())
+            .then(() => console.log("GENERATE BUTTON OK"))
             .then(() => {
                 window.dispatchEvent(this.ready_event)
                 this.is_ready = true

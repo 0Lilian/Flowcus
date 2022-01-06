@@ -14,11 +14,8 @@
 
                 try {
 
-                    // Do some generation stuff here
+                    // Do some actions here
                     // ...
-
-                    // Fill the this.body variable (it already contains a <body> element)
-                    this.body = idocument.body.cloneNode(true)
 
                     // Resolve the promise.
                     resolve()
