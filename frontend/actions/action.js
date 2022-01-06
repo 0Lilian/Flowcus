@@ -18,7 +18,6 @@ class Action extends Component {
         return new Promise((resolve, reject) => {
             this.waitForDependencies()
             .then(() => this.generateButton())
-            .then(() => console.log("GENERATE BUTTON OK"))
             .then(() => {
                 window.dispatchEvent(this.ready_event)
                 this.is_ready = true

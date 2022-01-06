@@ -6,30 +6,43 @@ function initFlowcus () {
 
         // 1) Store the initial document element.
         idocument = document.cloneNode(true)
-        document.body.innerHTML = ""
 
-        // 2) Load fonts (custom fonts are loaded with Javascript to prevent CSP errors on some websites)
+        // 2) Purge the document.body if at least one view will be displayed.
+        for (const view of View.getAll()) {
+            if (view.displayed === true) {
+                document.body.innerHTML = ""
+                break;
+            }
+        }
+
+        // 3) Insert and display the loader
+        // TODO
+
+        // 4) Load fonts (custom fonts are loaded with Javascript to prevent CSP errors on some websites)
         loadFonts()
 
-        // 3) Initialize views.
+        // 5) Initialize views.
         View.init()
 
-        // 4) Initialize the actions.
+        // 6) Initialize the actions.
         .then(() => Action.init())
 
-        // 4) Initialize the header.
+        // 7) Initialize the header.
         .then(() => Header.init())
 
-        // 5) Initialize hotkeys
+        // 8) Initialize hotkeys
         .then(() => HotkeysReceiver.init())
 
-        // 6) Display the default view.
+        // 8) Display the default view.
         .then(() => View.displayDefaultView())
 
-        // 7.A) Resolve the promise.
+        // 9) Hide the loader and remove it from the DOM
+        // TODO
+
+        // 10.A) Resolve the promise.
         .then(() => resolve())
 
-        // 7.B) Or catch initialization's errors and reject the promise.
+        // 10.B) Or catch initialization's errors and reject the promise.
         .catch(error => {
             error ? console.log(error) : null
             reject()
