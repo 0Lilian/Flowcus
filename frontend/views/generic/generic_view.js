@@ -1,9 +1,16 @@
-const generic_view = (function () {
+(function () {
 
-    // Create the GenericView class
-    class GenericView extends View {
+    // Create the View instance
+    const generic_view =  new View(display_name="Generic",
+                                   slug="generic",
+                                   icon="",
+                                   hotkey="",
+                                   dependencies = [],
+                                   use_iframe_isolation = false,
+                                   require_css_reset = false)
 
-        generateContent () {
+    // Create the custom generateContent() method
+    function generateContent () {
 
             return new Promise((resolve, reject) => {
 
@@ -14,7 +21,7 @@ const generic_view = (function () {
 
                     // Fill the this.body variable (it already contains a <body> element)
                     this.body = idocument.body.cloneNode(true)
-                    
+
                     // Resolve the promise.
                     resolve()
                 }
@@ -23,14 +30,8 @@ const generic_view = (function () {
                 }
             })
         }
-    }
 
-    // Instanciate the GenericView class and return the instance
-    return new GenericView(id="generic-view",
-                           display_name="Generic",
-                           icon="",
-                           hotkey="",
-                           dependencies = [],
-                           require_css_reset = false)
+    // Override the default generateContent() method with the custom one
+    generic_view.generateContent = generateContent
+
 })();
-views.push(generic_view)
