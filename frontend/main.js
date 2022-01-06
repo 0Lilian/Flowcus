@@ -30,8 +30,8 @@ function initFlowcus () {
         // 7) Initialize the header.
         .then(() => Header.init())
 
-        // 8) Initialize hotkeys
-        .then(() => HotkeysReceiver.init())
+        // 8) Listen for components hotkeys.
+        .then(() => Component.listenForHotkeys())
 
         // 8) Display the default view.
         .then(() => View.displayDefaultView())

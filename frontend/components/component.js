@@ -57,6 +57,20 @@ class Component {
         return null
     }
 
+    static handleHotkeysMessages (message) {
+        if (message.command === "hotkey-pressed") {
+            for (const component of this.getAll()) {
+                if (message.name === `trigger-${component.id}`) {
+                    component.trigger()
+                }
+            }
+        }
+    }
+
+    static listenForHotkeys () {
+        browser.runtime.onMessage.addListener(this.handleHotkeysMessages.bind(this))
+    }
+
     static init () {
         const promises = []
 

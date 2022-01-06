@@ -59,8 +59,6 @@
 
                 "/frontend/actions/md_to_clipboard/md_to_clipboard_action.js",
 
-                "/frontend/staticfiles/scripts/hotkeys_receiver.js",
-
                 "/frontend/staticfiles/scripts/load_fonts.js",
 
                 "/frontend/staticfiles/scripts/header.js",
