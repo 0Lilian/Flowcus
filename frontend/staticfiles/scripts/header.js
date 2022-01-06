@@ -140,9 +140,10 @@ const Header = (function () {
             // Size views' iframes' height.
             for (const view of View.getAll()) {
                 if (view.displayed === true) {
-                    if (view.use_iframe_isolation === true) {
+                    // if (view.use_iframe_isolation === true) {
                         view.iframe.style.height = `calc(100vh - ${document.body.style.paddingTop})`
-                    }
+                        view.iframe.style.top = `${document.body.style.paddingTop}`
+                    // }
                 }
             }
 

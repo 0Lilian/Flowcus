@@ -11,9 +11,13 @@ function initFlowcus () {
         for (const view of View.getAll()) {
             if (view.displayed === true) {
                 document.body.innerHTML = ""
+
+                // And add the Flowcus class on body
+                document.body.classList.add("flowcus")
                 break;
             }
         }
+
 
         // 3) Insert and display the loader
         // TODO
@@ -22,10 +26,10 @@ function initFlowcus () {
         loadFonts()
 
         // 5) Initialize views.
-        View.init()
+        Component.init()
 
         // 6) Initialize the actions.
-        .then(() => Action.init())
+        // .then(() => Action.init())
 
         // 7) Initialize the header.
         .then(() => Header.init())

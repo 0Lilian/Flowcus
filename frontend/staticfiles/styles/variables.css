@@ -2,5 +2,5 @@
     /* Primary and secondary colors variables are defined in frontend/staticfiles/scripts/header.js */
 
     --color-black: #333333;
-    --color-white: #eeeeee;
+    --color-white: white;
 }

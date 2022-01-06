@@ -1,11 +1,21 @@
 /* Prevent contents from being wider that the page width */
-body {
-    overflow-x: hidden;
+body.flowcus {
+    overflow: hidden;
     width: 100vw;
+    position: relative;
 }
 
-body > .view-frame {
+body.flowcus > .view-frame {
+    overflow-x: hidden;
+    overflow-y: scroll;
     width: 100vw;
     height: 100vh;
     display: none;
+    transition-duration: 250ms;
+    background-color: var(--color-white);
+    opacity: 1;
+    top: 0;
+    left: 0;
+    right: 0;
+    transition-timing-function: ease-in-out;
 }

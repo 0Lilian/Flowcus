@@ -143,27 +143,68 @@ class View extends Component {
         })
     }
 
+    static last_displayed_view = null;
     _trigger () {
-        // On trigger --> display the View
 
-        // Hide all views iframes
-        for (const view of View.getAll()) {
-            if (view.iframe) {
-                view.iframe.style.display = "none";
+        // Do nothing if this is already the last displayed view
+        if (this !== this.constructor.last_displayed_view) {
+
+            if (this.constructor.last_displayed_view === null) {
+
+                // Display this view iframe
+                this.iframe.style.opacity = "0"
+                this.iframe.style.display = "block";
+                setTimeout(function () {
+                    this.iframe.style.opacity = "1";
+                }.bind(this), 40)
+                this.constructor.last_displayed_view = this
+
+                // Add the displayed class to this button
+                this.button.classList.add("displayed")
+            }
+            else {
+
+                // Remove the displayed class from the last displayed view's button.
+                this.constructor.last_displayed_view.button.classList.remove("displayed")
+
+                // Add the displayed class to this button
+                this.button.classList.add("displayed")
+
+                // Find the slide direction.
+                const views = View.getAll().reverse()
+                let direction;
+                if (views.indexOf(this) < views.indexOf(this.constructor.last_displayed_view)) {
+                    direction = "right"
+                }
+                else {
+                    direction = "left"
+                }
+
+                // Hide the old view
+                this.constructor.last_displayed_view.iframe.style.position = "absolute"
+                this.constructor.last_displayed_view.iframe.style.marginLeft = direction === "left" ? "100vw" : "-100vw"
+                this.iframe.style.marginLeft = direction === "left" ? "-100vw" : "100vw"
+                this.iframe.style.display = "block";
+
+
+                // Clone the last_view object and reset the previous view if it still a not displayed view
+                const last_view = {...this.constructor.last_displayed_view}
+                setTimeout(function () {
+                    if (this.constructor.last_displayed_view.id !== last_view.id) {
+                        last_view.iframe.style.display = "none"
+                        last_view.iframe.style.marginLeft = "0"
+                        this.constructor.last_displayed_view.iframe.style.position = "unset"
+                    }
+                }.bind(this), 250)
+
+                // Display this view iframe
+                setTimeout(function () {
+                    this.iframe.style.marginLeft = "0";
+                }.bind(this), 40)
+
+                this.constructor.last_displayed_view = this
+
             }
         }
-
-        // Remove the displayed class from other buttons.
-        for (const view of View.getAll()) {
-            if (view.displayed === true) {
-                view.button.classList.remove("displayed")
-            }
-        }
-
-        // Display this view iframe
-        this.iframe.style.display = "inline-block";
-
-        // Add the displayed class to this button
-        this.button.classList.add("displayed")
     }
 }
