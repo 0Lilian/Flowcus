@@ -3,7 +3,7 @@
 class View extends Component {
 
     constructor (display_name,
-                 slug, // The display name with ' ' replaced by '-' and no special caracters
+                 slug,
                  icon,
                  hotkey,
                  dependencies = [],
@@ -11,7 +11,7 @@ class View extends Component {
                  require_css_reset = true) {
 
         super(display_name,
-              slug, // The display name with ' ' replaced by '-' and no special caracters
+              slug,
               icon,
               hotkey,
               dependencies);
