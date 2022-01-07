@@ -30,10 +30,14 @@ class Indenter {
                 // If it's a title element
                 if (["H1", "H2", "H3", "H4", "H5", "H6"].indexOf(element.tagName) >= 0) {
                     last_padding_left = this.getTitlePaddingLeft(element)
+
+                    // Set the paddingLeft of the title
+                    element.style.paddingLeft = last_padding_left + "px"
                 }
 
-                // Set the paddingLeft of the element
-                if (last_padding_left !== null) {
+                // If it's any other element and if last_padding_left is not null
+                else if (last_padding_left !== null) {
+                    // Set the paddingLeft of the element
                     element.style.paddingLeft = last_padding_left + this.depth + "px"
                 }
             }

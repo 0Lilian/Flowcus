@@ -1,51 +1,92 @@
-/* Requiered by indent.js --> TOMOVE to indent.js*/
-h1 {
-    padding-left: 0px !important;
-}
-h2 {
-    padding-left: 0px !important;
-}
-h3 {
-    padding-left: 20px !important;
-}
-h4 {
-    padding-left: 40px !important;
-}
-h5 {
-    padding-left: 60px !important;
-}
-h6 {
-    padding-left: 80px !important;
-}
-
 body {
     display: flex;
+    /* overflow: hidden; */
+    width: 100%;
+    border-radius: 10px;
 }
 
 aside {
     display: flex;
     flex-direction: column;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    width: 300px;
+    min-width: 300px;
+    height: 500px;
+    max-height: 500px;
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    padding: 25px;
+}
+
+aside > h1 {
+    width: 100%;
+    font-size: 30px !important;
+    text-align: center;
+    font-family: 'Lilita One', cursive;
 }
 
 aside > nav {
     display: flex;
     flex-direction: column;
+    color: var(--color-white);
+}
+
+aside > nav > h2 {
+    width: 100%;
+    font-size: 20px !important;
+    font-family: 'Lilita One', cursive;
+    /* font-weight: 100; */
+    margin-top: 30px !important;
+    margin-bottom: 10px !important;
+    color: var(--color-primary-very-light);
+    text-transform: uppercase !important;
+}
+
+aside > nav button {
+    margin-top: 6px !important;
+    margin-bottom: 6px !important;
+    font-weight: bold !important;
+    font-family: Georgia;
+    transition-duration: 250ms;
+    white-space: nowrap;
+}
+
+aside > nav button:hover {
+    margin-left: 5px !important;
+    transform: rotateZ(0.5deg);
+    color: var(--color-primary-very-light);
+}
+
+aside > nav ul {
+    margin-left: 30px !important;
+    list-style: circle;
+}
+
+aside > nav ul li {
+    list-style: circle;
 }
 
 main {
     display: flex;
     flex-direction: column;
+    width: 500px;
+    min-width: 500px;
+    height: 500px;
+    max-height: 500px;
 }
 
-form > div {
+main > section.option-page {
+    padding: 25px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    min-height: 100%;
+    display: none;
+    transition-duration: 250ms;
+    background-color: var(--color-white);
+}
+
+main > section.option-page > div {
     margin-top: 15px;
     margin-bottom: 15px;
-}
-
-span#saved-message {
-    color: green;
-    display: inline;
-    font-weight: bold;
-    opacity: 0;
-    transition-duration: 500ms;
 }

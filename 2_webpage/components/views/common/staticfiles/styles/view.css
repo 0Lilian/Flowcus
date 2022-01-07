@@ -1,8 +1,8 @@
-/* Prevent contents from being wider that the page width */
+/* Prevent contents from being wider and highest that the page width/height */
 body.flowcus {
     overflow: hidden;
     width: 100vw;
-    position: relative;
+    height: 100vh;
 }
 
 body.flowcus > .view-frame {

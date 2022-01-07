@@ -14,7 +14,7 @@ class BrowserOptionsManager {
 
         // Save changes each time they happen on a field
         for (const field of fields) {
-            field.addEventListener("change", this.saveOptions.bind(this, field));
+            // field.addEventListener("change", this.saveOptions.bind(this, field));
             field.addEventListener("input", this.saveOptions.bind(this, field));
         }
 
@@ -60,7 +60,9 @@ class BrowserOptionsManager {
             saved_message.innerText = "Saved 🗸"
             saved_message.style.opacity = "1"
             saved_message.style.color = "green"
-            saved_message.style.transitionDuration = "2000ms"
+            saved_message.style.display = "inline"
+            saved_message.style.fontWeight = "bold"
+            saved_message.style.transitionDuration = "500ms"
             field.parentElement.appendChild(saved_message)
 
             setTimeout(function () {
