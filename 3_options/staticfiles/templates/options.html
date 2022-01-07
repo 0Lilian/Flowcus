@@ -7,9 +7,9 @@
     </head>
 
     <body>
-        <h1>Flowcus Settings</h1>
         <aside>
-            <nav>
+            <h1>Flowcus Settings</h1>
+            <nav class="indented">
                 <h2>Appearances</h2>
                 <button class="option-page-button" data-page="appearance-general">General</button>
                 <button class="option-page-button" data-page="appearance-header">Header</button>
@@ -33,7 +33,7 @@
         </aside>
 
         <main>
-            <section class"option-page" id="appearance-general">
+            <section class"option-page indented" id="appearance-general">
                 <div>
                     <label for="primary-color">Primary color</label>
                     <input type="color" name="primary-color" value="#B6712E"/>
@@ -45,7 +45,7 @@
                 </div>
             </section>
 
-            <section class"option-page" id="appearance-header">
+            <section class"option-page indented" id="appearance-header">
                 <div>
                     <label for="sticky-header">Sticky header</label>
                     <input type="checkbox" name="sticky-header" checked="false"/>
@@ -81,7 +81,7 @@
                 </div>
             </section>
 
-            <section class"option-page" id="behaviors-general">
+            <section class"option-page indented" id="behaviors-general">
                 <div>
                     <label for="auto-start">Auto-start</label>
                     <input type="checkbox" name="auto-start" checked="false"/>
@@ -89,7 +89,7 @@
                 </div>
             </section>
 
-            <section class"option-page" id="behaviors-views">
+            <section class"option-page indented" id="behaviors-views">
                 <div>
                     <label for="default-view">Default view&nbsp;</label>
                     <select class="browser-style" name="default-view">
@@ -125,10 +125,10 @@
                 </ul>
             </section>
 
-            <section class"option-page" id="behaviors-view-clutter-full">
+            <section class"option-page indented" id="behaviors-view-clutter-full">
             </section>
 
-            <section class"option-page" id="behaviors-view-clutter-free">
+            <section class"option-page indented" id="behaviors-view-clutter-free">
                 <div>
                     <label for="auto-indent">Auto-indent</label>
                     <input type="checkbox" name="auto-indent" checked="true"/>
@@ -136,10 +136,10 @@
                 </div>
             </section>
 
-            <section class"option-page" id="behaviors-view-markdown">
+            <section class"option-page indented" id="behaviors-view-markdown">
             </section>
 
-            <section class"option-page" id="behaviors-actions">
+            <section class"option-page indented" id="behaviors-actions">
                 <h3>Enabled actions</h3>
                 <ul>
                     <li>
@@ -165,10 +165,10 @@
                 </ul>
             </section>
 
-            <section class"option-page" id="behaviors-action-markdown-to-clipboard">
+            <section class"option-page indented" id="behaviors-action-markdown-to-clipboard">
             </section>
 
-            <section class"option-page" id="behaviors-action-markdown-to-obsidian">
+            <section class"option-page indented" id="behaviors-action-markdown-to-obsidian">
                 <div>
                     <label for="obsidian-vault">Obsidian vault</label>
                     <input type="text" name="obsidian-vault" placeholder="MySuperVault"/>
@@ -182,15 +182,17 @@
                 </div>
             </section>
 
-            <section class"option-page" id="behaviors-action-markdown-to-custom">
+            <section class"option-page indented" id="behaviors-action-markdown-to-custom">
             </section>
 
-            <section class"option-page" id="behaviors-workflows">
+            <section class"option-page indented" id="behaviors-workflows">
             </section>
         </main>
 
         <script src="/0_common/staticfiles/libs/settings.js"></script>
-        <script src="../libs/indent.js"></script>
+        <script src="/0_common/staticfiles/libs/indent.js"></script>
+        <script src="/0_common/style_manager/style_manager.js"></script>
+        <script src="../libs/browser_options_manager.js"></script>
         <script src="../../main.js"></script>
     </body>
 </html>

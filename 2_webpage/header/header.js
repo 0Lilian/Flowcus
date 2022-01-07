@@ -52,25 +52,6 @@ const Header = (function () {
 
                     header.header_element.classList.add("requires-css-reset")
 
-                    // Apply CSS variables option
-                    Settings.get("primary-color", function (value) {
-                        const color = tinycolor(value)
-                        document.documentElement.style.setProperty('--color-primary-very-light', tinycolor(value).lighten(30).toString());
-                        document.documentElement.style.setProperty('--color-primary-light', tinycolor(value).lighten(15).toString());
-                        document.documentElement.style.setProperty('--color-primary', value);
-                        document.documentElement.style.setProperty('--color-primary-dark', tinycolor(value).darken(15).toString());
-                        document.documentElement.style.setProperty('--color-primary-very-dark', tinycolor(value).darken(30).toString());
-                    }.bind(header))
-
-                    Settings.get("secondary-color", function (value) {
-                        const color = tinycolor(value)
-                        document.documentElement.style.setProperty('--color-secondary-very-light', tinycolor(value).lighten(30).toString());
-                        document.documentElement.style.setProperty('--color-secondary-light', tinycolor(value).lighten(15).toString());
-                        document.documentElement.style.setProperty('--color-secondary', value);
-                        document.documentElement.style.setProperty('--color-secondary-dark', tinycolor(value).darken(15).toString());
-                        document.documentElement.style.setProperty('--color-secondary-very-dark', tinycolor(value).darken(30).toString());
-                    }.bind(header))
-
                     // Create and insert the header's 'views' section.
                     const header_views = document.createElement("section")
                     header_views.id = "views"

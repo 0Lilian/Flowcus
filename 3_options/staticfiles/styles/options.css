@@ -1,30 +1,4 @@
-body {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-form {
-    display: flex;
-    flex-direction: column;
-    justify-content: start;
-    align-items: start;
-}
-
-form > div {
-    margin-top: 15px;
-    margin-bottom: 15px;
-}
-
-span#saved-message {
-    color: green;
-    display: inline;
-    font-weight: bold;
-    opacity: 0;
-    transition-duration: 500ms;
-}
-
+/* Requiered by indent.js --> TOMOVE to indent.js*/
 h1 {
     padding-left: 0px !important;
 }
@@ -42,4 +16,36 @@ h5 {
 }
 h6 {
     padding-left: 80px !important;
+}
+
+body {
+    display: flex;
+}
+
+aside {
+    display: flex;
+    flex-direction: column;
+}
+
+aside > nav {
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+}
+
+form > div {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+span#saved-message {
+    color: green;
+    display: inline;
+    font-weight: bold;
+    opacity: 0;
+    transition-duration: 500ms;
 }

@@ -24,8 +24,8 @@ function initFlowcus () {
         // 3) Insert and display the loader
         // TODO
 
-        // 4) Load fonts (custom fonts are loaded with Javascript to prevent CSP errors on some websites)
-        loadFonts()
+        // 4) Load the Flowcus custom fonts and colors
+        StyleManager.init()
 
         // 5) Initialize all the components (views and actions).
         const start = Date.now();

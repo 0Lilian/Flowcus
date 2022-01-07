@@ -36,9 +36,10 @@
             "js": [
                 "/0_common/subwebsites/medium.js",
 
-                "/0_common/staticfiles/libs/load_fonts.js",
                 "/0_common/staticfiles/libs/tiny-color.min.js",
                 "/0_common/staticfiles/libs/settings.js",
+                "/0_common/style_manager/style_manager.js",
+                "/0_common/staticfiles/libs/indenter.js",
 
                 "/2_webpage/components/component.js",
 
@@ -90,8 +91,8 @@
 
     "options_ui": {
         "page": "/3_options/staticfiles/templates/options.html",
-        "browser_style": true,
-        "chrome_style": true
+        "browser_style": false,
+        "chrome_style": false
     },
 
     "browser_action": {
