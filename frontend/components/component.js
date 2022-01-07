@@ -114,7 +114,7 @@ class Component {
     init () {
         return new Promise((resolve, reject) => {
             this.waitForDependencies()
-            .then(() => this.generateButton())
+            .then(() => this.displayed ? this.generateButton() : null)
             // Dispatch the ready event.
             .then(() => {
                 this.is_ready = true

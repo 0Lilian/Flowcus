@@ -20,14 +20,14 @@ class Generic extends Component {
 
         return new Promise((resolve, reject) => {
             this.waitForDependencies()
-            .then(() => this.generateButton())
+            .then(() => this.displayed ? this.generateButton() : null)
             // Add your others generation promises here
             // Example : .then(() => this.myCustomGenerationMethod())
             // ...
             // Dispatch the ready event.
             .then(() => {
-                window.dispatchEvent(this.ready_event)
                 this.is_ready = true
+                window.dispatchEvent(this.ready_event)
             })
             .then(() => resolve())
             .catch(error => {

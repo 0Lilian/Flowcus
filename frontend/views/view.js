@@ -51,10 +51,10 @@ class View extends Component {
                 this.is_ready = true
                 window.dispatchEvent(this.ready_event)
             })
-            .then(() => this.generateIframe())
-            .then(() => this.generateButton())
+            .then(() => this.displayed ? this.generateIframe() : null)
+            .then(() => this.displayed ? this.generateButton() : null)
             .then(() => resolve())
-            .then(() => this.insertContentInIframe())
+            .then(() => this.displayed ? this.insertContentInIframe() : null)
             .catch(error => {
                 error ? console.log("An error occured while trying to initialize this view " + this.id + ". Error : " + error) : null
                 reject(error)
