@@ -45,14 +45,14 @@ class View extends Component {
 
         return new Promise((resolve, reject) => {
             this.waitForDependencies()
-            .then(() => this.generateIframe())
-            .then(() => this.generateButton())
             .then(() => this.generateContent())
             .then(() => {
                 // Dispatch the ready event.
                 this.is_ready = true
                 window.dispatchEvent(this.ready_event)
             })
+            .then(() => this.generateIframe())
+            .then(() => this.generateButton())
             .then(() => resolve())
             .then(() => this.insertContentInIframe())
             .catch(error => {

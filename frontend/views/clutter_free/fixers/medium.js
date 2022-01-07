@@ -18,8 +18,6 @@ const medium_clutter_free_fixer = (function () {
                 // Fix code blocks that are not using <code> element in Medium powered websites.
                 const pres = body.querySelectorAll("div pre")
                 for (const pre of pres) {
-                   console.log(pre)
-
                    const code_block = document.createElement("code")
                    const pre_childs = pre.querySelectorAll("* :not(br)")
 
