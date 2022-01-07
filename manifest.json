@@ -2,11 +2,17 @@
     "manifest_version": 2,
     "name": "Flowcus",
     "version": "1.0",
-    "description": "A clutter-free reader for Firefox, Chrome and Safari. It also contains a web clipper and an highlighter tool for KM softwares (such as Obsidian, Roam Research, Foam, etc.)",
+    "description": "A clutter-free reader for browsers (Firefox, Chrome and Safari) that also includes a web clipper, an highlighter and much more tools compatible with KM softwares (such as Obsidian, Roam Research, Foam, etc.)",
     "homepage_url": "https://github.com/0Lilian/Flowcus",
 
+    "browser_specific_settings": {
+        "gecko": {
+            "id": "cruaneslilian@gmail.com"
+        }
+    },
+
     "icons": {
-        "48": "/icon-48.png"
+        "48": "/0_common/staticfiles/images/icon.png"
     },
 
     "permissions": [
@@ -16,78 +22,82 @@
         "browsingData"
     ],
 
-    "browser_action": {
-        "default_icon": "/popup/staticfiles/images/icon.png",
-        "default_title": "Flowcus",
-        "default_popup": "/options/staticfiles/templates/options.html"
-    },
-
-    "browser_specific_settings": {
-        "gecko": {
-            "id": "cruaneslilian@gmail.com"
-        }
+    "background": {
+        "scripts": [
+            "/1_background/hotkeys_transmitter/hotkeys_transmitter.js",
+            "/1_background/main.js"
+        ],
+        "persistent": true
     },
 
     "content_scripts": [
         {
             "matches": ["<all_urls>"],
             "js": [
-                "/subwebsites/medium.js",
-                "/frontend/staticfiles/scripts/mercury.min.js",
-                "/frontend/staticfiles/scripts/turndown.js",
-                "/frontend/staticfiles/scripts/tiny-color.min.js",
+                "/0_common/subwebsites/medium.js",
 
-                "/options/staticfiles/scripts/settings.js",
+                "/0_common/staticfiles/libs/load_fonts.js",
+                "/0_common/staticfiles/libs/tiny-color.min.js",
+                "/0_common/staticfiles/libs/settings.js",
 
-                "/frontend/components/component.js",
+                "/2_webpage/components/component.js",
 
-                "/frontend/views/view.js",
+                "/2_webpage/components/views/view.js",
 
-                "/frontend/views/clutter_full/clutter_full_view.js",
+                "/2_webpage/components/views/clutter_full/clutter_full_view.js",
 
-                "/frontend/views/clutter_free/extractors/medium.js",
-                "/frontend/views/clutter_free/fixers/fixer.js",
-                "/frontend/views/clutter_free/fixers/medium.js",
-                "/frontend/views/clutter_free/clutter_free_view.js",
+                "/2_webpage/components/views/clutter_free/staticfiles/libs/mercury.min.js",
+                "/2_webpage/components/views/clutter_free/extractors/medium.js",
+                "/2_webpage/components/views/clutter_free/fixers/fixer.js",
+                "/2_webpage/components/views/clutter_free/fixers/medium.js",
+                "/2_webpage/components/views/clutter_free/clutter_free_view.js",
 
-                "/frontend/views/markdown/fixers/fixer.js",
-                "/frontend/views/markdown/fixers/common.js",
-                "/frontend/views/markdown/extractors/extractor.js",
-                "/frontend/views/markdown/markdown_view.js",
+                "/2_webpage/components/views/markdown/staticfiles/libs/turndown.js",
+                "/2_webpage/components/views/markdown/fixers/fixer.js",
+                "/2_webpage/components/views/markdown/fixers/common.js",
+                "/2_webpage/components/views/markdown/extractors/extractor.js",
+                "/2_webpage/components/views/markdown/markdown_view.js",
 
-                "/frontend/actions/action.js",
+                "/2_webpage/components/actions/action.js",
 
-                "/frontend/actions/md_to_clipboard/md_to_clipboard_action.js",
-                "/frontend/actions/md_to_obsidian/md_to_obsidian_action.js",
+                "/2_webpage/components/actions/md_to_clipboard/md_to_clipboard_action.js",
+                "/2_webpage/components/actions/md_to_obsidian/md_to_obsidian_action.js",
 
-                "/frontend/staticfiles/scripts/load_fonts.js",
+                "/2_webpage/header/header.js",
 
-                "/frontend/staticfiles/scripts/header.js",
-
-                "/frontend/main.js"
+                "/2_webpage/main.js"
 
             ],
             "css": [
-                "/frontend/staticfiles/styles/destyle.css",
-                "/frontend/staticfiles/styles/body.css",
-                "/frontend/staticfiles/styles/variables.css",
-                "/frontend/staticfiles/styles/header.css",
-                "/frontend/staticfiles/styles/adjustments.css",
-                "/frontend/staticfiles/styles/accessibility.css"
+                "/0_common/staticfiles/styles/destyle.css",
+                "/0_common/staticfiles/styles/variables.css",
+                "/0_common/staticfiles/styles/accessibility.css",
+
+                "/2_webpage/components/views/common/staticfiles/styles/view.css",
+
+                "/2_webpage/components/views/clutter_free/staticfiles/styles/adjustments.css",
+
+                "/2_webpage/header/staticfiles/styles/header.css"
             ],
             "run_at": "document_start"
         }
     ],
 
     "web_accessible_resources": [
-        "/frontend/staticfiles/fonts/lilita-one.regular.ttf",
-        "/frontend/staticfiles/templates/view.html"
+        "/0_common/staticfiles/fonts/lilita-one.regular.ttf",
+        "/2_webpage/components/views/common/staticfiles/templates/view.html"
     ],
 
     "options_ui": {
-        "page": "/options/staticfiles/templates/options.html",
+        "page": "/3_options/staticfiles/templates/options.html",
         "browser_style": true,
         "chrome_style": true
+    },
+
+    "browser_action": {
+        "default_icon": "/0_common/staticfiles/images/icon.png",
+        "default_title": "Flowcus",
+        "default_popup": "/3_options/staticfiles/templates/options.html"
     },
 
     "commands": {
@@ -126,13 +136,5 @@
             },
             "description": "Triger the md to clipboard action"
         }
-    },
-
-    "background": {
-        "scripts": [
-            "/background/staticfiles/scripts/hotkeys_handler.js",
-            "/background/main.js"
-        ],
-        "persistent": true
     }
 }

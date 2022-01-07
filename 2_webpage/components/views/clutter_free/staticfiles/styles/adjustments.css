@@ -1,0 +1,9 @@
+/* This file contains fixes and adjustments contents displayed in the clutter-free view */
+
+/* ############################### */
+/* ### MEDIUM POWERED WEBSITES ### */
+/* ############################### */
+
+figure.paragraph-image img {
+    height: auto !important;
+}
