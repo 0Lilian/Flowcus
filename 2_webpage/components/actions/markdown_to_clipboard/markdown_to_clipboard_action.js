@@ -1,11 +1,11 @@
 (function () {
 
     // Create the Action instance
-    const md_to_clipboard_action =  new Action(display_name="Markdown -> Clipboard",
-                                               slug="md-to-clipboard",
-                                               icon="C",
-                                               hotkey="CTRL+Alt+C",
-                                               dependencies = ["View.markdown", ])
+    const markdown_to_clipboard_action =  new Action(display_name="Markdown -> Clipboard",
+                                                     slug="markdown-to-clipboard",
+                                                     icon="C",
+                                                     hotkey="CTRL+Alt+C",
+                                                     dependencies = ["View.markdown", ])
 
     // Create the custom execute() method
     function execute () {
@@ -34,6 +34,6 @@
     }
 
     // Override the default execute() method with the custom one
-    md_to_clipboard_action.execute = execute
+    markdown_to_clipboard_action.execute = execute
 
 })();

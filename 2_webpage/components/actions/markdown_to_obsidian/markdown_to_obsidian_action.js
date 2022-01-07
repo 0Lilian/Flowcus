@@ -1,11 +1,11 @@
 (function () {
 
     // Create the Action instance
-    const md_to_obsidian_action =  new Action(display_name="Markdown -> Obsidian",
-                                               slug="md-to-obsidian",
-                                               icon="O",
-                                               hotkey="CTRL+Alt+O",
-                                               dependencies = ["View.markdown", ])
+    const markdown_to_obsidian_action =  new Action(display_name="Markdown -> Obsidian",
+                                                    slug="markdown-to-obsidian",
+                                                    icon="O",
+                                                    hotkey="CTRL+Alt+O",
+                                                    dependencies = ["View.markdown", ])
 
     // Create the custom execute() method
     function execute () {
@@ -52,6 +52,6 @@
     }
 
     // Override the default execute() method with the custom one
-    md_to_obsidian_action.execute = execute
+    markdown_to_obsidian_action.execute = execute
 
 })();

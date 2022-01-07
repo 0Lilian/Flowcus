@@ -60,8 +60,8 @@
 
                 "/2_webpage/components/actions/action.js",
 
-                "/2_webpage/components/actions/md_to_clipboard/md_to_clipboard_action.js",
-                "/2_webpage/components/actions/md_to_obsidian/md_to_obsidian_action.js",
+                "/2_webpage/components/actions/markdown_to_clipboard/markdown_to_clipboard_action.js",
+                "/2_webpage/components/actions/markdown_to_obsidian/markdown_to_obsidian_action.js",
 
                 "/2_webpage/header/header.js",
 
@@ -129,12 +129,19 @@
             },
             "description": "Display the Markdown view"
         },
-        "trigger-Action.md-to-clipboard": {
+        "trigger-Action.markdown-to-clipboard": {
             "suggested_key": {
                 "default": "Ctrl+Alt+C",
                 "mac": "MacCtrl+Alt+C"
             },
-            "description": "Triger the md to clipboard action"
+            "description": "Triger the Markdown to Clipboard action"
+        },
+        "trigger-Action.markdown-to-obsidian": {
+            "suggested_key": {
+                "default": "Ctrl+Alt+O",
+                "mac": "MacCtrl+Alt+O"
+            },
+            "description": "Triger the Markdown to Obsidian action"
         }
     }
 }

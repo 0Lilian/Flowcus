@@ -7,69 +7,89 @@
     </head>
 
     <body>
+        <h1>Flowcus Settings</h1>
+        <aside>
+            <nav>
+                <h2>Appearances</h2>
+                <button class="option-page-button" data-page="appearance-general">General</button>
+                <button class="option-page-button" data-page="appearance-header">Header</button>
 
-        <form>
-            <h1>Flowcus Settings</h1>
+                <h2>Behaviors</h2>
+                <button class="option-page-button" data-page="behaviors-general">General</button>
+                <button class="option-page-button" data-page="behaviors-views">Views</button>
+                <ul>
+                    <li><button class="option-page-button"data-page="behaviors-view-clutter-full">Clutter-full</button></li>
+                    <li><button class="option-page-button"data-page="behaviors-view-clutter-free">Clutter-free</button></li>
+                    <li><button class="option-page-button"data-page="behaviors-view-markdown">Markdown</button></li>
+                </ul>
+                <button class="option-page-button" data-page="behaviors-actions">Actions</button>
+                <ul>
+                    <li><button class="option-page-button"data-page="behaviors-action-markdown-to-clipboard">Markdown -> Clipboard</button></li>
+                    <li><button class="option-page-button"data-page="behaviors-action-markdown-to-obsidian">Markdown -> Obsidian</button></li>
+                    <li><button class="option-page-button"data-page="behaviors-action-markdown-to-custom">Markdown -> Custom</button></li>
+                </ul>
+                <button class="option-page-button" data-page="behaviors-workflows">Workflows</button>
+            </nav>
+        </aside>
 
-            <h2>General Settings</h2>
+        <main>
+            <section class"option-page" id="appearance-general">
+                <div>
+                    <label for="primary-color">Primary color</label>
+                    <input type="color" name="primary-color" value="#B6712E"/>
+                </div>
 
-                <h3>Header</h3>
+                <div>
+                    <label for="secondary-color">Secondary color</label>
+                    <input type="color" name="secondary-color" value="#7b6cd9"/>
+                </div>
+            </section>
 
-                    <div>
-                        <label for="header-primary-color">Header primary color</label>
-                        <input type="color" name="header-primary-color" value="#B6712E"/>
-                    </div>
+            <section class"option-page" id="appearance-header">
+                <div>
+                    <label for="sticky-header">Sticky header</label>
+                    <input type="checkbox" name="sticky-header" checked="false"/>
+                    <p class="description">If the header is sticky it will be fixed on the top of your page content even if you scroll down.</p>
+                </div>
 
-                    <div>
-                        <label for="header-secondary-color">Header secondary color</label>
-                        <input type="color" name="header-secondary-color" value="#7b6cd9"/>
-                    </div>
+                <div>
+                    <label for="header-layout">Header's layout&nbsp;</label>
+                    <select class="browser-style" name="header-layout">
+                        <option value="big">Big</option>
+                        <option value="condensed" selected>Condensed</option>
+                        <option value="ultra-condensed" selected>Ultra-condensed</option>
+                        <option value="hidden">Hidden</option>
+                    </select>
+                </div>
 
-                    <div>
-                        <label for="sticky-header">Sticky header</label>
-                        <input type="checkbox" name="sticky-header" checked="false"/>
-                        <p class="description">If the header is sticky it will be fixed on the top of your page content even if you scroll down.</p>
-                    </div>
+                <div>
+                    <label for="ultra-condensed-hover">Ultra-condensed become Condensed on hover&nbsp;</label>
+                    <input type="checkbox" name="ultra-condensed-hover" checked="false"/>
+                    <p class="description">If this setting is 'on' and if you have choosen the 'Ultra-condensed' header's layout, the layout will be switched to 'Condensed' each time you hover the header.</p>
+                </div>
 
-                    <div>
-                        <label for="header-layout">Header's layout&nbsp;</label>
-                        <select class="browser-style" name="header-layout">
-                            <option value="big">Big</option>
-                            <option value="condensed" selected>Condensed</option>
-                            <option value="ultra-condensed" selected>Ultra-condensed</option>
-                            <option value="hidden">Hidden</option>
-                        </select>
-                    </div>
+                <div>
+                    <label for="display-View-hotkeys">Display views' hotkeys on hover</label>
+                    <input type="checkbox" name="display-View-hotkeys" checked="true"/>
+                    <p class="description">If checked, views' hotkeys will be displayed each time your mouse hover a view button.</p>
+                </div>
 
-                    <div>
-                        <label for="ultra-condensed-hover">Ultra-condensed become Condensed on hover&nbsp;</label>
-                        <input type="checkbox" name="ultra-condensed-hover" checked="false"/>
-                        <p class="description">If this setting is 'on' and if you have choosen the 'Ultra-condensed' header's layout, the layout will be switched to 'Condensed' each time you hover the header.</p>
-                    </div>
+                <div>
+                    <label for="display-Action-hotkeys">Display actions' hotkeys on hover</label>
+                    <input type="checkbox" name="display-Action-hotkeys" checked="true"/>
+                    <p class="description">If checked, actions' hotkeys will be displayed each time your mouse hover a action button.</p>
+                </div>
+            </section>
 
-                    <div>
-                        <label for="display-View-hotkeys">Display views' hotkeys on hover</label>
-                        <input type="checkbox" name="display-View-hotkeys" checked="true"/>
-                        <p class="description">If checked, views' hotkeys will be displayed each time your mouse hover a view button.</p>
-                    </div>
+            <section class"option-page" id="behaviors-general">
+                <div>
+                    <label for="auto-start">Auto-start</label>
+                    <input type="checkbox" name="auto-start" checked="false"/>
+                    <p class="description">If checked Flowcus will be automatically started on each page you load. It might not works on websites that use lazy loading or XHR.</p>
+                </div>
+            </section>
 
-                    <div>
-                        <label for="display-Action-hotkeys">Display actions' hotkeys on hover</label>
-                        <input type="checkbox" name="display-Action-hotkeys" checked="true"/>
-                        <p class="description">If checked, actions' hotkeys will be displayed each time your mouse hover a action button.</p>
-                    </div>
-
-
-                <h3>Extension's scripts</h3>
-
-                    <div>
-                        <label for="auto-start">Auto-start</label>
-                        <input type="checkbox" name="auto-start" checked="false"/>
-                        <p class="description">If checked Flowcus will be automatically started on each page you load. It might not works on websites that use lazy loading or XHR.</p>
-                    </div>
-
-            <h2>Views Settings</h2>
-
+            <section class"option-page" id="behaviors-views">
                 <div>
                     <label for="default-view">Default view&nbsp;</label>
                     <select class="browser-style" name="default-view">
@@ -81,91 +101,93 @@
 
                 <h3>Enabled views</h3>
 
-                    <div>
-                        <label for="View.clutter-full-enabled">Clutter-full view</label>
-                        <input type="checkbox" name="View.clutter-full-enabled" checked="true"/>
-                    </div>
+                <ul>
+                    <li>
+                        <div>
+                            <label for="View.clutter-full-enabled">Clutter-full view</label>
+                            <input type="checkbox" name="View.clutter-full-enabled" checked="true"/>
+                        </div>
+                    </li>
 
-                    <div>
-                        <label for="View.clutter-free-enabled">Clutter-free view</label>
-                        <input type="checkbox" name="View.clutter-free-enabled" checked="true"/>
-                    </div>
+                    <li>
+                        <div>
+                            <label for="View.clutter-free-enabled">Clutter-free view</label>
+                            <input type="checkbox" name="View.clutter-free-enabled" checked="true"/>
+                        </div>
+                    </li>
 
-                    <div>
-                        <label for="View.markdown-enabled">Markdown view</label>
-                        <input type="checkbox" name="View.markdown-enabled" checked="true"/>
-                    </div>
+                    <li>
+                        <div>
+                            <label for="View.markdown-enabled">Markdown view</label>
+                            <input type="checkbox" name="View.markdown-enabled" checked="true"/>
+                        </div>
+                    </li>
+                </ul>
+            </section>
 
-                <h3>Clutter-full</h3>
+            <section class"option-page" id="behaviors-view-clutter-full">
+            </section>
 
-                <h3>Clutter-free</h3>
-                    <!-- Functionnalities : Dark mode, change font size, typographie-->
+            <section class"option-page" id="behaviors-view-clutter-free">
+                <div>
+                    <label for="auto-indent">Auto-indent</label>
+                    <input type="checkbox" name="auto-indent" checked="true"/>
+                    <p class="description">If checked the clutter-free content will be beautifully indented to improve the readability.</p>
+                </div>
+            </section>
 
-                    <div>
-                        <label for="auto-indent">Auto-indent</label>
-                        <input type="checkbox" name="auto-indent" checked="true"/>
-                        <p class="description">If checked the clutter-free content will be beautifully indented to improve the readability.</p>
-                    </div>
+            <section class"option-page" id="behaviors-view-markdown">
+            </section>
 
-                <h3>Markdown</h3>
-
-
-            <h2>Actions Settings</h2>
-
+            <section class"option-page" id="behaviors-actions">
                 <h3>Enabled actions</h3>
-
-                    <div>
-                        <label for="Action.md-to-clipboard-enabled">Markdown -> Clipboard</label>
-                        <input type="checkbox" name="Action.md-to-clipboard-enabled" checked="true"/>
-                    </div>
-
-                    <div>
-                        <label for="Action.md-to-obsidian-enabled">Markdown -> Obsidian</label>
-                        <input type="checkbox" name="Action.md-to-obsidian-enabled" checked="true"/>
-                    </div>
-
-                md-to-clipboard
-
-                <h3>Clip to KM software</h3>
-
-                    <div>
-                        <label for="used-software">Used software&nbsp;</label>
-                        <select class="browser-style" name="used-software">
-                            <option value="obsidian" selected>Obsidian</option>
-                            <option value="roam-research" disabled>Roam research (not available yet)</option>
-                            <option value="foam" disabled>Foam (not available yet)</option>
-                        </select>
-                        <p class="description">This setting asks you which Knowledge Management software you want to clip your content to ?</p>
-                    </div>
-
-                    <h4>Obsidian</h4>
-
+                <ul>
+                    <li>
                         <div>
-                            <label for="obsidian-vault">Obsidian vault</label>
-                            <input type="text" name="obsidian-vault" placeholder="MySuperVault"/>
-                            <p class="description">The name of your local Obsidian vault.</p>
+                            <label for="Action.markdown-to-clipboard-enabled">Markdown -> Clipboard</label>
+                            <input type="checkbox" name="Action.markdown-to-clipboard-enabled" checked="true"/>
                         </div>
+                    </li>
 
+                    <li>
                         <div>
-                            <label for="obsidian-folder">Obsidian folder in vault</label>
-                            <input type="text" name="obsidian-folder" placeholder="My/Super/Folder/"/>
-                            <p class="description">The name of the exisiting folder inside your Obsidian vault in which you want to put the clipped contents to. Must end by /.</p>
+                            <label for="Action.markdown-to-obsidian-enabled">Markdown -> Obsidian</label>
+                            <input type="checkbox" name="Action.markdown-to-obsidian-enabled" checked="true"/>
                         </div>
+                    </li>
 
-                    <h4>Roam Research</h4>
+                    <li>
+                        <div>
+                            <label for="Action.markdown-to-custom-enabled">Markdown -> Custom</label>
+                            <input type="checkbox" name="Action.markdown-to-custom-enabled" checked="true"/>
+                        </div>
+                    </li>
+                </ul>
+            </section>
 
-                        <p>Not avaialable yet.</p>
+            <section class"option-page" id="behaviors-action-markdown-to-clipboard">
+            </section>
 
-                    <h4>Foam</h4>
+            <section class"option-page" id="behaviors-action-markdown-to-obsidian">
+                <div>
+                    <label for="obsidian-vault">Obsidian vault</label>
+                    <input type="text" name="obsidian-vault" placeholder="MySuperVault"/>
+                    <p class="description">The name of your local Obsidian vault.</p>
+                </div>
 
-                        <p>Not avaialable yet.</p>
+                <div>
+                    <label for="obsidian-folder">Obsidian folder in vault</label>
+                    <input type="text" name="obsidian-folder" placeholder="My/Super/Folder/"/>
+                    <p class="description">The name of the exisiting folder inside your Obsidian vault in which you want to put the clipped contents to. Must end by /.</p>
+                </div>
+            </section>
 
-                <h3>Copy to clipboard</h3>
+            <section class"option-page" id="behaviors-action-markdown-to-custom">
+            </section>
 
-                <h3>Save as markdown</h3>
-
-            <button type="submit">Save</button>
-        </form>
+            <section class"option-page" id="behaviors-workflows">
+            </section>
+        </main>
 
         <script src="/0_common/staticfiles/libs/settings.js"></script>
         <script src="../libs/indent.js"></script>
