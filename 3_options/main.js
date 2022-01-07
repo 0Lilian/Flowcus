@@ -4,7 +4,7 @@ function init () {
     StyleManager.init()
 
     // 2) Initialize the indenter
-    new Indenter().init()
+    new Indenter(null, 10).init()
 
     // 3) Initialize the browser options manager
     BrowserOptionsManager.init()

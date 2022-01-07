@@ -10,7 +10,8 @@ class Indenter {
         const title_number = parseInt(title.tagName.replace("H", ""))
 
         if (title_number >= this.indent_from) {
-            return (title_number - this.indent_from) * this.depth + "px"
+            const padding_left = (title_number - 1) * this.depth
+            return  padding_left
         }
         return 0
     }
@@ -18,9 +19,8 @@ class Indenter {
     indentSections (sections_to_indent) {
 
         for (const section of sections_to_indent) {
-            console.log(section)
 
-            let last_padding_left = this.depth + "px";
+            let last_padding_left = null
 
             for (const element of section.children) {
 
@@ -30,11 +30,12 @@ class Indenter {
                 // If it's a title element
                 if (["H1", "H2", "H3", "H4", "H5", "H6"].indexOf(element.tagName) >= 0) {
                     last_padding_left = this.getTitlePaddingLeft(element)
-                    console.log(last_padding_left)
                 }
 
                 // Set the paddingLeft of the element
-                element.style.paddingLeft = last_padding_left
+                if (last_padding_left !== null) {
+                    element.style.paddingLeft = last_padding_left + this.depth + "px"
+                }
             }
         }
     }

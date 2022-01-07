@@ -47,10 +47,10 @@ class BrowserOptionsManager {
 
         // Store datas in browser storage.
         if (field.tagName === "INPUT" && field.type === "checkbox") {
-            Settings.set(fieldfield.name, fieldfield.checked)
+            Settings.set(field.name, field.checked)
         }
         else {
-            Settings.set(fieldfield.name, fieldfield.value)
+            Settings.set(field.name, field.value)
         }
 
         // Add a saved message next to the field if there is not already one.
