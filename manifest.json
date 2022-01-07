@@ -33,9 +33,9 @@
             "matches": ["<all_urls>"],
             "js": [
                 "/subwebsites/medium.js",
-                "/frontend/staticfiles/scripts/mercury.js",
+                "/frontend/staticfiles/scripts/mercury.min.js",
                 "/frontend/staticfiles/scripts/turndown.js",
-                "/frontend/staticfiles/scripts/tiny-color.js",
+                "/frontend/staticfiles/scripts/tiny-color.min.js",
 
                 "/options/staticfiles/scripts/settings.js",
 

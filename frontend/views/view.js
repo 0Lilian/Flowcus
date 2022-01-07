@@ -33,7 +33,7 @@ class View extends Component {
                 }
             }
             // Else
-            for (const view of View.getAll().reverse()) {
+            for (const view of View.getAll()) {
                 if (view.displayed === true) {
                     view.trigger()
                 }
@@ -162,10 +162,14 @@ class View extends Component {
     }
 
     static last_displayed_view = null;
+    static transition_ongoing = false;
     _trigger () {
 
-        // Do nothing if this is already the last displayed view
-        if (this !== this.constructor.last_displayed_view) {
+        // Do nothing if this is already the last displayed view or if a transition is in progress
+        if (this !== this.constructor.last_displayed_view && this.constructor.transition_ongoing === false) {
+
+            // Set transition_ongoing to true
+            this.constructor.transition_ongoing = true
 
             if (this.constructor.last_displayed_view === null) {
 
@@ -182,47 +186,53 @@ class View extends Component {
             }
             else {
 
+                // Clone the last_view object in case it changes
+                const last_view = {...this.constructor.last_displayed_view}
+
                 // Remove the displayed class from the last displayed view's button.
-                this.constructor.last_displayed_view.button.classList.remove("displayed")
+                last_view.button.classList.remove("displayed")
 
                 // Add the displayed class to this button
                 this.button.classList.add("displayed")
 
                 // Find the slide direction.
-                const views = View.getAll().reverse()
+                const views_ids = View.getAll(true)
                 let direction;
-                if (views.indexOf(this) < views.indexOf(this.constructor.last_displayed_view)) {
-                    direction = "right"
-                }
-                else {
+                if (views_ids.indexOf(this.id) < views_ids.indexOf(this.constructor.last_displayed_view.id)) {
                     direction = "left"
                 }
+                else {
+                    direction = "right"
+                }
 
-                // Hide the old view
-                this.constructor.last_displayed_view.iframe.style.position = "absolute"
-                this.constructor.last_displayed_view.iframe.style.marginLeft = direction === "left" ? "100vw" : "-100vw"
+                // Prepare transition : position the next view at the left of the screen, etc.
+                last_view.iframe.style.position = "absolute"
+                last_view.iframe.style.zIndex = "0";
                 this.iframe.style.marginLeft = direction === "left" ? "-100vw" : "100vw"
                 this.iframe.style.display = "block";
+                this.iframe.style.zIndex = "1";
 
-
-                // Clone the last_view object and reset the previous view if it still a not displayed view
-                const last_view = {...this.constructor.last_displayed_view}
+                // Display this view iframe by sliding the next view into the screen and sliding the last view out of the screen
                 setTimeout(function () {
-                    if (this.constructor.last_displayed_view.id !== last_view.id) {
-                        last_view.iframe.style.display = "none"
-                        last_view.iframe.style.marginLeft = "0"
-                        this.constructor.last_displayed_view.iframe.style.position = "unset"
-                    }
-                }.bind(this), 250)
-
-                // Display this view iframe
-                setTimeout(function () {
+                    last_view.iframe.style.marginLeft = direction === "left" ? "100vw" : "-100vw"
                     this.iframe.style.marginLeft = "0";
                 }.bind(this), 40)
 
-                this.constructor.last_displayed_view = this
+                // Reset the previous view if it still a not displayed view
+                setTimeout(function () {
+                    if (last_view.id !== last_view.id) {
+                        last_view.iframe.style.display = "none"
+                        last_view.iframe.style.marginLeft = "0"
+                        last_view.iframe.style.position = "unset"
+                        last_view.iframe.style.zIndex = "0";
+                    }
+                }.bind(this), 290)
 
+                this.constructor.last_displayed_view = this
             }
+
+            // Set transition_ongoing to false
+            this.constructor.transition_ongoing = false
         }
     }
 }

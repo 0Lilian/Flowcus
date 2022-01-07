@@ -30,10 +30,16 @@ class Component {
 
     static components = {}
 
-    static getAll () {
+    static getAll (ids_only=false) {
+
         // If this is the Component class, return all the components
         if (this.name === "Component") {
-            return Object.values(this.components)
+            if (ids_only === false) {
+                return Object.values(this.components).reverse()
+            }
+            else {
+                return Object.keys(this.components).reverse()
+            }
         }
 
         // Else return only the components that have the right class name
@@ -41,7 +47,12 @@ class Component {
             const components = []
             for (const component_id of Object.keys(this.components)) {
                 if (component_id.startsWith(this.name + ".")) {
-                    components.push(this.components[component_id])
+                    if (ids_only === false) {
+                        components.push(this.components[component_id])
+                    }
+                    else {
+                        components.push(component_id)
+                    }
                 }
             }
             return components;
