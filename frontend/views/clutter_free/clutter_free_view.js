@@ -17,7 +17,7 @@
             try {
                 // Build a document object from the clutter_full_view.body
                 const cloned_document = idocument.cloneNode(true)
-                cloned_document.body = View.getById("View.clutter-full").iframe.querySelector("body").cloneNode(true)
+                cloned_document.body = View.getById("View.clutter-full").body.cloneNode(true)
 
                 // Apply fixers.
                 for (const fixer of clutter_free_fixers) {
@@ -27,7 +27,6 @@
                 // Parse the document using Mercury Parser.
                 function onError () {
                     // Add support for local files parsing with a fake url
-                    // const parsed_body = Mercury.parse(null, {html: cloned_document.documentElement.innerHTML}).then(function (result) {
                     const parsed_body = Mercury.parse(`https://local.file/?path=${window.location.href}`, {html: cloned_document.documentElement.innerHTML}).then(onSuccess.bind(this));
                 }
 
@@ -38,7 +37,6 @@
                     this.body.innerHTML = result.content;
                 }
 
-                // const parsed_body = Mercury.parse(null, {html: cloned_document.documentElement.innerHTML}).then(function (result) {
                 const parsed_body = Mercury.parse(window.location.href, {html: cloned_document.documentElement.innerHTML}).then(onSuccess.bind(this));
                 this.is_body_ready = true;
 

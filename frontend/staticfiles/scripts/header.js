@@ -88,7 +88,9 @@ const Header = (function () {
                     // Insert the views buttons.
                     for (const view of View.getAll()) {
                         if (view.displayed === true) {
-                            header_views_nav.appendChild(view.button)
+                            if (view.button) {
+                                header_views_nav.appendChild(view.button)
+                            }
                         }
                     }
 
@@ -109,7 +111,9 @@ const Header = (function () {
                     // Insert the actions buttons.
                     for (const action of Action.getAll()) {
                         if (action.displayed === true) {
-                            header_actions_nav.appendChild(action.button)
+                            if (action.button) {
+                                header_actions_nav.appendChild(action.button)
+                            }
                         }
                     }
 

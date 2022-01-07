@@ -19,8 +19,6 @@ class View extends Component {
 
         this.body = document.createElement("body")
         this.iframe;
-        this.iframe_window;
-        this.iframe_document;
     }
 
     static displayDefaultView () {
@@ -64,6 +62,22 @@ class View extends Component {
         })
     }
 
+    // async init () {
+    //     try {
+    //         await this.waitForDependencies()
+    //         await this.generateIframe()
+    //         await this.generateButton()
+    //         await this.generateContent()
+    //         // Dispatch the ready event.
+    //         this.is_ready = true
+    //         window.dispatchEvent(this.ready_event)
+    //         return await this.insertContentInIframe()
+    //     }
+    //     catch (error) {
+    //         console.log("An error occured while trying to initialize this view " + this.id + ". Error : " + error) : null
+    //     }
+    // }
+
     generateIframe () {
 
         return new Promise((resolve, reject) => {
@@ -80,14 +94,9 @@ class View extends Component {
                 this.iframe.classList.add("view-frame")
 
                 if (this.use_iframe_isolation === true) {
-                    this.iframe.addEventListener("load", function () {
-                            this.iframe_window = this.iframe.contentWindow;
-                            this.iframe_document = this.iframe_window.document;
-                            resolve()
-                    }.bind(this))
-
                     this.iframe.src = browser.runtime.getURL("/frontend/staticfiles/templates/view.html")
                     document.body.appendChild(this.iframe)
+                    resolve()
                 }
 
                 else {
@@ -127,11 +136,20 @@ class View extends Component {
             try {
 
                 if (this.use_iframe_isolation === true) {
-                    this.iframe_document.body = this.body;
+                    const iframe_document = this.iframe.contentWindow.document;
+                    if (iframe_document.readyState === "complete") {
+                        iframe_document.body = this.body;
+                    }
+                    else {
+                        this.iframe.addEventListener("load", function () {
+                            const loaded_iframe_document = this.iframe.contentWindow.document;
+                            loaded_iframe_document.body = this.body;
+                        }.bind(this))
+                    }
                 }
                 else {
                     const iframe_body = this.iframe.querySelector("body")
-                    for (const child of this.body.querySelectorAll("body > *")) {
+                    for (const child of this.body.cloneNode(true).querySelectorAll("body > *")) {
                         iframe_body.appendChild(child)
                     }
                 }
