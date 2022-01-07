@@ -1,7 +1,7 @@
 (function () {
 
     // Create the Action instance
-    const markdown_to_obsidian_action =  new Action(display_name="Markdown -> Obsidian",
+    const markdown_to_obsidian_action =  new Action(display_name="Markdown ➜ Obsidian",
                                                     slug="markdown-to-obsidian",
                                                     icon="O",
                                                     hotkey="CTRL+Alt+O",

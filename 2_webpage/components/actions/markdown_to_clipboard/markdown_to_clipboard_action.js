@@ -1,7 +1,7 @@
 (function () {
 
     // Create the Action instance
-    const markdown_to_clipboard_action =  new Action(display_name="Markdown -> Clipboard",
+    const markdown_to_clipboard_action =  new Action(display_name="Markdown ➜ Clipboard",
                                                      slug="markdown-to-clipboard",
                                                      icon="C",
                                                      hotkey="CTRL+Alt+C",

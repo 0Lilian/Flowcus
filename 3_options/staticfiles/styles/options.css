@@ -1,9 +1,13 @@
 body {
     display: flex;
-    /* overflow: hidden; */
+    overflow: hidden;
     width: 100%;
     border-radius: 10px;
 }
+
+/* ############### */
+/* ### SIDEBAR ### */
+/* ############### */
 
 aside {
     display: flex;
@@ -12,18 +16,22 @@ aside {
     overflow-y: scroll;
     width: 300px;
     min-width: 300px;
-    height: 500px;
-    max-height: 500px;
+    height: auto;
+    min-height: 500px;
     background-color: var(--color-primary);
     color: var(--color-white);
     padding: 25px;
+    border-left-style: solid !important;
+    border-left-color: var(--color-secondary) !important;
+    border-left-width: 10px !important;
 }
 
 aside > h1 {
     width: 100%;
-    font-size: 30px !important;
+    font-size: 31px !important;
     text-align: center;
     font-family: 'Lilita One', cursive;
+    margin-bottom: 10px !important;
 }
 
 aside > nav {
@@ -34,11 +42,11 @@ aside > nav {
 
 aside > nav > h2 {
     width: 100%;
-    font-size: 20px !important;
+    font-size: 21px !important;
     font-family: 'Lilita One', cursive;
-    /* font-weight: 100; */
+    font-weight: 1000;
     margin-top: 30px !important;
-    margin-bottom: 10px !important;
+    margin-bottom: 5px !important;
     color: var(--color-primary-very-light);
     text-transform: uppercase !important;
 }
@@ -59,34 +67,118 @@ aside > nav button:hover {
 }
 
 aside > nav ul {
-    margin-left: 30px !important;
+    margin-left: 10px !important;
     list-style: circle;
 }
 
 aside > nav ul li {
     list-style: circle;
+    list-style-position: inside;
+    white-space: nowrap;
 }
+
+
+/* #################### */
+/* ### PAGE CONTENT ### */
+/* #################### */
 
 main {
     display: flex;
     flex-direction: column;
     width: 500px;
-    min-width: 500px;
-    height: 500px;
-    max-height: 500px;
+    height: 100vh;
+    min-height: 500px;
+    overflow: hidden;
 }
 
 main > section.option-page {
     padding: 25px;
+    padding-left: 0;
     overflow-x: hidden;
     overflow-y: scroll;
-    min-height: 100%;
+    min-width: 100%;
+    height: 100vh;
     display: none;
     transition-duration: 250ms;
     background-color: var(--color-white);
 }
 
+main > section.option-page h2 {
+    width: calc(100% + 60px);
+    font-size: 20px !important;
+    font-family: 'Lilita One', cursive;
+    font-weight: 1000;
+    margin-bottom: 25px !important;
+    padding-bottom: 25px !important;
+    color: var(--color-primary-very-light);
+    /* text-align: center; */
+    padding-left: 22px !important;
+    padding-right: 40px !important;
+    text-transform: uppercase !important;
+    border-bottom-style: solid !important;
+    border-bottom-width: 1px !important;
+    border-bottom-color: #cccccc;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: left;
+    direction: rtl;
+
+}
+
+main > section.option-page h2 span {
+    font-size: 25px !important;
+    color: var(--color-secondary);
+    white-space: nowrap;
+}
+
+
 main > section.option-page > div {
-    margin-top: 15px;
-    margin-bottom: 15px;
+    margin-top: 40px !important;
+    margin-bottom: 50px !important;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+main > section.option-page > div label {
+    font-weight: bold !important;
+    font-family: Georgia;
+    transition-duration: 250ms;
+    white-space: nowrap;
+    margin-right: 15px !important;
+}
+
+main > section.option-page > div input {
+    border-radius: 10px !important;
+    overflow: hidden;
+}
+
+main > section.option-page > div p.description {
+    width: 100%;
+    background-color: var(--color-secondary-very-very-light);
+    padding: 15px;
+    padding-left: 40px;
+    font-size: 15px;
+    border-radius: 15px !important;
+    margin-top: 10px;
+    position: relative;
+    border-left-style: solid !important;
+    border-left-color: var(--color-secondary) !important;
+    border-left-width: 10px !important;
+    display: flex;
+    align-items: center;
+    opacity: 0.2;
+    transition-duration: 250ms;
+    font-family: Georgia;
+}
+
+main > section.option-page > div p.description:hover {
+    opacity: 1;
+}
+
+main > section.option-page > div p.description::before {
+    content: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zm0-2a8 8 0 1 0 0-16 8 8 0 0 0 0 16zM11 7h2v2h-2V7zm0 4h2v6h-2v-6z" fill="rgba(51,51,51,1)"/></svg>');
+    position: absolute;
+    left: 7px;
 }
