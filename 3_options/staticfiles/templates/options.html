@@ -3,10 +3,11 @@
 <html>
     <head>
         <meta charset="utf-8">
+        <link rel="stylesheet" href="/0_common/staticfiles/styles/destyle.css"/>
         <link rel="stylesheet" href="../styles/options.css"/>
     </head>
 
-    <body>
+    <body class="requires-css-reset">
         <aside>
             <h1>Flowcus Settings</h1>
             <nav class="indented">
@@ -18,22 +19,22 @@
                 <button class="option-page-button" data-page="behaviors-general">General</button>
                 <button class="option-page-button" data-page="behaviors-views">Views</button>
                 <ul>
-                    <li><button class="option-page-button"data-page="behaviors-view-clutter-full">Clutter-full</button></li>
-                    <li><button class="option-page-button"data-page="behaviors-view-clutter-free">Clutter-free</button></li>
-                    <li><button class="option-page-button"data-page="behaviors-view-markdown">Markdown</button></li>
+                    <li><button class="option-page-button" data-page="behaviors-view-clutter-full">Clutter-full</button></li>
+                    <li><button class="option-page-button" data-page="behaviors-view-clutter-free">Clutter-free</button></li>
+                    <li><button class="option-page-button" data-page="behaviors-view-markdown">Markdown</button></li>
                 </ul>
                 <button class="option-page-button" data-page="behaviors-actions">Actions</button>
                 <ul>
-                    <li><button class="option-page-button"data-page="behaviors-action-markdown-to-clipboard">Markdown -> Clipboard</button></li>
-                    <li><button class="option-page-button"data-page="behaviors-action-markdown-to-obsidian">Markdown -> Obsidian</button></li>
-                    <li><button class="option-page-button"data-page="behaviors-action-markdown-to-custom">Markdown -> Custom</button></li>
+                    <li><button class="option-page-button" data-page="behaviors-action-markdown-to-clipboard">Markdown -> Clipboard</button></li>
+                    <li><button class="option-page-button" data-page="behaviors-action-markdown-to-obsidian">Markdown -> Obsidian</button></li>
+                    <li><button class="option-page-button" data-page="behaviors-action-markdown-to-custom">Markdown -> Custom</button></li>
                 </ul>
                 <button class="option-page-button" data-page="behaviors-workflows">Workflows</button>
             </nav>
         </aside>
 
         <main>
-            <section class"option-page indented" id="appearance-general">
+            <section class="option-page indented" id="appearance-general">
                 <div>
                     <label for="primary-color">Primary color</label>
                     <input type="color" name="primary-color" value="#B6712E"/>
@@ -45,7 +46,7 @@
                 </div>
             </section>
 
-            <section class"option-page indented" id="appearance-header">
+            <section class="option-page indented" id="appearance-header">
                 <div>
                     <label for="sticky-header">Sticky header</label>
                     <input type="checkbox" name="sticky-header" checked="false"/>
@@ -81,7 +82,7 @@
                 </div>
             </section>
 
-            <section class"option-page indented" id="behaviors-general">
+            <section class="option-page indented" id="behaviors-general">
                 <div>
                     <label for="auto-start">Auto-start</label>
                     <input type="checkbox" name="auto-start" checked="false"/>
@@ -89,7 +90,7 @@
                 </div>
             </section>
 
-            <section class"option-page indented" id="behaviors-views">
+            <section class="option-page indented" id="behaviors-views">
                 <div>
                     <label for="default-view">Default view&nbsp;</label>
                     <select class="browser-style" name="default-view">
@@ -125,10 +126,10 @@
                 </ul>
             </section>
 
-            <section class"option-page indented" id="behaviors-view-clutter-full">
+            <section class="option-page indented" id="behaviors-view-clutter-full">
             </section>
 
-            <section class"option-page indented" id="behaviors-view-clutter-free">
+            <section class="option-page indented" id="behaviors-view-clutter-free">
                 <div>
                     <label for="auto-indent">Auto-indent</label>
                     <input type="checkbox" name="auto-indent" checked="true"/>
@@ -136,10 +137,10 @@
                 </div>
             </section>
 
-            <section class"option-page indented" id="behaviors-view-markdown">
+            <section class="option-page indented" id="behaviors-view-markdown">
             </section>
 
-            <section class"option-page indented" id="behaviors-actions">
+            <section class="option-page indented" id="behaviors-actions">
                 <h3>Enabled actions</h3>
                 <ul>
                     <li>
@@ -165,10 +166,10 @@
                 </ul>
             </section>
 
-            <section class"option-page indented" id="behaviors-action-markdown-to-clipboard">
+            <section class="option-page indented" id="behaviors-action-markdown-to-clipboard">
             </section>
 
-            <section class"option-page indented" id="behaviors-action-markdown-to-obsidian">
+            <section class="option-page indented" id="behaviors-action-markdown-to-obsidian">
                 <div>
                     <label for="obsidian-vault">Obsidian vault</label>
                     <input type="text" name="obsidian-vault" placeholder="MySuperVault"/>
@@ -182,15 +183,16 @@
                 </div>
             </section>
 
-            <section class"option-page indented" id="behaviors-action-markdown-to-custom">
+            <section class="option-page indented" id="behaviors-action-markdown-to-custom">
             </section>
 
-            <section class"option-page indented" id="behaviors-workflows">
+            <section class="option-page indented" id="behaviors-workflows">
             </section>
         </main>
 
         <script src="/0_common/staticfiles/libs/settings.js"></script>
-        <script src="/0_common/staticfiles/libs/indent.js"></script>
+        <script src="/0_common/staticfiles/libs/indenter.js"></script>
+        <script src="/0_common/staticfiles/libs/tiny-color.min.js"></script>
         <script src="/0_common/style_manager/style_manager.js"></script>
         <script src="../libs/browser_options_manager.js"></script>
         <script src="../../main.js"></script>

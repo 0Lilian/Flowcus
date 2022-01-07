@@ -10,7 +10,7 @@ class BrowserOptionsManager {
         }
 
         // Restore the settings fields values
-        this restoreOptions(fields)
+        this.restoreOptions(fields)
 
         // Save changes each time they happen on a field
         for (const field of fields) {
