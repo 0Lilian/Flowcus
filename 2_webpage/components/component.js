@@ -24,6 +24,9 @@ class Component {
             this.enabled = value // Used for dependencies mechanism
         }.bind(this))
 
+        // Create the datas properties that will host various component' datas (if there are)
+        this.datas = {}
+
         // At this component to the components list of its class.
         this.constructor.components[this.id] = this
     }

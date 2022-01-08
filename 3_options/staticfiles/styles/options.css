@@ -222,5 +222,4 @@ main > section.option-page div p.description::before {
 
 main > section.option-page div p.description:hover::before {
     transition-duration: 250ms;
-    transform: rotateZ(90deg);
 }

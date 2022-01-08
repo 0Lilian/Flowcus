@@ -200,14 +200,21 @@
                 </div>
 
                 <div>
-                    <label for="obsidian-note-formatting">Header formatting</label>
-                    <textarea type="text" name="obsidian-note-formatting" default="tessstoo"></textarea>
-                    <p class="description">A header can be automatically added to a clipped note before it is sent to Obsidian. Using the jinja syntax you can customize this header. Just format the header and put data tags.<br/>
-                    Here are some available tags :<br/>
-                    - {{date}} and {{time}} to get the current date and time<br/>
-                    - {{url}} to get the url of the content<br/>
-                    - {{author}} to get the author of the content<br/>
-                </p>
+                    <label for="obsidian-note-formatting" >Header formatting</label>
+                    <textarea type="text" name="obsidian-note-formatting" default="" style="font-size: 15px; overflow: scroll;"></textarea>
+                    <p class="description">An header can be automatically added to a clipped note before it is sent to Obsidian. Using the Nunjucks/Jinja syntax you can customize this header. Just format the header and put data tags.<br/><br/>
+                        Here are some available tags :<br/>
+                        - {{ now }} to get the current datetime<br/>
+                        - {{ title }} to get the content's title<br/>
+                        - {{ url }} to get the content's url<br/>
+                        - {{ domain }} to get the content's domain name<br/>
+                        - {{ publication_datetime }} to get the content's publication datetime<br/>
+                        - {{ author }} to get the content's author name<br/>
+                        - {{ excerpt }} to get the content's excerpt name<br/>
+                        - {{ word_count }} to get the content's number of words<br/><br/><br/>
+                        Learn everything about tags and filters here : <br/><br/>
+                        Note that some of these datas may not be found or could be missing, they'll just not be filled in the render.
+                    </p>
                 </div>
             </section>
 
@@ -220,9 +227,9 @@
             </section>
         </main>
 
-        <script src="/0_common/staticfiles/libs/settings.js"></script>
-        <script src="/0_common/staticfiles/libs/indenter.js"></script>
         <script src="/0_common/staticfiles/libs/tiny-color.min.js"></script>
+        <script src="/0_common/settings/settings.js"></script>
+        <script src="/0_common/indenter/indenter.js"></script>
         <script src="/0_common/style_manager/style_manager.js"></script>
         <script src="../libs/browser_options_manager.js"></script>
         <script src="../../main.js"></script>

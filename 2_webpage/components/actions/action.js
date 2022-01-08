@@ -50,8 +50,9 @@ class Action extends Component {
         console.log("SUCCESSFUL MESSAGE FROM " + this.id)
     }
 
-    displayErrorMessage () {
+    displayErrorMessage (error) {
         console.log("ERROR MESSAGE FROM " + this.id)
+        console.log(error)
     }
 
     _trigger () {
@@ -59,6 +60,6 @@ class Action extends Component {
         // On trigger --> execute the action
         this.execute()
         .then(() => this.displaySuccessfullMessage())
-        .catch(() => this.displayErrorMessage())
+        .catch((error) => this.displayErrorMessage(error))
     }
 }

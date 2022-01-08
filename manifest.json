@@ -34,12 +34,21 @@
         {
             "matches": ["<all_urls>"],
             "js": [
-                "/0_common/subwebsites/medium.js",
-
                 "/0_common/staticfiles/libs/tiny-color.min.js",
-                "/0_common/staticfiles/libs/settings.js",
+                "/0_common/staticfiles/libs/nunjucks.min.js",
+                "/0_common/staticfiles/libs/luxon.min.js",
+
+                "/0_common/indenter/indenter.js",
+
+                "/0_common/nunjucks_manager/filters/filter.js",
+                "/0_common/nunjucks_manager/filters/format.js",
+                "/0_common/nunjucks_manager/nunjucks_manager.js",
+
+                "/0_common/settings/settings.js",
+
                 "/0_common/style_manager/style_manager.js",
-                "/0_common/staticfiles/libs/indenter.js",
+
+                "/0_common/subwebsites/medium.js",
 
                 "/2_webpage/components/component.js",
 

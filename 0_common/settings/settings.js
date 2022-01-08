@@ -10,7 +10,7 @@ class Settings {
         error_handler = error_handler ? error_handler : onError
 
         // Send the request to the brower storage
-        const getting = browser.storage.sync.get(key).then(function (results) {
+        return browser.storage.sync.get(key).then(function (results) {
             value_handler(results[key])
         }, error_handler)
 

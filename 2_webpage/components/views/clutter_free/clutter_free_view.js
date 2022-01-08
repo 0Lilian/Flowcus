@@ -27,7 +27,7 @@
                 // Parse the document using Mercury Parser.
                 function onError () {
                     // Add support for local files parsing with a fake url
-                    const parsed_body = Mercury.parse(`https://local.file/?path=${window.location.href}`, {html: cloned_document.documentElement.innerHTML}).then(onSuccess.bind(this));
+                    return Mercury.parse(`https://local.file/?path=${window.location.href}`, {html: cloned_document.documentElement.innerHTML}).then(onSuccess.bind(this));
                 }
 
                 function onSuccess (result) {
@@ -35,10 +35,11 @@
                         onError.call(this)
                     }
                     this.body.innerHTML = result.content;
+                    console.log(result)
+                    this.datas = result
                 }
 
                 const parsed_body = Mercury.parse(window.location.href, {html: cloned_document.documentElement.innerHTML}).then(onSuccess.bind(this));
-                this.is_body_ready = true;
 
                 // Resolve the promise.
                 resolve()
