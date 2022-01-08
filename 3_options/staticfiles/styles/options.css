@@ -195,21 +195,24 @@ main > section.option-page div textarea {
 main > section.option-page div p.description {
     width: 100%;
     background-color: var(--color-secondary-very-very-light);
-    padding: 15px;
-    padding-left: 40px;
+    padding: 20px;
+    padding-left: 45px;
     font-size: 15px;
     border-radius: 15px !important;
     margin-top: 10px;
     position: relative;
     border-left-style: solid !important;
     border-left-color: var(--color-secondary) !important;
-    border-left-width: 10px !important;
-    display: flex;
+    border-left-width: 9px !important;
+    /* display: flex; */
     align-items: center;
     opacity: 0.2;
     transition-duration: 250ms;
     font-family: Georgia;
     font-size: 15px;
+    overflow: hidden;
+    line-height: 150%;
+    text-align: justify;
 }
 
 main > section.option-page div p.description:hover {
@@ -217,11 +220,15 @@ main > section.option-page div p.description:hover {
 }
 
 main > section.option-page div p.description::before {
-    content: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zm0-2a8 8 0 1 0 0-16 8 8 0 0 0 0 16zM11 7h2v2h-2V7zm0 4h2v6h-2v-6z" fill="rgba(51,51,51,1)"/></svg>');
+    content: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zm0-2a8 8 0 1 0 0-16 8 8 0 0 0 0 16zM11 7h2v2h-2V7zm0 4h2v6h-2v-6z" fill="rgba(255,255,255,1)"/></svg>');
     position: absolute;
-    left: 7px;
-}
-
-main > section.option-page div p.description:hover::before {
-    transition-duration: 250ms;
+    left: -8px;
+    top: 0;
+    background-color: var(--color-secondary);
+    padding: 6px;
+    padding-bottom: 0px;
+    padding-top: 5px;
+    border-top-right-radius: 20px 20px !important;
+    border-bottom-left-radius: 20px 20px !important;
+    border-bottom-right-radius: 20px 20px !important;
 }
