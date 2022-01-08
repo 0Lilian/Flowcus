@@ -5,7 +5,7 @@
                                                     slug="markdown-to-obsidian",
                                                     icon="O",
                                                     hotkey="CTRL+Alt+O",
-                                                    dependencies = ["View.markdown", ])
+                                                    dependencies = ["View.markdown", "View.clutter-free"])
 
     // Create the custom execute() method
     function execute () {

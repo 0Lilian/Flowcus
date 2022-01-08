@@ -183,6 +183,32 @@
 
             <section class="option-page indented" id="behaviors-action-markdown-to-clipboard">
                 <h2>Behaviors > Actions > <span>Markdown ➜ Clipboard</span></h2>
+                <div>
+                    <label for="clipboard-note-formatting" >Header formatting</label>
+                    <textarea type="text" name="clipboard-note-formatting" default='**Metadatas**
+- Date/time: {{ now | format("dd/MM/yyyy HH:mm") }}
+- Source : [{{ title }}]({{ url }})
+- Publication date : {{ publication_datetime | format("dd/MM/yyyy") }}
+- Author : {{ author }}
+- Words count : {{ words_count }}
+---
+                    '></textarea>
+                    <p class="description">An header can be automatically added to a clipped note before it is sent to the clipboard. Using the Nunjucks/Jinja syntax you can customize this header. Just format the header and put data tags.<br/><br/>
+                        Here are some available tags :<br/>
+                        - <b>{{ now }}</b> to get the current datetime<br/>
+                        - <b>{{ title }}</b> to get the content's title<br/>
+                        - <b>{{ url }}</b> to get the content's url<br/>
+                        - <b>{{ domain }}</b> to get the content's domain name<br/>
+                        - <b>{{ publication_datetime }}</b> to get the content's publication datetime<br/>
+                        - <b>{{ author }}</b> to get the content's author name<br/>
+                        - <b>{{ excerpt }}</b> to get the content's excerpt name<br/>
+                        - <b>{{ word_count }}</b> to get the content's number of words<br/><br/>
+
+                        Learn everything about tags and filters here : <br/><br/>
+
+                        Note that some of these datas may not be found or could be missing, they'll just not be filled in the render.
+                    </p>
+                </div>
             </section>
 
             <section class="option-page indented" id="behaviors-action-markdown-to-obsidian">
@@ -201,16 +227,14 @@
 
                 <div>
                     <label for="obsidian-note-formatting" >Header formatting</label>
-                    <textarea type="text" name="obsidian-note-formatting" default="
-                    **Metadatas**
-                    - Date/time: {{ now | format("dd/MM/yyyy HH:mm") }}
-                    - Source : [{{ title }}]({{ url }})
-                    - Publication date : {{ publication_datetime | format("dd/MM/yyyy") }}
-                    - Author : {{ author }}
-                    - Words' count : {{ words_count }}
-                    ---
-
-                    "></textarea>
+                    <textarea type="text" name="obsidian-note-formatting" default='**Metadatas**
+- Date/time: {{ now | format("dd/MM/yyyy HH:mm") }}
+- Source : [{{ title }}]({{ url }})
+- Publication date : {{ publication_datetime | format("dd/MM/yyyy") }}
+- Author : {{ author }}
+- Words count : {{ words_count }}
+---
+                    '></textarea>
                     <p class="description">An header can be automatically added to a clipped note before it is sent to Obsidian. Using the Nunjucks/Jinja syntax you can customize this header. Just format the header and put data tags.<br/><br/>
                         Here are some available tags :<br/>
                         - <b>{{ now }}</b> to get the current datetime<br/>

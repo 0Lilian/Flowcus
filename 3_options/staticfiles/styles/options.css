@@ -204,15 +204,13 @@ main > section.option-page div p.description {
     border-left-style: solid !important;
     border-left-color: var(--color-secondary) !important;
     border-left-width: 9px !important;
-    /* display: flex; */
     align-items: center;
     opacity: 0.2;
     transition-duration: 250ms;
     font-family: Georgia;
     font-size: 15px;
     overflow: hidden;
-    line-height: 150%;
-    text-align: justify;
+    line-height: 155%;
 }
 
 main > section.option-page div p.description:hover {

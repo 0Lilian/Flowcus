@@ -5,7 +5,7 @@
                                                      slug="markdown-to-clipboard",
                                                      icon="C",
                                                      hotkey="CTRL+Alt+C",
-                                                     dependencies = ["View.markdown", ])
+                                                     dependencies = ["View.markdown", "View.clutter-free"])
 
     // Create the custom execute() method
     function execute () {
@@ -14,18 +14,38 @@
 
             try {
 
-                const markdown_view_content = View.getById("View.markdown").body.innerText
+                let new_clip_content = "";
+                const clutter_free_view = View.getById("View.clutter-free")
 
-                const textarea = document.createElement("textarea")
-                textarea.textContent = markdown_view_content
-                // textarea.style.display = "none";
-                document.body.appendChild(textarea)
-                textarea.select();
-                document.execCommand('copy');
-                document.body.removeChild(textarea)
+                Settings.get("clipboard-note-formatting", function (header_template) {
 
-                // Resolve the promise.
-                resolve()
+                    const nunjucks_env = NunjucksManager.init()
+
+                    new_clip_content = nunjucks_env.renderString(header_template, {
+                        now: luxon.DateTime.now().toString(),
+                        title: clutter_free_view.datas.title,
+                        url: clutter_free_view.datas.url,
+                        domain: clutter_free_view.datas.domain,
+                        excerpt: clutter_free_view.datas.excerpt,
+                        publication_datetime: clutter_free_view.datas.date_published,
+                        author: clutter_free_view.datas.author,
+                        words_count: clutter_free_view.datas.word_count,
+                    });
+                }).then(() => {
+
+                    // Add the new note's body
+                    new_clip_content += View.getById("View.markdown").body.textContent
+
+                    const textarea = document.createElement("textarea")
+                    textarea.textContent = new_clip_content
+                    document.body.appendChild(textarea)
+                    textarea.select();
+                    document.execCommand('copy');
+                    document.body.removeChild(textarea)
+
+                    // Resolve the promise.
+                    resolve()
+                })
             }
             catch (error) {
                 reject("An error occured while executing action " + this.id + ". Error : " + error)
