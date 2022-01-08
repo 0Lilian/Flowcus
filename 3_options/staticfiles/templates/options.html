@@ -198,6 +198,17 @@
                     <input type="text" name="obsidian-folder" placeholder="My/Folder/"/>
                     <p class="description">The name of the exisiting folder inside your Obsidian vault in which you want to put the clipped contents to. Must end by /.</p>
                 </div>
+
+                <div>
+                    <label for="obsidian-note-formatting">Header formatting</label>
+                    <textarea type="text" name="obsidian-note-formatting" default="tessstoo"></textarea>
+                    <p class="description">A header can be automatically added to a clipped note before it is sent to Obsidian. Using the jinja syntax you can customize this header. Just format the header and put data tags.<br/>
+                    Here are some available tags :<br/>
+                    - {{date}} and {{time}} to get the current date and time<br/>
+                    - {{url}} to get the url of the content<br/>
+                    - {{author}} to get the author of the content<br/>
+                </p>
+                </div>
             </section>
 
             <section class="option-page indented" id="behaviors-action-markdown-to-custom">

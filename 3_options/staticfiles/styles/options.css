@@ -171,6 +171,7 @@ main > section.option-page div label {
 }
 
 main > section.option-page div input,
+main > section.option-page div textarea,
 main > section.option-page div select {
     border-radius: 10px !important;
     border-width: 2px ! important;
@@ -183,11 +184,11 @@ main > section.option-page > div input[type="color"] {
     padding: 0;
 }
 
-main > section.option-page div input:focus,
-main > section.option-page div select:focus {
-    background-color: #ffffff;
+main > section.option-page div textarea{
+    width: 100%;
+    min-height: 250px;
+    margin-top: 10px;
 }
-
 
 main > section.option-page div p.description {
     width: 100%;
@@ -206,6 +207,7 @@ main > section.option-page div p.description {
     opacity: 0.2;
     transition-duration: 250ms;
     font-family: Georgia;
+    font-size: 15px;
 }
 
 main > section.option-page div p.description:hover {
@@ -216,4 +218,9 @@ main > section.option-page div p.description::before {
     content: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zm0-2a8 8 0 1 0 0-16 8 8 0 0 0 0 16zM11 7h2v2h-2V7zm0 4h2v6h-2v-6z" fill="rgba(51,51,51,1)"/></svg>');
     position: absolute;
     left: 7px;
+}
+
+main > section.option-page div p.description:hover::before {
+    transition-duration: 250ms;
+    transform: rotateZ(90deg);
 }

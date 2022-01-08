@@ -15,7 +15,7 @@ class BrowserOptionsManager {
         // Save changes each time they happen on a field
         for (const field of fields) {
             // field.addEventListener("change", this.saveOptions.bind(this, field));
-            field.addEventListener("input", this.saveOptions.bind(this, field));
+            field.addEventListener("input", this.saveOptions.bind(this, field, false));
         }
 
     }
@@ -24,26 +24,40 @@ class BrowserOptionsManager {
 
         for (const field of fields) {
 
+            const default_value = field.getAttribute("default")
+
             function setValue(value) {
                 if (field.tagName === "INPUT" && field.type === "checkbox") {
-                    field.checked = value
+                    field.checked = value ? value : (default_value ? default_value : "")
                 }
                 else {
-                    field.value = value
+                    field.value = value ? value : (default_value ? default_value : "")
                 }
+
+                // Save the field if its default value has been set
+                if (value === undefined && default_value) {
+                    this.saveOptions(field, true)
+                    Settings.get(field.name, function (value) {console.log(value)})
+                }
+
+                // Prevent setting the default value if value === "" (do it only if it is undefined)
+                else if (value === "") {
+                    field.value = ""
+                    field.checked = ""
+                    this.saveOptions(field, true)
+                }
+
             }
 
             function onError (error) {
                 console.log(`Error: ${error}`);
             }
 
-            Settings.get(field.name, setValue)
+            Settings.get(field.name, setValue.bind(this))
         }
     }
 
-    static saveOptions(field, e) {
-
-        e.preventDefault();
+    static saveOptions(field, silent) {
 
         // Store datas in browser storage.
         if (field.tagName === "INPUT" && field.type === "checkbox") {
@@ -60,26 +74,28 @@ class BrowserOptionsManager {
         }
 
         // Add a saved message next to the field if there is not already one.
-        const saved_message = document.createElement("span")
-        saved_message.classList.add("saved-message")
-        saved_message.innerHTML = "&nbsp;Saved 🗸"
-        saved_message.style.opacity = "1"
-        saved_message.style.color = "green"
-        saved_message.style.display = "inline"
-        saved_message.style.fontWeight = "bold"
-        saved_message.style.transitionDuration = "500ms"
-        if (field.nextElementSibling) {
-            field.parentElement.insertBefore(saved_message, field.nextElementSibling)
-        }
-        else {
-            field.parentElement.appendChild(saved_message)
-        }
+        if (!silent) {
+            const saved_message = document.createElement("span")
+            saved_message.classList.add("saved-message")
+            saved_message.innerHTML = "&nbsp;Saved 🗸"
+            saved_message.style.opacity = "1"
+            saved_message.style.color = "green"
+            saved_message.style.display = "inline"
+            saved_message.style.fontWeight = "bold"
+            saved_message.style.transitionDuration = "500ms"
+            if (field.nextElementSibling) {
+                field.parentElement.insertBefore(saved_message, field.nextElementSibling)
+            }
+            else {
+                field.parentElement.appendChild(saved_message)
+            }
 
-        setTimeout(function () {
-            saved_message.style.opacity = "0"
             setTimeout(function () {
-                try{field.parentElement.removeChild(saved_message)} catch (e) {}
-            }.bind(this), 500)
-        }.bind(this), 2000)
+                saved_message.style.opacity = "0"
+                setTimeout(function () {
+                    try{field.parentElement.removeChild(saved_message)} catch (e) {}
+                }.bind(this), 500)
+            }.bind(this), 2000)
+        }
     }
 }
