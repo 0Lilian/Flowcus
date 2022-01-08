@@ -54,23 +54,32 @@ class BrowserOptionsManager {
         }
 
         // Add a saved message next to the field if there is not already one.
-        if (field.querySelector(".saved-message") === null) {
-            const saved_message = document.createElement("span")
-            saved_message.classList.add("saved-message")
-            saved_message.innerText = "Saved 🗸"
-            saved_message.style.opacity = "1"
-            saved_message.style.color = "green"
-            saved_message.style.display = "inline"
-            saved_message.style.fontWeight = "bold"
-            saved_message.style.transitionDuration = "500ms"
-            field.parentElement.appendChild(saved_message)
-
-            setTimeout(function () {
-                saved_message.style.opacity = "0"
-                setTimeout(function () {
-                    field.parentElement.removeChild(saved_message)
-                }.bind(this), 500)
-            }.bind(this), 2000)
+        const old_saved_message = field.parentElement.querySelector(".saved-message")
+        if (old_saved_message !== null) {
+            old_saved_message.parentElement.removeChild(old_saved_message)
         }
+
+        // Add a saved message next to the field if there is not already one.
+        const saved_message = document.createElement("span")
+        saved_message.classList.add("saved-message")
+        saved_message.innerHTML = "&nbsp;Saved 🗸"
+        saved_message.style.opacity = "1"
+        saved_message.style.color = "green"
+        saved_message.style.display = "inline"
+        saved_message.style.fontWeight = "bold"
+        saved_message.style.transitionDuration = "500ms"
+        if (field.nextElementSibling) {
+            field.parentElement.insertBefore(saved_message, field.nextElementSibling)
+        }
+        else {
+            field.parentElement.appendChild(saved_message)
+        }
+
+        setTimeout(function () {
+            saved_message.style.opacity = "0"
+            setTimeout(function () {
+                try{field.parentElement.removeChild(saved_message)} catch (e) {}
+            }.bind(this), 500)
+        }.bind(this), 2000)
     }
 }

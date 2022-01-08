@@ -123,7 +123,6 @@ main > section.option-page h2 {
     text-overflow: ellipsis;
     text-align: left;
     direction: rtl;
-
 }
 
 main > section.option-page h2 span {
@@ -133,7 +132,16 @@ main > section.option-page h2 span {
 }
 
 
-main > section.option-page > div {
+main > section.option-page h3 {
+    font-size: 25px !important;
+    font-family: 'Lilita One', cursive;
+    font-weight: 1000;
+    color: var(--color-black);
+    white-space: nowrap;
+    margin-bottom: 15px !important;
+}
+
+main > section.option-page div {
     margin-top: 40px !important;
     margin-bottom: 50px !important;
     display: flex;
@@ -141,7 +149,20 @@ main > section.option-page > div {
     flex-wrap: wrap;
 }
 
-main > section.option-page > div label {
+main > section.option-page ul li div {
+    margin-top: 15px !important;
+    margin-bottom: 20px !important;
+    white-space: nowrap;
+    display: inline-flex;
+}
+
+main > section.option-page ul li {
+    list-style: circle;
+    list-style-position: inside;
+    white-space: nowrap;
+}
+
+main > section.option-page div label {
     font-weight: bold !important;
     font-family: Georgia;
     transition-duration: 250ms;
@@ -149,12 +170,26 @@ main > section.option-page > div label {
     margin-right: 15px !important;
 }
 
-main > section.option-page > div input {
+main > section.option-page div input,
+main > section.option-page div select {
     border-radius: 10px !important;
+    border-width: 2px ! important;
+    border-color: var(--color-primary-very-light);
     overflow: hidden;
+    padding: 5px;
 }
 
-main > section.option-page > div p.description {
+main > section.option-page > div input[type="color"] {
+    padding: 0;
+}
+
+main > section.option-page div input:focus,
+main > section.option-page div select:focus {
+    background-color: #ffffff;
+}
+
+
+main > section.option-page div p.description {
     width: 100%;
     background-color: var(--color-secondary-very-very-light);
     padding: 15px;
@@ -173,11 +208,11 @@ main > section.option-page > div p.description {
     font-family: Georgia;
 }
 
-main > section.option-page > div p.description:hover {
+main > section.option-page div p.description:hover {
     opacity: 1;
 }
 
-main > section.option-page > div p.description::before {
+main > section.option-page div p.description::before {
     content: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zm0-2a8 8 0 1 0 0-16 8 8 0 0 0 0 16zM11 7h2v2h-2V7zm0 4h2v6h-2v-6z" fill="rgba(51,51,51,1)"/></svg>');
     position: absolute;
     left: 7px;
