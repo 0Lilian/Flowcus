@@ -1,4 +1,4 @@
-# _**"Flowcus"**_ add-on for Firefox, Chrome and Safari
+# _**"Flowcus"**_ add-on for Firefox, Chrome and Opera
 ![](https://github.com/0Lilian/Flowcus/raw/master/0_common/staticfiles/images/logo-dark.png)
 Flowcus (flowing focus) is an highly customizable clutter-free reader that comes with many tools to interact with your favorite KM (Knowledge Management) software : a web clipper, an highlighter, a markdown converter, and much more !
 
