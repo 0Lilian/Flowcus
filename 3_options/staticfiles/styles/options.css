@@ -184,10 +184,12 @@ main > section.option-page > div input[type="color"] {
     padding: 0;
 }
 
-main > section.option-page div textarea{
+main > section.option-page div textarea {
     width: 100%;
     min-height: 250px;
     margin-top: 10px;
+    font-size: 15px;
+    overflow-y: scroll;
 }
 
 main > section.option-page div p.description {

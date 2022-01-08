@@ -201,7 +201,16 @@
 
                 <div>
                     <label for="obsidian-note-formatting" >Header formatting</label>
-                    <textarea type="text" name="obsidian-note-formatting" default="" style="font-size: 15px; overflow: scroll;"></textarea>
+                    <textarea type="text" name="obsidian-note-formatting" default="
+                    **Metadatas**
+                    - Date/time: {{ now | format("dd/MM/yyyy HH:mm") }}
+                    - Source : [{{ title }}]({{ url }})
+                    - Publication date : {{ publication_datetime | format("dd/MM/yyyy") }}
+                    - Author : {{ author }}
+                    - Words' count : {{ words_count }}
+                    ---
+
+                    "></textarea>
                     <p class="description">An header can be automatically added to a clipped note before it is sent to Obsidian. Using the Nunjucks/Jinja syntax you can customize this header. Just format the header and put data tags.<br/><br/>
                         Here are some available tags :<br/>
                         - {{ now }} to get the current datetime<br/>

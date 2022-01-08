@@ -31,7 +31,6 @@
                         author: clutter_free_view.datas.author,
                         words_count: clutter_free_view.datas.word_count,
                     });
-                    console.log(clutter_free_view.datas)
                 }).then(() => {
 
                     // Add the new note's body
