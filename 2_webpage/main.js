@@ -1,50 +1,57 @@
 let idocument;
 
+function storeAndPurgeInitialDocument () {
+    return new Promise((resolve, reject) => {
+        try {
+
+            // Store the initial document element.
+            idocument = document.cloneNode(true)
+
+            // Purge the document.body if at least one view will be displayed.
+            for (const view of View.getAll()) {
+                if (view.displayed === true) {
+                    document.body.innerHTML = ""
+
+                    // And add the Flowcus class on body
+                    document.body.classList.add("flowcus")
+                    break;
+                }
+            }
+            resolve()
+        }
+        catch (error) {
+            reject("An error occured while triggering and storing the initial document. Error : " + error)
+        }
+    })
+}
+
 function initFlowcus () {
 
     return new Promise((resolve, reject) => {
 
-
-
-        // 1) Store the initial document element.
-        idocument = document.cloneNode(true)
-
-        // 2) Purge the document.body if at least one view will be displayed.
-        for (const view of View.getAll()) {
-            if (view.displayed === true) {
-                document.body.innerHTML = ""
-
-                // And add the Flowcus class on body
-                document.body.classList.add("flowcus")
-                break;
-            }
-        }
-
-
-        // 3) Insert and display the loader
-        // TODO
-
-        // 4) Load the Flowcus custom fonts and colors
+        // 1) Load the Flowcus custom fonts and colors
         StyleManager.init()
 
+        // 2) Insert and display the loader
+        // TODO
+
+        // 3) Trigger and store the initial document.
+        storeAndPurgeInitialDocument()
+
         // 5) Initialize all the components (views and actions).
-        const start = Date.now();
-        Component.init()
-        .then(() => console.log(`initFlowcus() -> Component.init() time = ${Date.now() - start}ms`))
+        .then(() => Date.now())
+        .then((start) => Component.init().then(() => start))
+        .then((start) => console.log(`initFlowcus() -> Component.init() time = ${Date.now() - start}ms`))
 
         // 7) Initialize the header.
         .then(() => Date.now())
-        .then((start) => {Header.init(); return start})
+        .then((start) => Header.init().then(() => start))
         .then((start) => console.log(`initFlowcus() -> Header.init() time = ${Date.now() - start}ms`))
 
-        // 8) Listen for components hotkeys.
-        .then(() => Date.now())
-        .then((start) => {Component.listenForHotkeys(); return start})
-        .then((start) => console.log(`initFlowcus() -> Component.listenForHotkeys() time = ${Date.now() - start}ms`))
 
         // 8) Display the default view.
         .then(() => Date.now())
-        .then((start) => {View.displayDefaultView(); return start})
+        .then((start) => View.displayDefaultView().then(() => start))
         .then((start) => console.log(`initFlowcus() -> View.displayDefaultView() time = ${Date.now() - start}ms`))
 
         // 9) Hide the loader and remove it from the DOM

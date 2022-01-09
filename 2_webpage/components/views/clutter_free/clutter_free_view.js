@@ -35,7 +35,6 @@
                         onError.call(this)
                     }
                     this.body.innerHTML = result.content;
-                    console.log(result)
                     this.datas = result
                 }
 

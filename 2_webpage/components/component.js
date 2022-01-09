@@ -77,52 +77,76 @@ class Component {
     }
 
     static listenForHotkeys () {
-        browser.runtime.onMessage.addListener(this.handleHotkeysMessages.bind(this))
+        return new Promise((resolve, reject) => {
+            try {
+                browser.runtime.onMessage.addListener(this.handleHotkeysMessages.bind(this))
+                resolve()
+            }
+            catch (error) {
+                reject("An error occured while running Component.listenForHotkeys(). Error : " + error)
+            }
+        })
     }
 
-    static init () {
-        const promises = []
+    static getRequiredComponents() {
+        let required_components = [];
 
-        // Construct the promises list with the enabled components
-        let enabled_components = [];
+        // Construct the the required components list
         for (const component of this.getAll()) {
             if (component.enabled === true) {
-                promises.push(component.init())
-                enabled_components.push(component)
+                required_components.push(component)
             }
             else {
-                // Set the component with displayed=false to prevent the button to be injected in the header.
+                // Set the component with displayed=false to prevent the button to be injected in the header (in case it is enabled in
+                // the next step because it is a dependency)
                 component.displayed = false;
             }
         }
 
-        // Also append the enabled components' dependencies and every sub dependency to promises list
+        // Also append the required components' dependencies and every sub dependency to required components list
         let continue_loop = true;
         while (continue_loop === true) {
-            const length_before_loop = enabled_components.length
+            const length_before_loop = required_components.length
 
-            for (const component of enabled_components) {
+            for (const component of required_components) {
                 for (const dependency of component.dependencies) {
                     const dependency_component = Component.getById(dependency)
 
-                    // Check if the component is not already in the enabled_components list.
-                    if (enabled_components.includes(dependency_component) === false) {
-
-                        enabled_components.push(dependency_component)
-
-                        // Push the component to the promises list
-                        promises.push(dependency_component.init())
+                    // Check if the component is not already in the required_components list.
+                    if (required_components.includes(dependency_component) === false) {
+                        required_components.push(dependency_component)
                     }
                 }
             }
 
-            // Stop the loop if the length is unchanged (it means that no more dependencies can be discovered)
-            if (length_before_loop === enabled_components.length) {
+            // Stop the loop if the length is unchanged (it means that there is no more dependencies that can be discovered)
+            if (length_before_loop === required_components.length) {
                 continue_loop = false;
             }
         }
 
+        return required_components
+    }
+
+    static init () {
+
+        // 1) Get the required components list, these components will have to be initialized.
+        const required_components = this.getRequiredComponents()
+
+        // 2) Build the promises list
+        let promises = [];
+
+        for (const component of required_components) {
+            promises.push(component.init())
+        }
+
+        // 3) Initialize all the required components
         return Promise.all(promises)
+
+        // 4) Listen for components hotkeys.
+        .then(() => Date.now())
+        .then((start) => Component.listenForHotkeys().then(() => start))
+        .then((start) => console.log(`initFlowcus() -> Component.listenForHotkeys() time = ${Date.now() - start}ms`))
     }
 
     init () {

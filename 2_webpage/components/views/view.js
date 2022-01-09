@@ -23,9 +23,10 @@ class View extends Component {
 
     static displayDefaultView () {
 
-        Settings.get("default-view", function (value) {
+        return Settings.get("default-view", function (value) {
             const default_view = View.getById(value)
 
+            // If a default view is defined.
             if (default_view !== null) {
                 if (default_view.displayed === true) {
                     default_view.trigger()
@@ -61,22 +62,6 @@ class View extends Component {
             })
         })
     }
-
-    // async init () {
-    //     try {
-    //         await this.waitForDependencies()
-    //         await this.generateIframe()
-    //         await this.generateButton()
-    //         await this.generateContent()
-    //         // Dispatch the ready event.
-    //         this.is_ready = true
-    //         window.dispatchEvent(this.ready_event)
-    //         return await this.insertContentInIframe()
-    //     }
-    //     catch (error) {
-    //         console.log("An error occured while trying to initialize this view " + this.id + ". Error : " + error) : null
-    //     }
-    // }
 
     generateIframe () {
 
