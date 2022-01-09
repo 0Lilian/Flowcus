@@ -85,8 +85,6 @@
 
                 "/2_webpage/components/views/common/staticfiles/styles/view.css",
 
-                "/2_webpage/components/views/clutter_free/staticfiles/styles/adjustments.css",
-
                 "/2_webpage/header/staticfiles/styles/header.css"
             ],
             "run_at": "document_start"

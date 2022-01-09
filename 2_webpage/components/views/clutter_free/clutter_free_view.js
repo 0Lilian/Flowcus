@@ -16,7 +16,7 @@
 
             try {
                 // Build a document object from the clutter_full_view.body
-                const cloned_document = idocument.cloneNode(true)
+                const cloned_document = document.cloneNode(true)
                 cloned_document.body = View.getById("View.clutter-full").body.cloneNode(true)
 
                 // Apply fixers.

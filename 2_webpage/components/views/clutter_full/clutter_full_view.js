@@ -17,16 +17,8 @@
             try {
 
                 // Clone the document body
-                this.body = idocument.body.cloneNode(true)
-
-                // Remove body_scripts to prevent them to run twice
-                const body_scripts = this.body.querySelectorAll("script")
-                for (const script of body_scripts) {
-                    script.parentNode.removeChild(script)
-                }
-                const body_iframes = this.body.querySelectorAll("iframe")
-                for (const iframe of body_iframes) {
-                    iframe.parentNode.removeChild(iframe)
+                for (const element of document.body.children) {
+                    this.body.appendChild(element)
                 }
 
                 // Resolve the promise.

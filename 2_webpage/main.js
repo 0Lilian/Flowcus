@@ -1,30 +1,3 @@
-let idocument;
-
-function storeAndPurgeInitialDocument () {
-    return new Promise((resolve, reject) => {
-        try {
-
-            // Store the initial document element.
-            idocument = document.cloneNode(true)
-
-            // Purge the document.body if at least one view will be displayed.
-            for (const view of View.getAll()) {
-                if (view.displayed === true) {
-                    document.body.innerHTML = ""
-
-                    // And add the Flowcus class on body
-                    document.body.classList.add("flowcus")
-                    break;
-                }
-            }
-            resolve()
-        }
-        catch (error) {
-            reject("An error occured while triggering and storing the initial document. Error : " + error)
-        }
-    })
-}
-
 function initFlowcus () {
 
     return new Promise((resolve, reject) => {
@@ -35,10 +8,18 @@ function initFlowcus () {
         // 2) Insert and display the loader
         // TODO
 
-        // 3) Trigger and store the initial document.
-        storeAndPurgeInitialDocument()
+        // 3) Add the 'flowcus' class to the body if at least one view is displayed
+        for (const view of View.getAll()) {
+            if (view.displayed === true) {
+
+                // And add the Flowcus class on body
+                document.body.classList.add("flowcus")
+                break;
+            }
+        }
 
         // 5) Initialize all the components (views and actions).
+        Promise.resolve()
         .then(() => Date.now())
         .then((start) => Component.init().then(() => start))
         .then((start) => console.log(`initFlowcus() -> Component.init() time = ${Date.now() - start}ms`))

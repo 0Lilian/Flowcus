@@ -68,28 +68,30 @@ class View extends Component {
         return new Promise((resolve, reject) => {
             try {
 
+                // Create the iframe or section element
                 if (this.use_iframe_isolation === true) {
                     this.iframe = document.createElement("iframe")
-                    this.iframe.classList.add("requires-css-reset")
                 }
                 else {
                     this.iframe = document.createElement("section")
                 }
 
+                // Add required class and ids
                 this.iframe.classList.add("view-frame")
+
+                if (this.require_css_reset === true) {
+                    this.body.classList.add("requires-css-reset")
+                    this.iframe.classList.add("requires-css-reset")
+                }
+                this.body.id = this.id
+
 
                 if (this.use_iframe_isolation === true) {
                     this.iframe.src = browser.runtime.getURL("/2_webpage/components/views/common/staticfiles/templates/view.html")
-                    document.body.appendChild(this.iframe)
-                    resolve()
                 }
 
-                else {
-                    const iframe_body = document.createElement("body")
-                    this.iframe.appendChild(iframe_body)
-                    document.body.appendChild(this.iframe)
-                    resolve()
-                }
+                document.body.appendChild(this.iframe)
+                resolve()
             }
             catch (error) {
                 reject("An error occured while generating iframe of view " + view.id + ". Error : " + error)
@@ -133,10 +135,11 @@ class View extends Component {
                     }
                 }
                 else {
-                    const iframe_body = this.iframe.querySelector("body")
-                    for (const child of this.body.cloneNode(true).querySelectorAll("body > *")) {
-                        iframe_body.appendChild(child)
-                    }
+                    // const iframe_body = document.createElement("body")
+                    // this.iframe.appendChild(iframe_body)
+                    // for (const child of this.body.cloneNode(true).querySelectorAll("body > *")) {
+                    this.iframe.appendChild(this.body)
+                    // }
                 }
                 resolve()
             }

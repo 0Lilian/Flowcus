@@ -20,7 +20,9 @@
                     // ...
 
                     // Fill the this.body variable (it already contains a <body> element)
-                    this.body = idocument.body.cloneNode(true)
+                    const my_super_content = document.createElement("p")
+                    my_super_content.textContent = "My super content !"
+                    this.body.appendChild(my_super_content)
 
                     // Resolve the promise.
                     resolve()
