@@ -39,25 +39,23 @@
                         this.datas = datas
 
                         // Build the frame body from the clutter_free template and the Mercury datas.
-                        fetch(browser.runtime.getURL("/2_webpage/components/views/clutter_free/staticfiles/templates/clutter_free.html"))
-                        .then((response) => {
-                            response.text().then((template_content) => {
+                        const nunjucks_env = NunjucksManager.init()
 
-                                const nunjucks_env = NunjucksManager.init()
+                        Settings.get("clutter-free-date-format", (date_format) => {
+                            const template_url = browser.runtime.getURL("/2_webpage/components/views/clutter_free/staticfiles/templates/clutter_free.html")
 
-                                Settings.get("clutter-free-date-format", (date_format) => {
-                                    this.body.innerHTML = nunjucks_env.renderString(template_content, {
-                                        domain: datas.domain,
-                                        url: datas.url,
-                                        title: datas.title,
-                                        author: datas.author,
-                                        publication_datetime: luxon.DateTime.fromISO(datas.date_published).toFormat(date_format),
-                                        content: datas.content,
-                                    });
-
-                                    resolve()
-                                })
+                            nunjucks_env.renderFromUrl(template_url, {
+                                domain: datas.domain,
+                                url: datas.url,
+                                title: datas.title,
+                                author: datas.author,
+                                publication_datetime: luxon.DateTime.fromISO(datas.date_published).toFormat(date_format),
+                                content: datas.content,
+                            }).then((content) => {
+                                this.body.innerHTML = content;
                             })
+
+                            resolve()
                         })
                     })
                 }
