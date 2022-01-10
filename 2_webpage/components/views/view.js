@@ -86,11 +86,15 @@ class View extends Component {
                     this.frame.classList.add("requires-css-reset")
                 }
                 this.frame.classList.add("view-frame")
-                this.body.classList.add("view-body")
+                if (this.use_iframe_isolation === false) {
+                    this.body.classList.add("view-body")
+                }
                 this.body.id = this.id
 
 
                 if (this.use_iframe_isolation === true) {
+
+                    // Add the iframe src
                     this.frame.src = browser.runtime.getURL("/2_webpage/components/views/common/staticfiles/templates/view.html")
                 }
 
@@ -125,6 +129,24 @@ class View extends Component {
         return new Promise((resolve, reject) => {
 
             try {
+
+                // Finally insert the body's content
+                if (this.use_iframe_isolation === true) {
+                    const iframe_document = this.frame.contentWindow.document;
+                    if (iframe_document.readyState === "complete") {
+                        iframe_document.body = this.body;
+                    }
+                    else {
+                        this.frame.addEventListener("load", function () {
+                            const loaded_iframe_document = this.frame.contentWindow.document;
+                            loaded_iframe_document.body = this.body;
+                        }.bind(this))
+                    }
+                }
+                else {
+                    this.frame.appendChild(this.body)
+                }
+
                 // Firstly insert all scripts files in the head
                 for (const script_url of this.scripts_files) {
                     const script = document.createElement("script")
@@ -168,22 +190,6 @@ class View extends Component {
                     }
                 }
 
-                // Finally insert the body's content
-                if (this.use_iframe_isolation === true) {
-                    const iframe_document = this.frame.contentWindow.document;
-                    if (iframe_document.readyState === "complete") {
-                        iframe_document.body = this.body;
-                    }
-                    else {
-                        this.frame.addEventListener("load", function () {
-                            const loaded_iframe_document = this.frame.contentWindow.document;
-                            loaded_iframe_document.body = this.body;
-                        }.bind(this))
-                    }
-                }
-                else {
-                    this.frame.appendChild(this.body)
-                }
                 resolve()
             }
             catch (error) {

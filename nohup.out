@@ -1,8 +1,0 @@
-QStandardPaths: XDG_RUNTIME_DIR not set, defaulting to '/tmp/runtime-root'
-QStandardPaths: XDG_RUNTIME_DIR not set, defaulting to '/tmp/runtime-root'
-error: : cannot open
-error: : cannot open
-error: : cannot open
-QCoreApplication::postEvent: Unexpected null receiver
-QObject::~QObject: Timers cannot be stopped from another thread
-QObject::~QObject: Timers cannot be stopped from another thread

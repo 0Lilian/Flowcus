@@ -2,15 +2,9 @@ class NunjucksManager {
     static env;
 
     static renderFromUrl (url, context) {
-        return new Promise((resolve, reject) => {
-
-            fetch(url)
-            .then((response) => {
-                response.text().then((template_content) => {
-                    resolve(this.renderString(template_content, context))
-                })
-            })
-        })
+        return fetch(url)
+        .then((response) => response.text())
+        .then((template_content) => this.renderString(template_content, context))
     }
 
     static init () {

@@ -8,9 +8,9 @@ body.flowcus {
 
 body.flowcus > .view-frame {
     overflow-x: hidden;
-    overflow-y: scroll;
+    overflow-y: hidden;
     width: 100vw !important;
-    height: 100vh !important;
+    height: 100% !important;
 
     /* Used for transitions between views, see view.js View._trigger () */
     display: none;
