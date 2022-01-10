@@ -93,7 +93,11 @@
 
     "web_accessible_resources": [
         "/0_common/staticfiles/fonts/lilita-one.regular.ttf",
-        "/2_webpage/components/views/common/staticfiles/templates/view.html"
+        "/2_webpage/components/views/common/staticfiles/templates/view.html",
+        "/2_webpage/components/views/clutter_free/staticfiles/styles/body.css",
+        "/2_webpage/components/views/clutter_free/staticfiles/styles/adjustments.css",
+        "/2_webpage/components/views/common/staticfiles/styles/view.css",
+        "/2_webpage/components/views/clutter_free/staticfiles/templates/clutter_free.html"
     ],
 
     "options_ui": {

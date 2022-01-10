@@ -5,6 +5,8 @@ class View extends Component {
                  icon,
                  hotkey,
                  dependencies = [],
+                 scripts_files = [],
+                 styles_files = [],
                  use_iframe_isolation = true,
                  require_css_reset = true) {
 
@@ -14,11 +16,13 @@ class View extends Component {
               hotkey,
               dependencies);
 
+        this.scripts_files = scripts_files;
+        this.styles_files = styles_files;
         this.use_iframe_isolation = use_iframe_isolation;
         this.require_css_reset = require_css_reset;
 
         this.body = document.createElement("body")
-        this.iframe;
+        this.frame;
     }
 
     static displayDefaultView () {
@@ -55,7 +59,7 @@ class View extends Component {
             .then(() => this.displayed ? this.generateIframe() : null)
             .then(() => this.displayed ? this.generateButton() : null)
             .then(() => resolve())
-            .then(() => this.displayed ? this.insertContentInIframe() : null)
+            .then(() => this.displayed ? this.insertContentInFrame() : null)
             .catch(error => {
                 error ? console.log("An error occured while trying to initialize this view " + this.id + ". Error : " + error) : null
                 reject(error)
@@ -70,31 +74,31 @@ class View extends Component {
 
                 // Create the iframe or section element
                 if (this.use_iframe_isolation === true) {
-                    this.iframe = document.createElement("iframe")
+                    this.frame = document.createElement("iframe")
                 }
                 else {
-                    this.iframe = document.createElement("section")
+                    this.frame = document.createElement("section")
                 }
 
                 // Add required class and ids
-                this.iframe.classList.add("view-frame")
-
                 if (this.require_css_reset === true) {
                     this.body.classList.add("requires-css-reset")
-                    this.iframe.classList.add("requires-css-reset")
+                    this.frame.classList.add("requires-css-reset")
                 }
+                this.frame.classList.add("view-frame")
+                this.body.classList.add("view-body")
                 this.body.id = this.id
 
 
                 if (this.use_iframe_isolation === true) {
-                    this.iframe.src = browser.runtime.getURL("/2_webpage/components/views/common/staticfiles/templates/view.html")
+                    this.frame.src = browser.runtime.getURL("/2_webpage/components/views/common/staticfiles/templates/view.html")
                 }
 
-                document.body.appendChild(this.iframe)
+                document.body.appendChild(this.frame)
                 resolve()
             }
             catch (error) {
-                reject("An error occured while generating iframe of view " + view.id + ". Error : " + error)
+                reject("An error occured while generating iframe of view " + this.id + ". Error : " + error)
             }
         })
     }
@@ -111,40 +115,79 @@ class View extends Component {
                 resolve()
             }
             catch (error) {
-                reject("An error occured while generating content of view " + view.id + ". Error : " + error)
+                reject("An error occured while generating content of view " + this.id + ". Error : " + error)
             }
         })
     }
 
-    insertContentInIframe () {
+    insertContentInFrame () {
 
         return new Promise((resolve, reject) => {
 
             try {
+                // Firstly insert all scripts files in the head
+                for (const script_url of this.scripts_files) {
+                    const script = document.createElement("script")
+                    script.src = browser.runtime.getURL(script_url)
 
+                    if (this.use_iframe_isolation === true) {
+                        if (this.frame.readyState === "complete") {
+                            this.frame.contentWindow.document.head.appendChild(script)
+                        }
+                        else {
+                            this.frame.addEventListener("load", function () {
+                                this.frame.contentWindow.document.head.appendChild(script)
+                            }.bind(this))
+                        }
+                    }
+
+                    else {
+                        document.head.appendChild(script)
+                    }
+                }
+
+                // Then insert all styles files in the head
+                for (const style_url of this.styles_files) {
+                    const style = document.createElement("link")
+                    style.rel = "stylesheet"
+                    style.href = browser.runtime.getURL(style_url)
+
+                    if (this.use_iframe_isolation === true) {
+                        if (this.frame.readyState === "complete") {
+                            this.frame.contentWindow.document.head.appendChild(style)
+                        }
+                        else {
+                            this.frame.addEventListener("load", function () {
+                                this.frame.contentWindow.document.head.appendChild(style)
+                            }.bind(this))
+                        }
+                    }
+
+                    else {
+                        document.head.appendChild(style)
+                    }
+                }
+
+                // Finally insert the body's content
                 if (this.use_iframe_isolation === true) {
-                    const iframe_document = this.iframe.contentWindow.document;
+                    const iframe_document = this.frame.contentWindow.document;
                     if (iframe_document.readyState === "complete") {
                         iframe_document.body = this.body;
                     }
                     else {
-                        this.iframe.addEventListener("load", function () {
-                            const loaded_iframe_document = this.iframe.contentWindow.document;
+                        this.frame.addEventListener("load", function () {
+                            const loaded_iframe_document = this.frame.contentWindow.document;
                             loaded_iframe_document.body = this.body;
                         }.bind(this))
                     }
                 }
                 else {
-                    // const iframe_body = document.createElement("body")
-                    // this.iframe.appendChild(iframe_body)
-                    // for (const child of this.body.cloneNode(true).querySelectorAll("body > *")) {
-                    this.iframe.appendChild(this.body)
-                    // }
+                    this.frame.appendChild(this.body)
                 }
                 resolve()
             }
             catch (error) {
-                reject("An error occured while inserting the content of view " + view.id + ". Error : " + error)
+                reject("An error occured while inserting the content of view " + this.id + ". Error : " + error)
             }
         })
     }
@@ -162,10 +205,10 @@ class View extends Component {
             if (this.constructor.last_displayed_view === null) {
 
                 // Display this view iframe
-                this.iframe.style.opacity = "0"
-                this.iframe.style.display = "block";
+                this.frame.style.opacity = "0"
+                this.frame.style.display = "block";
                 setTimeout(function () {
-                    this.iframe.style.opacity = "1";
+                    this.frame.style.opacity = "1";
                 }.bind(this), 40)
                 this.constructor.last_displayed_view = this
 
@@ -194,25 +237,25 @@ class View extends Component {
                 }
 
                 // Prepare transition : position the next view at the left of the screen, etc.
-                last_view.iframe.style.position = "absolute"
-                last_view.iframe.style.zIndex = "0";
-                this.iframe.style.marginLeft = direction === "left" ? "-100vw" : "100vw"
-                this.iframe.style.display = "block";
-                this.iframe.style.zIndex = "1";
+                last_view.frame.style.position = "absolute"
+                last_view.frame.style.zIndex = "0";
+                this.frame.style.marginLeft = direction === "left" ? "-100vw" : "100vw"
+                this.frame.style.display = "block";
+                this.frame.style.zIndex = "1";
 
                 // Display this view iframe by sliding the next view into the screen and sliding the last view out of the screen
                 setTimeout(function () {
-                    last_view.iframe.style.marginLeft = direction === "left" ? "100vw" : "-100vw"
-                    this.iframe.style.marginLeft = "0";
+                    last_view.frame.style.marginLeft = direction === "left" ? "100vw" : "-100vw"
+                    this.frame.style.marginLeft = "0";
                 }.bind(this), 40)
 
                 // Reset the previous view if it still a not displayed view
                 setTimeout(function () {
                     if (last_view.id !== last_view.id) {
-                        last_view.iframe.style.display = "none"
-                        last_view.iframe.style.marginLeft = "0"
-                        last_view.iframe.style.position = "unset"
-                        last_view.iframe.style.zIndex = "0";
+                        last_view.frame.style.display = "none"
+                        last_view.frame.style.marginLeft = "0"
+                        last_view.frame.style.position = "unset"
+                        last_view.frame.style.zIndex = "0";
                     }
                 }.bind(this), 290)
 

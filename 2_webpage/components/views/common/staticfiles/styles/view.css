@@ -5,17 +5,26 @@ body.flowcus {
     height: 100vh;
 }
 
+
 body.flowcus > .view-frame {
     overflow-x: hidden;
     overflow-y: scroll;
-    width: 100vw;
-    height: 100vh;
+    width: 100vw !important;
+    height: 100vh !important;
+
+    /* Used for transitions between views, see view.js View._trigger () */
     display: none;
-    transition-duration: 250ms;
-    background-color: var(--color-white);
+    background-color: var(--color-white); /* Ensure that the background is filled to prevent bad superposition render*/
     opacity: 1;
     top: 0;
     left: 0;
     right: 0;
+    transition-duration: 250ms;
     transition-timing-function: ease-in-out;
+}
+
+.view-body {
+    overflow-x: hidden;
+    overflow-y: scroll;
+    height: 100vh !important;
 }

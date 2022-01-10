@@ -3,7 +3,8 @@ class NunjucksManager {
 
     static init () {
         if (!this.env) {
-            this.env = new nunjucks.Environment();
+            nunjucks.configure("")
+            this.env = new nunjucks.Environment(new nunjucks.WebLoader(" "))
 
             // Initilize custom filters.
             for (const filter of NunjucksFilter.filters) {

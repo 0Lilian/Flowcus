@@ -126,8 +126,8 @@ const Header = (function () {
             for (const view of View.getAll()) {
                 if (view.displayed === true) {
                     // if (view.use_iframe_isolation === true) {
-                        view.iframe.style.height = `calc(100vh - ${document.body.style.paddingTop})`
-                        view.iframe.style.top = `${document.body.style.paddingTop}`
+                        view.frame.style.height = `calc(100vh - ${document.body.style.paddingTop})`
+                        view.frame.style.top = `${document.body.style.paddingTop}`
                     // }
                 }
             }
@@ -149,7 +149,7 @@ const Header = (function () {
             for (const view of View.getAll()) {
                 if (view.displayed === true) {
                     if (view.use_iframe_isolation === true) {
-                        view.iframe.style.height = "100vh";
+                        view.frame.style.height = "100vh";
                     }
                 }
             }

@@ -143,9 +143,18 @@
                 <h2>Behaviors > Views > <span>Clutter-free</span></h2>
 
                 <div>
-                    <label for="auto-indent">Auto-indent</label>
-                    <input type="checkbox" name="auto-indent" checked="true"/>
+                    <label for="clutter-free-auto-indent">Auto-indent</label>
+                    <input type="checkbox" name="clutter-free-auto-indent" checked="true"/>
                     <p class="description">If checked the clutter-free content will be beautifully indented to improve the readability.</p>
+                </div>
+
+                <div>
+                    <label for="clutter-free-date-format">Date format</label>
+                    <input type="text" name="clutter-free-date-format" default="dd/MM/yyyy"/>
+                    <p class="description">The format of the displayed publication date. <br/>
+                        Use 'dd' for days, "MM" for the monthes and "yyyy" for the year. "dd/MM/yyyy" will render like 28/01/2019.<br/>
+                        The full list of date formating keys is here :
+                    </p>
                 </div>
             </section>
 

@@ -6,6 +6,8 @@
                                    icon="",
                                    hotkey="",
                                    dependencies = [],
+                                   scripts_files = [],
+                                   styles_files = [],
                                    use_iframe_isolation = false,
                                    require_css_reset = false)
 
