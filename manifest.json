@@ -102,10 +102,14 @@
         "/2_webpage/components/views/common/staticfiles/templates/view.html",
         "/2_webpage/components/views/common/staticfiles/styles/view.css",
 
+        "/2_webpage/components/views/clutter_free/staticfiles/templates/document.html",
         "/2_webpage/components/views/clutter_free/staticfiles/templates/body.html",
         "/2_webpage/components/views/clutter_free/staticfiles/styles/body.css",
         "/2_webpage/components/views/clutter_free/staticfiles/styles/adjustments.css",
-        "/2_webpage/components/views/clutter_free/main.js"
+        "/2_webpage/components/views/clutter_free/main.js",
+
+        "/2_webpage/components/views/markdown/staticfiles/templates/document.html",
+        "/2_webpage/components/views/markdown/main.js"
     ],
 
     "options_ui": {

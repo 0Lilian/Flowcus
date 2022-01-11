@@ -6,19 +6,8 @@
                                         icon=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18"><path fill="none" d="M0 0h24v24H0z"/><path d="M21 3a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h18zM4 10v9h16v-9H4zm0-2h16V5H4v3z"/></svg>`,
                                         hotkey="CTRL+2",
                                         dependencies = ["View.clutter-full", ],
-                                        scripts_files = [
-                                            "/0_common/staticfiles/libs/highlight.min.js",
-                                            "2_webpage/components/views/clutter_free/main.js"
-                                        ],
-                                        styles_files = [
-                                            "/0_common/staticfiles/styles/destyle.css",
-                                            "/2_webpage/components/views/clutter_free/staticfiles/styles/body.css",
-                                            "/2_webpage/components/views/clutter_free/staticfiles/styles/adjustments.css",
-                                            "/2_webpage/components/views/common/staticfiles/styles/view.css",
-                                            "/0_common/staticfiles/styles/accessibility.css",
-                                            "/0_common/staticfiles/styles/variables.css",
-                                            "/0_common/staticfiles/styles/highlight.min.css"
-                                        ],
+                                        template_path = "2_webpage/components/views/clutter_free/staticfiles/templates/document.html",
+                                        main_script = "/2_webpage/components/views/clutter_free/main.js",
                                         use_iframe_isolation = true,
                                         require_css_reset = true)
 

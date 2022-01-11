@@ -5,8 +5,8 @@ class View extends Component {
                  icon,
                  hotkey,
                  dependencies = [],
-                 scripts_files = [],
-                 styles_files = [],
+                 template_path = null,
+                 main_script = null, // Main script are injected at the end of the initialization process, it ensures in iframed views that every required lib is loaded before starting the main() function
                  use_iframe_isolation = true,
                  require_css_reset = true) {
 
@@ -16,8 +16,8 @@ class View extends Component {
               hotkey,
               dependencies);
 
-        this.scripts_files = scripts_files;
-        this.styles_files = styles_files;
+        this.template_path = template_path;
+        this.main_script = main_script;
         this.use_iframe_isolation = use_iframe_isolation;
         this.require_css_reset = require_css_reset;
 
@@ -95,7 +95,7 @@ class View extends Component {
                 if (this.use_iframe_isolation === true) {
 
                     // Add the iframe src
-                    this.frame.src = browser.runtime.getURL("/2_webpage/components/views/common/staticfiles/templates/view.html")
+                    this.frame.src = browser.runtime.getURL(this.template_path ? this.template_path : "/2_webpage/components/views/common/staticfiles/templates/view.html")
                 }
 
                 document.body.appendChild(this.frame)
@@ -130,7 +130,7 @@ class View extends Component {
 
             try {
 
-                // Finally insert the body's content
+                // Firstly insert the body's content
                 if (this.use_iframe_isolation === true) {
                     const iframe_document = this.frame.contentWindow.document;
                     if (iframe_document.readyState === "complete") {
@@ -147,10 +147,10 @@ class View extends Component {
                     this.frame.appendChild(this.body)
                 }
 
-                // Firstly insert all scripts files in the head
-                for (const script_url of this.scripts_files) {
+                // Finaaly insert the main script file (if there is one).
+                if (this.main_script) {
                     const script = document.createElement("script")
-                    script.src = browser.runtime.getURL(script_url)
+                    script.src = browser.runtime.getURL(this.main_script)
 
                     if (this.use_iframe_isolation === true) {
                         if (this.frame.readyState === "complete") {
@@ -165,28 +165,6 @@ class View extends Component {
 
                     else {
                         document.head.appendChild(script)
-                    }
-                }
-
-                // Then insert all styles files in the head
-                for (const style_url of this.styles_files) {
-                    const style = document.createElement("link")
-                    style.rel = "stylesheet"
-                    style.href = browser.runtime.getURL(style_url)
-
-                    if (this.use_iframe_isolation === true) {
-                        if (this.frame.readyState === "complete") {
-                            this.frame.contentWindow.document.head.appendChild(style)
-                        }
-                        else {
-                            this.frame.addEventListener("load", function () {
-                                this.frame.contentWindow.document.head.appendChild(style)
-                            }.bind(this))
-                        }
-                    }
-
-                    else {
-                        document.head.appendChild(style)
                     }
                 }
 
